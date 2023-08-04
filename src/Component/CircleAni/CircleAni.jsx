@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import { Wrapper } from './../Common/Common'
+
 const Parent =styled.div`
   position: absolute;
   right: 0;
-  transform: translateX(50%) rotate(${props => props.deg || 0});
+  top: 50%;
+  transform: translate(65%, -50%) rotate(${props => props.deg || 0});
   transition: 1s;
 
   width: 1000px;
@@ -16,10 +19,11 @@ const Circle = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  transition: 1s;
 
   width: 500px;
   height: 500px;
-  border: 1px solid #000;
+  border: 15px solid #ff00008b;
   border-radius: 50%;
 
   &>div {
@@ -29,6 +33,7 @@ const Circle = styled.div`
     transform-origin: 475px 0;
 
     font-size: 1.5rem;
+    color: #fff;
 
     cursor: pointer;
 
@@ -63,27 +68,32 @@ export default class CircleAni extends Component {
   }
 
   Effected = (e) => {
-    if (e.target.dataset.deg > this.state.deg) {
-      this.setState({deg: this.state.deg + Math.abs(e.target.dataset.deg - this.state.deg), step: this.step + (Math.abs(e.target.dataset.deg - this.state.deg) / 30)});
-    } else if (e.target.dataset.deg < this.state.deg) {
-      this.setState({deg: this.state.deg - Math.abs(e.target.dataset.deg - this.state.deg), step: this.step - (Math.abs(e.target.dataset.deg - this.state.deg) / 30)});
+    const { deg } = this.state;
+    const { dataset } = e.target;
+    if (dataset.deg > deg) {
+      this.setState({deg: deg + Math.abs(dataset.deg - deg), step: this.step + (Math.abs(dataset.deg - deg) / 30)});
+    } else if (dataset.deg < deg) {
+      this.setState({deg: deg - Math.abs(dataset.deg - deg), step: this.step - (Math.abs(dataset.deg - deg) / 30)});
     }
   }
 
   render() {
     return (
       <>
-        <Parent deg={`${this.state.deg}deg`}>
-          <Circle>
-            {this.state.dummy.map((item, index) => {
-              const itemCalc = item - 3;
-              const degCalc = (itemCalc) * 30;
-              return(
-                <div data-deg={degCalc} style={{opacity: this.state.deg !== degCalc ? `${1 / ((Math.abs(this.state.deg - degCalc) / 30) + 1)}` : '1', fontSize: this.state.deg !== degCalc ? '1.5rem' : '1.7rem'}} onClick={this.Effected}>메뉴 {item}번 입니다.</div>//
-              );
-            })}
-          </Circle>
-        </Parent>
+        <Wrapper>
+          <img src="images/play/play3.png" alt="" />
+          <Parent deg={`${this.state.deg}deg`}>
+            <Circle>
+              {this.state.dummy.map((item, index) => {
+                const itemCalc = item - 3;
+                const degCalc = (itemCalc) * 30;
+                return(
+                  <div data-deg={degCalc} style={{opacity: this.state.deg !== degCalc ? `${1 / ((Math.abs(this.state.deg - degCalc) / 30) + 1)}` : '1', fontSize: this.state.deg !== degCalc ? '1.5rem' : '1.7rem'}} onClick={this.Effected}>메뉴 {item}번 입니다.</div>//
+                );
+              })}
+            </Circle>
+          </Parent>
+        </Wrapper>
       </>
     )
   }
