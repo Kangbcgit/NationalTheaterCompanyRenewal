@@ -46,6 +46,12 @@ export const Wrapper = styled.div`
       
       filter: brightness(.6);
     }
+    &>.wrapText {
+      position: absolute;
+      left: 5%;
+      bottom: 8%;
+      color: #fff;
+    }
   }
 `;
 

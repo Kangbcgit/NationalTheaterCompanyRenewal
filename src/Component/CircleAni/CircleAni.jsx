@@ -61,7 +61,18 @@ export default class CircleAni extends Component {
     this.state = {
       deg: 0, // 현재 부모 rotate deg
       step: 0, //중앙으로부터 멀어진 양 max 2
-      dummy:[1, 2, 3, 4, 5], //임시로 map 돌리기 위한~ item 번호들
+      itemList:[1, 2, 3, 4, 5], //임시로 map 돌리기 위한~ item 번호들
+      text: [
+        (
+          <div className="wrapText" style={{fontSize: '32px'}}>
+            Tragedy of X<br/>
+            <span style={{fontSize: '64px'}}>X의 비극</span><br/>
+            “아무것도 하고싶지 않다.”<br/>
+            번아웃에서 시작된 X의 비극이 전염병처럼 번지다.<br/>
+            <span style={{fontSize: '20px'}}>2023.08.24~2023.09.17<br/>
+            홍익대 아트센터 소극장</span>
+            </div>),
+      ],
       frontView: 3,
       backView: 3,
       images: [
@@ -110,13 +121,14 @@ export default class CircleAni extends Component {
         <Wrapper>
           <div className="wrapImg">
             <img src={`images/play/play${this.state.backView}.png`} alt="" />
+            <div className="wrapText"></div>
           </div>
           <div className={`wrapImg ${this.state.isActiveUp === true ? 'activeUp' : this.state.isActiveDown === true ? 'activeDown' : ""}`} >
             <img src={`images/play/play${this.state.frontView}.png`} alt="" />
           </div>
           <Parent deg={`${this.state.deg}deg`}>
             <Circle>
-              {this.state.dummy.map((item, index) => {
+              {this.state.itemList.map((item, index) => {
                 const itemCalc = item - 3;
                 const degCalc = (itemCalc) * 30;
                 return(
