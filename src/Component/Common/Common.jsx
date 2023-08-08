@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
-export default class Common extends Component {
-  render() {
-    return (
-      <>
-
-      </>
-    )
-  }
-}
+export const GlobalStyle = createGlobalStyle`
+  :root {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    ::-webkit-scrollbar {
+      width: 10px; /* 스크롤바 너비 조정 */
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgb(120, 0, 255);
+      border-radius: 5px;
+    }
+  } 
+`;

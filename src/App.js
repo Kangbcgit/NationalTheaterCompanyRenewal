@@ -1,9 +1,14 @@
 import './App.css';
-import CircleAni from './Component/CircleAni/CircleAni';
+import { GlobalStyle } from './Component/Common/Common';
+import SectionAudition from './Component/SectionAudition/SectionAudition';
+import SectionPlay from './Component/SectionPlay/SectionPlay';
 
 function App() {
   return (
-    <CircleAni />
+    <>
+      <GlobalStyle/>
+      <SectionAudition />
+    </>
   );
 }
 

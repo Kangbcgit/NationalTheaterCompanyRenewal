@@ -108,7 +108,7 @@ const Circle = styled.div`
   }
 `;
 
-export default class CircleAni extends Component {
+export default class SectionPlay extends Component {
   constructor(props) {
     super(props);
     this.state = {
