@@ -1,11 +1,14 @@
 # 국립극단 site renewal team project - 고양이 해적단
 
 ## 구성원 : 이고운(조장) 김정현 강병찬
+![image](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/93186451/9df76cc5-c4fc-49e3-92c3-8df4ce1e06db)
 
 ## 제작 기간: 30일 (2023.08.01 ~ 2023.08.31)
 
 ## 프로젝트 설명
+  국립극단 홈페이지 리뉴얼 프로젝트 입니다. 국립극단 홈페이지는 연극을 관람하는 관람객 뿐만아니라, 연기를 하기위한 배우 지망생에게 오디션 정보를 제공해줍니다. 또한 아마추어 작가와 작가를 지망하는 대학생에게 연출공부 제공 및 희곡개발과정을 제공해줍니다. 하지만 이러한 주된 활동을 메인 페이지에 시각적으로 노출시키지 않았으며, 뒷배경과 섹션간의 구분이 가질 않아 가독성이 떨어졌습니다. 이로인해 저희 고양이 해적단은 2023년도 트렌드 UI/UX 디자인을 기반으로 하여 사용자에게 웹 페이지간의 상호작용을 유도하며, 홈페이지의 주된 목적을 메인페이지에 노출시킴으로서 사용자에게 원하는 정보를 제공해주는 리뉴얼 프로젝트를 진행하게되었습니다.
 
+  
 ## 개발 환경
 + 개발 환경 : <img src="https://img.shields.io/badge/windows10-0078D6?style=flat-square&logo=windows10&logoColor=white"/>
 + 사용 프로그램 : <img src="https://img.shields.io/badge/Vs code-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white"/> <img src="https://img.shields.io/badge/Photoshop-31A8FF?style=flat-square&logo=adobephotoshop&logoColor=white"/> <img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/> <img src="https://img.shields.io/badge/Illustrator-FF9A00?style=flat-square&logo=adobeillustrator&logoColor=white"/>  및 클립스튜디오
@@ -23,15 +26,11 @@
    
 3. Sass(Scss)
 
-    CSS는 규모가 커질수록 코드가 복잡해지고, 유지보수가 불편해 집니다. CSS 코드 내에서 동일한 코드를 재사용하기 위해서 할 수 있는 유일한 조치는 '복사 & 붙여넣기' 뿐이기 때문에 이러한 작업은 사용자에게 불편함과 실수를 유발하게 됩니다. Sass는 CSS의 확장언어로서 치명적 단점을 보완합니다. Sass는 코드 작성에 드는 시간을 줄여주고, 코드를 유지 관리하는 데 도움이 됩니다.
+    CSS는 규모가 커질수록 코드가 복잡해지고, 유지보수가 불편해 집니다. CSS 코드 내에서 동일한 코드를 재사용하기 위해서 할 수 있는 유일한 조치는 '복사 & 붙여넣기' 뿐이며, 이러한 작업은 사용자에게 불편함과 실수를 유발하게 됩니다. Sass는 CSS의 확장언어로서 치명적 단점을 보완합니다. Sass는 코드 작성에 드는 시간을 줄여주고, 코드를 유지 관리하는 데 도움이 됩니다.
 
 4. styled-components
 
+    CSS를 컴포넌트화 시켜주는 라이브러리 입니다. CSS in JS 라이브러리인 styled-components를 사용하면, CSS도 쉽게 Javascript 안에 넣어줄 수 있습니다. HTML + JS + CSS까지 묶어서 하나의 JS파일 안에서 컴포넌트 단위로 개발을 할 수 있습니다.
    
-## 개발목표
-
-
-![image](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/93186451/9df76cc5-c4fc-49e3-92c3-8df4ce1e06db)
-
 ### 읽어주셔서 감사합니다.
  
