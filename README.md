@@ -34,6 +34,6 @@
 
     CSS를 컴포넌트화 시켜주는 라이브러리 입니다. CSS in JS 라이브러리인 styled-components를 사용하면, CSS도 쉽게 Javascript 안에 넣어줄 수 있습니다. HTML + JS + CSS까지 묶어서 하나의 JS파일 안에서 컴포넌트 단위로 개발을 할 수 있습니다.
 
-![footer](https://capsule-render.vercel.app/api?type=rect&color=0:665dff,100:5ee4ff&height=180&section=header&text=읽어주셔서%20감사합니다&fontSize=32&fontColor=ffffff&animation=twinkling)
+![footer](https://capsule-render.vercel.app/api?type=rect&color=0:665dff,100:5ee4ff&height=180&section=header&text=읽어주셔서%20감사합니다&fontSize=40&fontColor=ffffff&animation=twinkling)
 
  
