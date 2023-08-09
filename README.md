@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=고양이%20해적단&fontSize=90&desc=국립극단%20리뉴얼%프로젝트&descSize=30)
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=고양이%20해적단&fontSize=90)
 
 # 국립극단 site renewal team project - 고양이 해적단
 
