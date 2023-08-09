@@ -1,3 +1,5 @@
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=capsule%20render&fontSize=90)
+
 # 국립극단 site renewal team project - 고양이 해적단
 
 ## 구성원 : 이고운(조장) 김정현 강병찬
