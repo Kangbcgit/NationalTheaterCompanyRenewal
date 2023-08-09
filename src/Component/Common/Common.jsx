@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     ::-webkit-scrollbar {
       width: 10px; /* 스크롤바 너비 조정 */
+      height: 0;
     }
     ::-webkit-scrollbar-thumb {
       background-color: rgb(120, 0, 255);
