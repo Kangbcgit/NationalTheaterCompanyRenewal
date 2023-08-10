@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 const Wrapper = styled.div`
   width: calc(100vw - 10px);
   height: 200vh;
   background: #fff;
+  
 `;
 const FrameSectionAudition = styled.div`
   position: sticky;
@@ -17,6 +18,11 @@ const FrameSectionAudition = styled.div`
 
 //총 길이를 어떤 기준으로 선정해야할지 > ?  감으로 200vh정도롤 설정함
 const Items = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 10%;
+  transform: translateX(${props => (props.transform + 'px') || 0});
+
   display: grid;
   grid-template-columns: repeat(${props => props.itemsLenght}, clamp(0px, 26.0417vw, 500px));
   grid-auto-rows: clamp(0px, 26.0417vw, 500px);
@@ -43,13 +49,29 @@ export default class SectionAudition extends Component {
         (<></>),
         (<></>)
       ],
+      transform: 0,
+      calcWidth: 0.
     }
+    this.wrapper = React.createRef();
+    this.items = React.createRef();
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.event);
+    this.setState({calcWidth: (this.items.current.clientWidth - this.wrapper.current.clientWidth)})
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.consoleLog);
+  }
+  event = () => {
+    const wrapper = this.wrapper.current;
+    let calc = wrapper.getBoundingClientRect().top / (wrapper.clientHeight - window.innerHeight);
+    this.setState({transform: this.state.calcWidth * calc})
   }
   render() {
     return (
-      <Wrapper>
-        <FrameSectionAudition>
-          <Items itemsLenght={this.state.items.length}>
+      <Wrapper ref={this.wrapper}>
+        <FrameSectionAudition >
+          <Items itemsLenght={this.state.items.length} transform={this.state.transform} ref={this.items}>
             <Item/>
             <Item/>
             <Item/>
