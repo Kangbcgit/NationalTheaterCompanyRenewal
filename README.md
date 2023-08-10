@@ -36,9 +36,9 @@
 
 ## 링크
 
-+  [브레인 스토밍](https://www.figma.com/file/S679fg8JLgH2zA5yGCaeTM/%EC%95%BD%ED%83%88-%EA%B3%B5%EB%AA%A8%EB%8B%A8?type=whiteboard&node-id=0%3A1&t=3retzeLsg7Rb3Ul8-1){: target="_blank"}
++  [브레인 스토밍](https://www.figma.com/file/S679fg8JLgH2zA5yGCaeTM/%EC%95%BD%ED%83%88-%EA%B3%B5%EB%AA%A8%EB%8B%A8?type=whiteboard&node-id=0%3A1&t=3retzeLsg7Rb3Ul8-1){:target="_blank"}
 
-+ [와이어프레임 및 디자인](https://www.figma.com/file/MyqF41MZuZjrAp0r1cW8LA/%EA%B3%A0%EC%96%91%EC%9D%B4-%ED%95%B4%EC%A0%81%EB%8B%A8?type=design&node-id=259%3A1457&mode=design&t=O5P9Rev4PQLO8zDh-1){: target="_blank"}
++ [와이어프레임 및 디자인](https://www.figma.com/file/MyqF41MZuZjrAp0r1cW8LA/%EA%B3%A0%EC%96%91%EC%9D%B4-%ED%95%B4%EC%A0%81%EB%8B%A8?type=design&node-id=259%3A1457&mode=design&t=O5P9Rev4PQLO8zDh-1){:target="_blank"}
  
 + 리뉴얼 사이트 - 추후 기입
 
