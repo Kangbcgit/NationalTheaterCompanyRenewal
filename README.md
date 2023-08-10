@@ -34,6 +34,12 @@
 
     CSS를 컴포넌트화 시켜주는 라이브러리 입니다. CSS in JS 라이브러리인 styled-components를 사용하면, CSS도 쉽게 Javascript 안에 넣어줄 수 있습니다. HTML + JS + CSS까지 묶어서 하나의 JS파일 안에서 컴포넌트 단위로 개발을 할 수 있습니다.
 
+## 링크
++[브레인 스토밍](https://www.figma.com/file/S679fg8JLgH2zA5yGCaeTM/%EC%95%BD%ED%83%88-%EA%B3%B5%EB%AA%A8%EB%8B%A8?type=whiteboard&node-id=0%3A1&t=3retzeLsg7Rb3Ul8-1)
++[와이어프레임 및 디자인](https://www.figma.com/file/MyqF41MZuZjrAp0r1cW8LA/%EA%B3%A0%EC%96%91%EC%9D%B4-%ED%95%B4%EC%A0%81%EB%8B%A8?type=design&node-id=259%3A1457&mode=design&t=O5P9Rev4PQLO8zDh-1)
++리뉴얼 사이트 - 추후 기입
+
+
 ![footer](https://capsule-render.vercel.app/api?type=rect&color=0:665dff,100:5ee4ff&height=180&section=header&text=읽어주셔서%20감사합니다&fontSize=40&fontColor=ffffff&animation=twinkling)
 
  
