@@ -3,14 +3,21 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const SectionCatchPhrase = () => {
-  const [position, setPosition] = useState();
+  const [hoveredMenuItem, setHoveredMenuItem] = useState(null);
 
+  const handleMenuItemHover = (index) => {
+    setHoveredMenuItem(index);
+  };
+
+  const handleMenuLeave = () => {
+    setHoveredMenuItem(null); // 메뉴 항목 밖으로 이동할 때 숨김 처리
+  };
   return (
     <div className="SectionCatchPhrase">
       <header>
         <div className="inner">
           <div className="logo"></div>
-          <ul className="gnb">
+          <ul className="gnb" onMouseLeave={handleMenuLeave}>
             <li className="gnbMenu">
               <Link to="/">공연안내</Link>
               <div className="wrapSubMenu">
@@ -176,9 +183,13 @@ const SectionCatchPhrase = () => {
               </div>
             </li>
             <div className="menuHoverBall">
-              <span></span>
-              <span></span>
-              <span></span>
+              {hoveredMenuItem !== null && (
+                <>
+                  <span style={{ top: hoveredMenuItem * 40 }}></span>
+                  <span style={{ top: hoveredMenuItem * 40 }}></span>
+                  <span style={{ top: hoveredMenuItem * 40 }}></span>
+                </>
+              )}
             </div>
           </ul>
           <div className="wrapSign">
