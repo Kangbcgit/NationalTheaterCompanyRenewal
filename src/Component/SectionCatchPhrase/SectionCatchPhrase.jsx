@@ -172,10 +172,12 @@ const SectionCatchPhrase = () => {
                 <div className="subMenuLine"></div>
               </div>
             </li>
+            <div className="menuHoverBall">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </ul>
-          <div className="menuHoverBall">
-            <span></span>
-          </div>
           <div className="wrapSign">
             <Link to="/">
               <img src="../../images/catchPhrase/MagnifyingGlass.svg" alt="" />

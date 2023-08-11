@@ -100,7 +100,7 @@ h4,
 h5,
 h6 {
   font-size: 100%;
-  font-weight: normal;
+  font-weight: inherit;
 }
 ul,
 ol,
@@ -225,6 +225,8 @@ textarea[disabled] {
 :root {
   /* size */
   /* body 기본 16px 기준 */
+  --create: 6rem; /* 96px */
+  --catch: 5.25rem; /* 84px */
   --h1: 4rem; /* 64px */
   --h2: 3rem; /* 48px */
   --h3: 2.25rem; /* 36px */

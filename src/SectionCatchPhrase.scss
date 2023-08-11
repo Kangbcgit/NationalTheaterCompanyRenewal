@@ -2,7 +2,7 @@
   background: url(../public/images/catchPhrase/bgImg.svg) no-repeat;
   width: 100%;
   height: 100vh;
-  position: relative;
+  //position: relative;
 
   a {
     color: #fff;
@@ -23,7 +23,7 @@ header {
   width: 100%;
   height: 100px;
   border-bottom: 1px solid rgba($color: #fff, $alpha: 0.3);
-  position: relative;
+  position: relative; /* 바로 아래의 after을 위함 */
 }
 header::after {
   content: "";
@@ -50,8 +50,10 @@ header::after {
   //네비게이션메뉴
   .gnb {
     display: flex;
+    position: relative; //menuHoverBall 기준
+    font-size: var(--title);
     li {
-      position: relative;
+      position: relative; //서브메뉴 ul박스 위치조정 위함
     }
     > li > a {
       display: block;
@@ -81,12 +83,29 @@ header::after {
   }
   //네비게이션메뉴 호버시 위에 나타나는 점
   .menuHoverBall {
+    position: absolute;
+    left: 5%;
+    top: 20%;
     span {
+      border-radius: 100%;
       width: 4px;
       height: 4px;
-      background-color: #fff;
       position: absolute;
+    }
+    span:nth-child(1) {
+      background-color: #fff;
       top: 0;
+      left: 0;
+    }
+    span:nth-child(2) {
+      background-color: var(--primary);
+      top: 0;
+      left: 10px;
+    }
+    span:nth-child(3) {
+      background-color: var(--primary);
+      top: 0;
+      left: 20px;
     }
   }
   //서브메뉴
@@ -96,6 +115,7 @@ header::after {
     position: absolute;
     transform: translateX(-50%);
     top: 150%;
+    font-size: var(--baseSize);
     ul {
       width: 200%;
       background-color: rgba($color: #b2b2b2, $alpha: 0.32);
@@ -149,6 +169,7 @@ header::after {
 }
 //회원가입과 로그인, 검색버튼
 .wrapSign {
+  font-size: var(--title);
   a {
     padding: 1rem 0.8rem;
   }
