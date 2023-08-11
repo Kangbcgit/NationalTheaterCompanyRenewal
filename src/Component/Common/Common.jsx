@@ -4,6 +4,8 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     /* size */
     /* body 기본 16px 기준 */
+    --create: 6rem; /* 96px */
+    --catch: 5.25rem; /* 84px */
     --h1: 4rem; /* 64px */
     --h2: 3rem; /* 48px */
     --h3: 2.25rem; /* 36px */
@@ -26,12 +28,13 @@ export const GlobalStyle = createGlobalStyle`
     --gray4: #F9F9F9;
     ::-webkit-scrollbar {
       width: 10px; /* 스크롤바 너비 조정 */
-      height: 0;
+      height: 10px;
     }
     ::-webkit-scrollbar-thumb {
-      background-color: rgb(120, 0, 255);
+      background-color: red;
       border-radius: 5px;
     }
+    ::-webkit-scrollbar-track {background-color: #2B2E31}
   } 
   /* Reset */
 * {
@@ -134,7 +137,7 @@ h4,
 h5,
 h6 {
   font-size: 100%;
-  font-weight: normal;
+  font-weight: inherit;
 }
 ul,
 ol,

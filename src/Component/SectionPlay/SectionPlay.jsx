@@ -4,7 +4,7 @@ import { throttle } from 'lodash'
 
 const Wrapper = styled.div`
 position: relative;
-width: 100vw;
+width: calc(100vw - 10px);
 height: 100vh;
 
 overflow: hidden;
@@ -172,11 +172,11 @@ export default class SectionPlay extends Component {
       frontView: 3,
       backView: 3,
       images: [
-        'images/play/play1.png',
-        'images/play/play2.png',
-        'images/play/play3.png',
-        'images/play/play4.png',
-        'images/play/play5.png',
+        'images/play/pelay1.svg',
+        'images/play/play2.svg',
+        'images/play/play3.svg',
+        'images/play/play4.svg',
+        'images/play/play5.svg',
       ],
       isActiveUp: false,
       isActiveDown: false,
@@ -217,11 +217,11 @@ export default class SectionPlay extends Component {
       <>
         <Wrapper>
           <div className="wrapImg">
-            <img src={`images/play/play${this.state.backView}.png`} alt="" />
+            <img src={`images/play/play${this.state.backView}.svg`} alt="" />
               {this.state.text[this.state.backView - 1]}
           </div>
           <div className={`wrapImg ${this.state.isActiveUp === true ? 'activeUp' : this.state.isActiveDown === true ? 'activeDown' : ""}`} >
-            <img src={`images/play/play${this.state.frontView}.png`} alt="" />
+            <img src={`images/play/play${this.state.frontView}.svg`} alt="" />
               {this.state.text[this.state.frontView - 1]}
           </div>
           <Parent deg={`${this.state.deg}deg`}>
