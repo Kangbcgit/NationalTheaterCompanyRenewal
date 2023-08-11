@@ -1,15 +1,12 @@
-import './App.css';
-import { GlobalStyle } from './Component/Common/Common';
-import SectionAudition from './Component/SectionAudition/SectionAudition';
-import SectionPlay from './Component/SectionPlay/SectionPlay';
+import SectionCatchPhrase from "./Component/SectionCatchPhrase/SectionCatchPhrase";
+import "./App.css";
+import "./SectionCatchPhrase.scss";
+import { Route, Link } from "react-router-dom";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <GlobalStyle/>
-      <SectionAudition />
-    </>
+    <div className="App">
+      <SectionCatchPhrase />
+    </div>
   );
 }
-
-export default App;

@@ -1,0 +1,155 @@
+.SectionCatchPhrase {
+  background: url(../public/images/catchPhrase/bgImg.svg) no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  a {
+    color: #fff;
+  }
+  //바닥쪽의 흰색 선 두 줄
+  .wrapLine {
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    top: 60%;
+    img {
+      width: 100%;
+    }
+  }
+}
+// 헤더
+header {
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid rgba($color: #fff, $alpha: 0.3);
+  position: relative;
+}
+header::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -6%;
+  background-color: rgba($color: #fff, $alpha: 0.3);
+}
+// 헤더 안쪽 이너
+.inner {
+  width: 83.33%;
+  margin: auto;
+  border: 1px solid pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //로고
+  .logo {
+    width: 265px;
+    height: 100px;
+    background-color: #fff;
+  }
+  //네비게이션메뉴
+  .gnb {
+    display: flex;
+    li {
+      position: relative;
+    }
+    > li > a {
+      display: block;
+      padding: 1.5rem 1.5rem;
+    }
+  }
+  //네비게이션메뉴 호버시 서브메뉴가 나타남
+  .gnbMenu:hover .wrapSubMenu {
+    opacity: 1;
+  }
+  //네비게이션 메뉴 호버시 서브메뉴 감싸는 붉은색 border가 나타남
+  .gnbMenu:hover .subMenuLine:nth-of-type(1) {
+    height: 100%;
+    border-top-width: 2px;
+  }
+  .gnbMenu:hover .subMenuLine:nth-of-type(3) {
+    height: 100%;
+    border-bottom-width: 2px;
+  }
+  .gnbMenu:hover .subMenuLine:nth-of-type(2) {
+    width: 200%;
+    border-right-width: 2px;
+  }
+  .gnbMenu:hover .subMenuLine:nth-of-type(4) {
+    width: 200%;
+    border-left-width: 2px;
+  }
+  //네비게이션메뉴 호버시 위에 나타나는 점
+  .menuHoverBall {
+    span {
+      width: 4px;
+      height: 4px;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+    }
+  }
+  //서브메뉴
+  .wrapSubMenu {
+    opacity: 0;
+    transition: 0.3s;
+    position: absolute;
+    transform: translateX(-50%);
+    top: 150%;
+    ul {
+      width: 200%;
+      background-color: rgba($color: #b2b2b2, $alpha: 0.32);
+      text-align: center;
+    }
+    ul li {
+      display: block;
+      padding: 2rem 2rem 0 2rem;
+    }
+    ul li a:hover {
+      border-bottom: 3px solid var(--primary);
+    }
+    ul li:last-child {
+      padding-bottom: 2rem;
+    }
+    //서브메뉴 감싸는 붉은색 border
+    .subMenuLine {
+      width: 0;
+      height: 0;
+      position: absolute;
+      transition: 0.8s;
+      border: 2px solid var(--primary);
+      box-sizing: border-box;
+      z-index: 2;
+    }
+    .subMenuLine:nth-of-type(1) {
+      left: 0;
+      top: 0;
+      height: 2px;
+      border-top-width: 2px;
+    }
+    .subMenuLine:nth-of-type(2) {
+      right: -100%;
+      top: 0;
+      height: 2px;
+      border-top-width: 2px;
+    }
+    .subMenuLine:nth-of-type(3) {
+      right: -100%;
+      bottom: 0;
+      height: 2px;
+      border-top-width: 2px;
+    }
+    .subMenuLine:nth-of-type(4) {
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      border-top-width: 2px;
+    }
+  }
+}
+//회원가입과 로그인, 검색버튼
+.wrapSign {
+  a {
+    padding: 1rem 0.8rem;
+  }
+}
