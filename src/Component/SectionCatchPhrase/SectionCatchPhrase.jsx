@@ -3,23 +3,19 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const SectionCatchPhrase = () => {
-  const [hoveredMenuItem, setHoveredMenuItem] = useState(null);
-
-  const handleMenuItemHover = (index) => {
-    setHoveredMenuItem(index);
-  };
-
-  const handleMenuLeave = () => {
-    setHoveredMenuItem(null); // 메뉴 항목 밖으로 이동할 때 숨김 처리
-  };
   return (
     <div className="SectionCatchPhrase">
       <header>
         <div className="inner">
           <div className="logo"></div>
-          <ul className="gnb" onMouseLeave={handleMenuLeave}>
+          <ul className="gnb">
             <li className="gnbMenu">
               <Link to="/">공연안내</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <div className="wrapSubMenu">
                 <ul>
                   <li>
@@ -40,9 +36,19 @@ const SectionCatchPhrase = () => {
             </li>
             <li className="gnbMenu">
               <Link to="/">관객참여</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </li>
             <li className="gnbMenu">
               <Link to="/">오디션</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <div className="wrapSubMenu">
                 <ul>
                   <li>
@@ -63,6 +69,11 @@ const SectionCatchPhrase = () => {
             </li>
             <li className="gnbMenu">
               <Link to="/">커뮤니티</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <div className="wrapSubMenu">
                 <ul>
                   <li>
@@ -80,6 +91,11 @@ const SectionCatchPhrase = () => {
             </li>
             <li className="gnbMenu">
               <Link to="/">이용안내</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <div className="wrapSubMenu">
                 <ul>
                   <li>
@@ -106,6 +122,11 @@ const SectionCatchPhrase = () => {
             </li>
             <li className="gnbMenu">
               <Link to="/">고객센터</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <div className="wrapSubMenu">
                 <ul>
                   <li>
@@ -129,6 +150,11 @@ const SectionCatchPhrase = () => {
             </li>
             <li className="gnbMenu">
               <Link to="/">정보공개</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <div className="wrapSubMenu">
                 <ul>
                   <li>
@@ -152,6 +178,11 @@ const SectionCatchPhrase = () => {
             </li>
             <li className="gnbMenu">
               <Link to="/">국립극단</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
               <div className="wrapSubMenu">
                 <ul>
                   <li>
@@ -182,15 +213,6 @@ const SectionCatchPhrase = () => {
                 <div className="subMenuLine"></div>
               </div>
             </li>
-            <div className="menuHoverBall">
-              {hoveredMenuItem !== null && (
-                <>
-                  <span style={{ top: hoveredMenuItem * 40 }}></span>
-                  <span style={{ top: hoveredMenuItem * 40 }}></span>
-                  <span style={{ top: hoveredMenuItem * 40 }}></span>
-                </>
-              )}
-            </div>
           </ul>
           <div className="wrapSign">
             <Link to="/">
@@ -201,6 +223,10 @@ const SectionCatchPhrase = () => {
           </div>
         </div>
       </header>
+      <div className="wrapTxt">
+        <h2>당연했던 극장에 던진 질문</h2>
+        <h1>연극의 또다른 도전</h1>
+      </div>
       <div className="wrapLine">
         <img src="../../images/catchPhrase/line.svg" alt="" />
       </div>

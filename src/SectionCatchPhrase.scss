@@ -2,8 +2,7 @@
   background: url(../public/images/catchPhrase/bgImg.svg) no-repeat;
   width: 100%;
   height: 100vh;
-  //position: relative;
-
+  position: relative; /* .wrapTxt 기준 정하기 위함 */
   a {
     color: #fff;
   }
@@ -63,6 +62,8 @@ header::after {
   //네비게이션메뉴 호버시 서브메뉴가 나타남
   .gnbMenu:hover .wrapSubMenu {
     opacity: 1;
+    visibility: visible;
+    position: absolute;
   }
   //네비게이션 메뉴 호버시 서브메뉴 감싸는 붉은색 border가 나타남
   .gnbMenu:hover .subMenuLine:nth-of-type(1) {
@@ -81,11 +82,16 @@ header::after {
     width: 200%;
     border-left-width: 2px;
   }
+  .gnbMenu:hover .menuHoverBall {
+    opacity: 1;
+  }
   //네비게이션메뉴 호버시 위에 나타나는 점
   .menuHoverBall {
     position: absolute;
-    left: 5%;
+    left: 40%;
     top: 20%;
+    opacity: 0;
+    transition: 0.3s;
     span {
       border-radius: 100%;
       width: 4px;
@@ -96,26 +102,44 @@ header::after {
       background-color: #fff;
       top: 0;
       left: 0;
+      animation: ball 0.8s ease-in infinite;
     }
     span:nth-child(2) {
       background-color: var(--primary);
       top: 0;
       left: 10px;
+      animation: ball 0.6s ease-in infinite;
+      animation-delay: 0.2s;
     }
     span:nth-child(3) {
       background-color: var(--primary);
       top: 0;
       left: 20px;
+      animation: ball 0.8s ease-in infinite;
+      animation-delay: 0.2s;
+    }
+  }
+  @keyframes ball {
+    0% {
+      top: 0px;
+    }
+    50% {
+      top: -5px;
+    }
+    100% {
+      top: 0px;
     }
   }
   //서브메뉴
   .wrapSubMenu {
     opacity: 0;
+    visibility: hidden;
     transition: 0.3s;
     position: absolute;
     transform: translateX(-50%);
     top: 150%;
     font-size: var(--baseSize);
+
     ul {
       width: 200%;
       background-color: rgba($color: #b2b2b2, $alpha: 0.32);
@@ -123,13 +147,13 @@ header::after {
     }
     ul li {
       display: block;
-      padding: 2rem 2rem 0 2rem;
+      padding: 1.5rem 1rem 0 1rem;
     }
     ul li a:hover {
       border-bottom: 3px solid var(--primary);
     }
     ul li:last-child {
-      padding-bottom: 2rem;
+      padding-bottom: 1.5rem;
     }
     //서브메뉴 감싸는 붉은색 border
     .subMenuLine {
@@ -172,5 +196,22 @@ header::after {
   font-size: var(--title);
   a {
     padding: 1rem 0.8rem;
+  }
+}
+//캐치프라이즈 문구
+.wrapTxt {
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  h2 {
+    font-size: var(--h1);
+    font-weight: 500;
+  }
+  h1 {
+    font-size: var(--catch);
+    font-weight: 900;
   }
 }
