@@ -35,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
       border-radius: 5px;
     }
     ::-webkit-scrollbar-track {background-color: #2B2E31}
+    scroll-behavior: smooth;
   } 
   /* Reset */
 * {
