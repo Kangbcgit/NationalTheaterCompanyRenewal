@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const SectionCatchPhrase = () => {
+  //모달창 띄우려는 useState
+  const [modal, setModal] = useState(0);
+
   return (
     <div className="SectionCatchPhrase">
       <header>
@@ -32,6 +35,14 @@ const SectionCatchPhrase = () => {
                 <div className="subMenuLine"></div>
                 <div className="subMenuLine"></div>
                 <div className="subMenuLine"></div>
+              </div>
+            </li>
+            <li className="gnbMenu">
+              <Link to="/">온라인 극장</Link>
+              <div className="menuHoverBall">
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
             </li>
             <li className="gnbMenu">
@@ -214,13 +225,45 @@ const SectionCatchPhrase = () => {
               </div>
             </li>
           </ul>
-          <div className="wrapSign">
-            <Link to="/">
-              <img src="../../images/catchPhrase/MagnifyingGlass.svg" alt="" />
-            </Link>
-            <Link to="/">로그인</Link>
-            <Link to="/">회원가입</Link>
-          </div>
+          <ul className="wrapSign">
+            <li>
+              <Link
+                to="/"
+                onClick={() => {
+                  setModal(!modal);
+                }}
+              >
+                <img
+                  src="../../images/catchPhrase/MagnifyingGlass.svg"
+                  alt=""
+                />
+              </Link>
+              {
+                modal == true ? <Modal /> : null //기계역할
+              }
+              <div className="signHoverBall forSearch">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </li>
+            <li>
+              <Link to="/">로그인</Link>
+              <div className="signHoverBall forSignIn">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </li>
+            <li>
+              <Link to="/">회원가입</Link>
+              <div className="signHoverBall forSignUp">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </li>
+          </ul>
         </div>
       </header>
       <div className="wrapTxt">
@@ -233,4 +276,12 @@ const SectionCatchPhrase = () => {
     </div>
   );
 };
+function Modal() {
+  //code ref: https://velog.io/@uni/React-%EB%AA%A8%EB%8B%AC%EC%B0%BD-%EB%A7%8C%EB%93%A4%EA%B8%B0
+  return (
+    <div className="modal">
+      <input type="search" placeholder="검색어를 입력하세요." />
+    </div>
+  );
+}
 export default SectionCatchPhrase;

@@ -1,6 +1,8 @@
 .SectionCatchPhrase {
-  background: url(../public/images/catchPhrase/bgImg.svg) no-repeat;
-  width: 100%;
+  background: url(../public/images/catchPhrase/bgImg.svg) no-repeat center
+    center;
+  background-size: cover;
+  width: 100vw;
   height: 100vh;
   position: relative; /* .wrapTxt 기준 정하기 위함 */
   a {
@@ -36,7 +38,6 @@ header::after {
 .inner {
   width: 83.33%;
   margin: auto;
-  border: 1px solid pink;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,7 +57,7 @@ header::after {
     }
     > li > a {
       display: block;
-      padding: 1.5rem 1.5rem;
+      padding: 1.5rem 1rem;
     }
   }
   //네비게이션메뉴 호버시 서브메뉴가 나타남
@@ -75,11 +76,11 @@ header::after {
     border-bottom-width: 2px;
   }
   .gnbMenu:hover .subMenuLine:nth-of-type(2) {
-    width: 200%;
+    width: 100%;
     border-right-width: 2px;
   }
   .gnbMenu:hover .subMenuLine:nth-of-type(4) {
-    width: 200%;
+    width: 100%;
     border-left-width: 2px;
   }
   .gnbMenu:hover .menuHoverBall {
@@ -132,16 +133,17 @@ header::after {
   }
   //서브메뉴
   .wrapSubMenu {
+    width: 200%;
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
     position: absolute;
+    left: 50%;
     transform: translateX(-50%);
     top: 150%;
     font-size: var(--baseSize);
 
     ul {
-      width: 200%;
       background-color: rgba($color: #b2b2b2, $alpha: 0.32);
       text-align: center;
     }
@@ -172,13 +174,13 @@ header::after {
       border-top-width: 2px;
     }
     .subMenuLine:nth-of-type(2) {
-      right: -100%;
+      right: 0%;
       top: 0;
       height: 2px;
       border-top-width: 2px;
     }
     .subMenuLine:nth-of-type(3) {
-      right: -100%;
+      right: 0%;
       bottom: 0;
       height: 2px;
       border-top-width: 2px;
@@ -193,10 +195,77 @@ header::after {
 }
 //회원가입과 로그인, 검색버튼
 .wrapSign {
+  display: flex;
+  text-align: center;
+  align-items: center;
   font-size: var(--title);
-  a {
-    padding: 1rem 0.8rem;
+  li {
+    position: relative;
+    padding: 0.8rem 0.5rem;
+    transition: 0.3s;
   }
+  li:hover .signHoverBall {
+    opacity: 1;
+  }
+  //모달창
+  .modal {
+    position: absolute;
+    width: 500%;
+    right: 0;
+    top: 180%;
+  }
+  input {
+    border-radius: 10px;
+    padding-right: 0.5rem;
+    background-color: rgba($color: #fff, $alpha: 0.7);
+  }
+  input::-ms-clear,
+  input::-ms-reveal {
+    background-color: #333;
+  }
+}
+//호버시 위에 나타나는 점
+.signHoverBall {
+  position: absolute;
+  left: 30%;
+  top: 8%;
+  opacity: 0;
+  transition: 0.3s;
+  span {
+    border-radius: 100%;
+    width: 4px;
+    height: 4px;
+    position: absolute;
+  }
+  span:nth-child(1) {
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    animation: ball 0.8s ease-in infinite;
+  }
+  span:nth-child(2) {
+    background-color: var(--primary);
+    top: 0;
+    left: 10px;
+    animation: ball 0.6s ease-in infinite;
+    animation-delay: 0.2s;
+  }
+  span:nth-child(3) {
+    background-color: var(--primary);
+    top: 0;
+    left: 20px;
+    animation: ball 0.8s ease-in infinite;
+    animation-delay: 0.2s;
+  }
+}
+.forSearch {
+  left: 20%;
+}
+.forSign {
+  left: 30%;
+}
+.forSignUp {
+  left: 35%;
 }
 //캐치프라이즈 문구
 .wrapTxt {
