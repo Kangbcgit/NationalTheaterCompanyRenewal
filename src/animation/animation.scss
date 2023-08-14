@@ -1,0 +1,63 @@
+/* 애니메이션 공통 호출 부분 */
+@mixin animationMixin($name, $from, $to) {
+  @keyframes #{$name} {
+    0% {stroke-dashoffset:$from}
+    100% {stroke-dashoffset:$to}
+  }
+}
+/* 시작 */
+#line01,#line04,#line07,#line10,#line13,#line16{stroke-dasharray: 100;stroke-dashoffset:100;}
+
+#line02,#line05,#line08,#line11,#line14,#line17{stroke-dasharray: 100; stroke-dashoffset:-10;}
+
+#line03,#line06,#line09,#line12,#line15,#line18{stroke-dasharray: 100; stroke-dashoffset:-13;}
+
+
+#line01{animation: line01 6s linear  0s  forwards;}
+#line04{animation: line04 6s linear .2s  forwards;}
+#line07{animation: line07 6s linear .4s  forwards;}
+#line10{animation: line10 6s linear .6s  forwards;}
+#line13{animation: line13 6s linear .8s  forwards;}
+#line16{animation: line16 6s linear  1s  forwards;}
+
+
+#line02{animation: line02 .3s linear  0s forwards;}
+#line05{animation: line05 .3s linear .2s forwards;}
+#line08{animation: line08 .3s linear .4s forwards;}
+#line11{animation: line11 .3s linear .6s forwards;}
+#line14{animation: line14 .3s linear .8s forwards;}
+#line17{animation: line17 .3s linear  1s forwards;}
+
+
+#line03{animation: line03 .3s linear  0s forwards;}
+#line06{animation: line06 .3s linear .2s forwards;}
+#line09{animation: line09 .3s linear .4s forwards;}
+#line12{animation: line12 .3s linear .6s forwards;}
+#line15{animation: line15 .3s linear .8s forwards;}
+#line18{animation: line18 .3s linear  1s forwards;}
+
+
+/* 애니메이션 시작 */
+@include animationMixin(line01, 100, 0);
+@include animationMixin(line02, -10, 0);
+@include animationMixin(line03, -13, 0);
+
+@include animationMixin(line04, 100, 0);
+@include animationMixin(line05, -10, 0);
+@include animationMixin(line06, -13, 0);
+
+@include animationMixin(line07, 100, 0);
+@include animationMixin(line08, -10, 0);
+@include animationMixin(line09, -13, 0);
+
+@include animationMixin(line10, 100, 0);
+@include animationMixin(line11, -10, 0);
+@include animationMixin(line12, -13, 0);
+
+@include animationMixin(line13, 100, 0);
+@include animationMixin(line14, -10, 0);
+@include animationMixin(line15, -13, 0);
+
+@include animationMixin(line16, 100, 0);
+@include animationMixin(line17, -10, 0);
+@include animationMixin(line18, -13, 0);
