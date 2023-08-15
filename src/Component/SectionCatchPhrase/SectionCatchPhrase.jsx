@@ -11,6 +11,7 @@ const SectionCatchPhrase = () => {
       <header>
         <div className="inner">
           <div className="logo"></div>
+          {/* 데스크탑 메뉴 */}
           <ul className="gnb">
             <li className="gnbMenu">
               <Link to="/">공연안내</Link>
@@ -262,6 +263,230 @@ const SectionCatchPhrase = () => {
                 <span></span>
                 <span></span>
               </div>
+            </li>
+          </ul>
+          {/* 모바일 메뉴 */}
+          <div className="wrapMobileLeft">
+            <Link to="/">
+              <div className="wrapToggleBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </Link>
+            <div className="search-mobile">
+              <Link
+                to="/"
+                onClick={() => {
+                  setModal(!modal);
+                }}
+              >
+                <img
+                  src="../../images/catchPhrase/MagnifyingGlass.svg"
+                  alt=""
+                />
+              </Link>
+              {
+                modal == true ? <Modal /> : null //기계역할
+              }
+            </div>
+          </div>
+          <ul className="gnb-moblie">
+            <li className="gnbMenu-moblie">
+              <Link to="/">공연안내</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className="wrapSubMenu-moblie">
+                <ul>
+                  <li>
+                    <Link to="/">공연소개</Link>
+                  </li>
+                  <li>
+                    <Link to="/">월간일정</Link>
+                  </li>
+                  <li>
+                    <Link to="/">연간일정</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">온라인 극장</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">관객참여</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">오디션</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className="wrapSubMenu-moblie">
+                <ul>
+                  <li>
+                    <Link to="/">오디션 게시판</Link>
+                  </li>
+                  <li>
+                    <Link to="/">오디션 지원</Link>
+                  </li>
+                  <li>
+                    <Link to="/">지원내역확인</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">커뮤니티</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className="wrapSubMenu-moblie">
+                <ul>
+                  <li>
+                    <Link to="/">관람후기</Link>
+                  </li>
+                  <li>
+                    <Link to="/">자유게시판 </Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">이용안내</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className="wrapSubMenu-moblie">
+                <ul>
+                  <li>
+                    <Link to="/">예매안내</Link>
+                  </li>
+                  <li>
+                    <Link to="/">좌석배치도</Link>
+                  </li>
+                  <li>
+                    <Link to="/">오시는길</Link>
+                  </li>
+                  <li>
+                    <Link to="/">시설안내</Link>
+                  </li>
+                  <li>
+                    <Link to="/">제휴할인</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">고객센터</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className="wrapSubMenu-moblie">
+                <ul>
+                  <li>
+                    <Link to="/">공지사항</Link>
+                  </li>
+                  <li>
+                    <Link to="/">언론보도</Link>
+                  </li>
+                  <li>
+                    <Link to="/">FAQ</Link>
+                  </li>
+                  <li>
+                    <Link to="/">Q&A</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">정보공개</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className="wrapSubMenu-moblie">
+                <ul>
+                  <li>
+                    <Link to="/">정보공개안내</Link>
+                  </li>
+                  <li>
+                    <Link to="/">사전정보공개</Link>
+                  </li>
+                  <li>
+                    <Link to="/">정보공개자료</Link>
+                  </li>
+                  <li>
+                    <Link to="/">아카이브</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className="gnbMenu-moblie">
+              <Link to="/">국립극단</Link>
+              <div className="menuHoverBall-moblie">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div className="wrapSubMenu-moblie">
+                <ul>
+                  <li>
+                    <Link to="/">개요</Link>
+                  </li>
+                  <li>
+                    <Link to="/">운영목표</Link>
+                  </li>
+                  <li>
+                    <Link to="/">조직도</Link>
+                  </li>
+                  <li>
+                    <Link to="/">작품개발</Link>
+                  </li>
+                  <li>
+                    <Link to="/">어린이청소년극연구소</Link>
+                  </li>
+                  <li>
+                    <Link to="/">시즌단원</Link>
+                  </li>
+                  <li>
+                    <Link to="/">출판물</Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul className="wrapSign-moblie">
+            <li>
+              <Link to="/">
+                <img src="../../images/catchPhrase/UserCircle.svg" alt="" />
+              </Link>
+            </li>
+            <li>
+              <Link to="/">
+                <img src="../../images/catchPhrase/UserCirclePlus.svg" alt="" />
+              </Link>
             </li>
           </ul>
         </div>
