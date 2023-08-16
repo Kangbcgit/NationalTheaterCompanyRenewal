@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/NationalTheaterCompanyRenewal/static/css/main.7e6833e7.css",
-    "main.js": "/NationalTheaterCompanyRenewal/static/js/main.91ecb140.js",
+    "main.js": "/NationalTheaterCompanyRenewal/static/js/main.3b47a974.js",
     "static/js/787.fbf96e53.chunk.js": "/NationalTheaterCompanyRenewal/static/js/787.fbf96e53.chunk.js",
+    "static/media/01poster_작가.svg": "/NationalTheaterCompanyRenewal/static/media/01poster_작가.57e43cca7d29de061ed0114b51f4802a.svg",
     "index.html": "/NationalTheaterCompanyRenewal/index.html",
     "main.7e6833e7.css.map": "/NationalTheaterCompanyRenewal/static/css/main.7e6833e7.css.map",
-    "main.91ecb140.js.map": "/NationalTheaterCompanyRenewal/static/js/main.91ecb140.js.map",
+    "main.3b47a974.js.map": "/NationalTheaterCompanyRenewal/static/js/main.3b47a974.js.map",
     "787.fbf96e53.chunk.js.map": "/NationalTheaterCompanyRenewal/static/js/787.fbf96e53.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7e6833e7.css",
-    "static/js/main.91ecb140.js"
+    "static/js/main.3b47a974.js"
   ]
 }
