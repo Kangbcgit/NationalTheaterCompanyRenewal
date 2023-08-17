@@ -44,7 +44,10 @@ const Header = () => {
       <header>
         <div className="inner">
           <div className="logo">
-            <img src="../images/로고수정04.svg" alt="" />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/로고수정04.svg`}
+              alt=""
+            />
           </div>
           {/* 데스크탑 메뉴 */}
           <ul className="gnb">
@@ -270,8 +273,7 @@ const Header = () => {
                 }}
               >
                 <img
-                  src="../../images/catchPhrase/MagnifyingGlass.svg"
-                  alt=""
+                  src={`${process.env.PUBLIC_URL}/images/catchPhrase/MagnifyingGlass.svg`}
                 />
               </Link>
               {
@@ -632,12 +634,16 @@ const Header = () => {
           <ul className="wrapSign-mobile">
             <li>
               <Link to="/">
-                <img src="../../images/catchPhrase/UserCircle.svg" alt="" />
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/catchPhrase/UserCircle.svg`}
+                />
               </Link>
             </li>
             <li>
               <Link to="/">
-                <img src="../../images/catchPhrase/UserCirclePlus.svg" alt="" />
+                <img
+                  src={`${process.env.PUBLIC_URL}images/catchPhrase/UserCirclePlus.svg`}
+                />
               </Link>
             </li>
           </ul>

@@ -12,7 +12,7 @@ const SectionCatchPhrase = () => {
         <h1>연극의 또다른 도전</h1>
       </div>
       <div className="wrapLine">
-        <img src="../../images/catchPhrase/line.svg" alt="" />
+        <img src={`${process.env.PUBLIC_URL}/images/catchPhrase/line.svg`} />
       </div>
     </div>
   );
