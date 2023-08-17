@@ -129,7 +129,7 @@ export default class AuditionItem extends Component {
               </ul>
             </div>
             <div className="arrow">
-              <img src="images/audition/hoverArrow.svg" alt="" />
+              <img src={`${process.env.PUBLIC_URL}/images/audition/hoverArrow.svg`} alt="" />
             </div>
           </HoverItem>
         </div>

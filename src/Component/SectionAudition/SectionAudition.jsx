@@ -5,6 +5,7 @@ import AuditionItem from './AuditionItem';
 const Wrapper = styled.div`
   width: calc(100vw - 10px);
   height: 200vh;
+  min-height: 1926px;
   background: #fff;
   &>.wrapTopContents {
     position: sticky;
@@ -13,7 +14,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     flex-flow: wrap;
-    height: clamp(963px, 100vh, 50.1563vw);
+    height: 963px;
     border: 1px solid #000;
 
     overflow:hidden;
@@ -49,11 +50,11 @@ const Items = styled.div`
   transform: translateX(${props => (props.transform + 'px') || 0});
 
   display: grid;
-  grid-template-columns: repeat(${props => props.itemsLenght}, clamp(0px, 26.0417vw, 500px));
-  grid-auto-rows: clamp(0px, 26.0417vw, 500px);
+  grid-template-columns: repeat(${props => props.itemsLenght}, 500px);
+  grid-auto-rows: 500px;
   gap: clamp(0px, 3.125vw, 60px);
   width: fit-content;
-  height: clamp(0px, 26.0417vw, 500px);
+  height: 500px;
   
   transition: transform .1s;
 `;
@@ -156,7 +157,8 @@ export default class SectionAudition extends Component {
     this.state.items.forEach((item, index) => {
       const src = this.state.items[index].title;
       newItems[index].tag = `#${src}`;
-      newItems[index].src = `images/audition/0${index + 1}${src}.svg`;
+      newItems[index].src = `images/audition/0${ 
+        index + 1}${src}.svg`;
     });
     this.setState({items: newItems})
   }

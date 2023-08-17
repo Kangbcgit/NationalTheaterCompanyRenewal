@@ -57,10 +57,10 @@ function MapNaver(props) {
       debounceInitMap();
     }
   }, []);
-
+  
   return (
     <WrapTop>
-      <h4><img src={'images/footer/theatreIcon.svg'}></img>{props.mapList[0]}</h4>
+      <h4><img src={`${process.env.PUBLIC_URL}/images/footer/theatreIcon.svg`}></img>{props.mapList[0]}</h4>
       <FrameMap ref={mapElement} />
     </WrapTop>
   )
