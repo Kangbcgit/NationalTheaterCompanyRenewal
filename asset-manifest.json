@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/NationalTheaterCompanyRenewal/static/css/main.060c2bc3.css",
+    "main.js": "/NationalTheaterCompanyRenewal/static/js/main.aa80ec62.js",
+    "static/js/787.fbf96e53.chunk.js": "/NationalTheaterCompanyRenewal/static/js/787.fbf96e53.chunk.js",
+    "static/media/bgImg.svg": "/NationalTheaterCompanyRenewal/static/media/bgImg.4190af2dcf7f896cf775.svg",
+    "index.html": "/NationalTheaterCompanyRenewal/index.html",
+    "main.060c2bc3.css.map": "/NationalTheaterCompanyRenewal/static/css/main.060c2bc3.css.map",
+    "main.aa80ec62.js.map": "/NationalTheaterCompanyRenewal/static/js/main.aa80ec62.js.map",
+    "787.fbf96e53.chunk.js.map": "/NationalTheaterCompanyRenewal/static/js/787.fbf96e53.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.060c2bc3.css",
+    "static/js/main.aa80ec62.js"
+  ]
+}
