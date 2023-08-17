@@ -3,6 +3,7 @@ import './App.css';
 import { GlobalStyle } from './Component/Common/Common';
 import SectionAudition from './Component/SectionAudition/SectionAudition';
 import SectionPlay from './Component/SectionPlay/SectionPlay';
+import Footer from './Component/Footer/Footer';
 
 
 export default class App extends Component {
@@ -29,6 +30,7 @@ export default class App extends Component {
         <GlobalStyle/>
         <SectionPlay/>
         <SectionAudition tossWrapperTopCalc={this.propsRectTop} tossWrapperTop={this.state.WrapperTop}/>
+        <Footer/>
       </>
     );
   }

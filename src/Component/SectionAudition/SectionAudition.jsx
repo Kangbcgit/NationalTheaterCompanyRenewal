@@ -7,13 +7,22 @@ const Wrapper = styled.div`
   height: 200vh;
   background: #fff;
   &>.wrapTopContents {
+    position: sticky;
+    top: 0;
+
     display: flex;
     justify-content: space-between;
+    flex-flow: wrap;
+    height: clamp(963px, 100vh, 50.1563vw);
+    border: 1px solid #000;
 
-    margin: clamp(0px, 6.5104vw, 125px) clamp(0px, 5.8333vw, 112px) 0 clamp(0px, 7.9167vw, 152px);
+    overflow:hidden;
+
     &>.wrapTitle {
       display: flex;
       flex-direction: column;
+
+      margin: clamp(0px, 4.1667vw, 80px) 0  0 clamp(0px, 7.9167vw, 152px);
 
       &>.main {
         font-family: EF_Rebecca;
@@ -23,23 +32,20 @@ const Wrapper = styled.div`
         font-family: Interop;
         font-size: var(--h6);
         font-weight: 700;
+      }
     }
+    &>.wrapImg {
+      margin: clamp(0px, 4.1667vw, 80px) clamp(0px, 5.8333vw, 112px) 0 0;
     }
   }
 `;  
 const FrameSectionAudition = styled.div`
-  position: sticky;
-  top: 0;
 
   width: 100%;
-  height: 100vh;
 `;
 
 //총 길이를 어떤 기준으로 선정해야할지 > ?  감으로 200vh정도롤 설정함
 const Items = styled.div`
-  /* position: absolute;
-  left: 0;
-  bottom: 10%; */
   transform: translateX(${props => (props.transform + 'px') || 0});
 
   display: grid;
@@ -158,10 +164,13 @@ export default class SectionAudition extends Component {
     const wrapper = this.wrapper.current;
     this.props.tossWrapperTopCalc(wrapper);
     const RectTop = this.props.tossWrapperTop;
+    console.log(RectTop);
     if (RectTop > 0) {
       this.setState({transform: 0});
       return;
-    };
+    } else if(RectTop < -1000) {
+      return;
+    }
     this.setState({wrapperTop: RectTop});
     let calc = RectTop / (wrapper.clientHeight - window.innerHeight);
     this.setState({transform: this.state.calcWidth * calc});
@@ -177,16 +186,17 @@ export default class SectionAudition extends Component {
         <div className="wrapImg">
           <img src="images/audition/viewMore.svg" alt="" />
         </div>
-      </div>
         <FrameSectionAudition >
-          <div style={{position: 'absolute', bottom: 'clamp(0px, 5.5208vw, 106px)', left: 0, width:"calc(100vw - 10px)", overflow : 'hidden'}}>
+          <div style={{position: 'absolute', bottom: 'clamp(0px, 4.1667vw, 80px)', left: 0, width:"calc(100vw - 10px)", overflow : 'hidden'}}>
             <Items itemsLenght={this.state.items.length} transform={this.state.transform} ref={this.items}>
               {this.state.items.map((item, index) => {
-                return (<AuditionItem order={`0${index + 1}`} item={item}/>)
+                return (<AuditionItem order={`0${index + 1}`} item={item} year={this.state.year}/>)
               })}
             </Items>
           </div>
         </FrameSectionAudition>
+      </div>
+        
       </Wrapper>
     )
   }
