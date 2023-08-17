@@ -6,18 +6,28 @@ const Header = () => {
   //모달창 띄우려는 useState
   const [modal, setModal] = useState(0);
 
-  //햄버거메뉴 클릭시 .gnbMenu-mobile이 나오도록 + 햄버거메뉴에는 .on을 추가/제거
+  //햄버거버튼 클릭시 .gnbMenu-mobile이 나오도록 + 햄버거메뉴에는 .on을 추가/제거
   const [isOpen, setIsOpen] = useState(false); // 메뉴의 초기값을 false로 설정
+  // 이 트리거 함수는 .gnbMenu-mobile이 isOpen된 상태에서 서브메뉴들을 클릭하여 각각 toggle된 상태에서 x를 눌러 다시 닫았다가 열었을 때, 열려있던 서브메뉴들이 다 닫힌 상태가 되도록 하기 위한 함수이다.
+  const trigger = () => {
+    if (!isOpen) {
+      //각각 9개의 요소를 가진 배열들이기 때문에 set으로 9개의 상태를 모두 false로 초기화해주어야 한다. 그렇지 않고 그냥 false만 쓰면 적용되지 않는다.
+      setIsActive(Array(9).fill(false));
+      setMenuToggle(Array(9).fill(false));
+    }
+  };
 
-  //햄버거 버튼에 나중에 className={'wrapToggleBtn ${isOpen == true ? "on":""}'} 추가
-
-  // //menuHoverBall-mobile 클래스추가
+  //menuHoverBall-mobile 클래스추가
   const [isActive, setIsActive] = useState(
     Array(9).fill(false) // false값을 갖는 배열이 총 9개(.gnbMenu-mobile 개수만큼)
   );
-  // //.gnbMenu-mobile 클릭시 서브메뉴 토글
+  //.gnbMenu-mobile 클릭시 서브메뉴 토글
   const [menuToggle, setMenuToggle] = useState(Array(9).fill(false)); //false값을 갖는 배열이 총 9개(.gnbMenu-mobile 개수만큼)
-  const menuOnOffAndToggleClass = (idx) => {
+  const menuOnOffAndToggleClass = (idx, e) => {
+    //아래의 if문은 .wrapSubMenu-mobile의 각각의 li들을 클릭했을 때 상위 요소의 클릭이벤트가 함께 적용되어 토글이 닫히는 오류를 막기위한 코드로, li 안의 Link들에 각각 클래스를 따로 주어 선택된 타겟이 menulink라는 클래스를 가지고 있지 않을 때에만, 즉 서브메뉴의 하위 li들을 클릭했을 때에는 토글이 닫히지 않고 상위 메뉴인 .gnbMenu-mobile의 .li를 클릭했을 때에만 클릭이벤트가 적용되어 토글이 닫히도록 하기 위함이다.
+    if (!e.target.classList.contains("menulink")) {
+      return;
+    }
     const newMenuToggle = menuToggle.map((value, j) =>
       j === idx ? !value : false
     );
@@ -297,6 +307,7 @@ const Header = () => {
                 className={`wrapToggleBtn ${isOpen ? "on" : ""}`}
                 onClick={() => {
                   setIsOpen(!isOpen); // isOpen 상태 토글
+                  trigger();
                 }}
               >
                 <span></span>
@@ -325,9 +336,11 @@ const Header = () => {
             <ul className="gnb-mobile">
               <li
                 className={`gnbMenu-mobile ${isActive[0] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(0)}
+                onClick={(e) => menuOnOffAndToggleClass(0, e)}
               >
-                <Link to="/">공연안내</Link>
+                <Link to="/" className="menulink">
+                  공연안내
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[0] ? "active" : ""
@@ -357,9 +370,11 @@ const Header = () => {
               </li>
               <li
                 className="gnbMenu-mobile"
-                onClick={() => menuOnOffAndToggleClass(1)}
+                onClick={(e) => menuOnOffAndToggleClass(1, e)}
               >
-                <Link to="/">온라인 극장</Link>
+                <Link to="/" className="menulink">
+                  온라인 극장
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[1] ? "active" : ""
@@ -372,9 +387,11 @@ const Header = () => {
               </li>
               <li
                 className={`gnbMenu-mobile ${isActive[2] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(2)}
+                onClick={(e) => menuOnOffAndToggleClass(2, e)}
               >
-                <Link to="/">관객참여</Link>
+                <Link to="/" className="menulink">
+                  관객참여
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[2] ? "active" : ""
@@ -387,9 +404,11 @@ const Header = () => {
               </li>
               <li
                 className={`gnbMenu-mobile ${isActive[3] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(3)}
+                onClick={(e) => menuOnOffAndToggleClass(3, e)}
               >
-                <Link to="/">오디션</Link>
+                <Link to="/" className="menulink">
+                  오디션
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[3] ? "active" : ""
@@ -419,9 +438,11 @@ const Header = () => {
               </li>
               <li
                 className={`gnbMenu-mobile ${isActive[4] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(4)}
+                onClick={(e) => menuOnOffAndToggleClass(4, e)}
               >
-                <Link to="/">커뮤니티</Link>
+                <Link to="/" className="menulink">
+                  커뮤니티
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[4] ? "active" : ""
@@ -448,9 +469,11 @@ const Header = () => {
               </li>
               <li
                 className={`gnbMenu-mobile ${isActive[5] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(5)}
+                onClick={(e) => menuOnOffAndToggleClass(5, e)}
               >
-                <Link to="/">이용안내</Link>
+                <Link to="/" className="menulink">
+                  이용안내
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[5] ? "active" : ""
@@ -486,9 +509,11 @@ const Header = () => {
               </li>
               <li
                 className={`gnbMenu-mobile ${isActive[6] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(6)}
+                onClick={(e) => menuOnOffAndToggleClass(6, e)}
               >
-                <Link to="/">고객센터</Link>
+                <Link to="/" className="menulink">
+                  고객센터
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[6] ? "active" : ""
@@ -521,9 +546,11 @@ const Header = () => {
               </li>
               <li
                 className={`gnbMenu-mobile ${isActive[7] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(7)}
+                onClick={(e) => menuOnOffAndToggleClass(7, e)}
               >
-                <Link to="/">정보공개</Link>
+                <Link to="/" className="menulink">
+                  정보공개
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[7] ? "active" : ""
@@ -556,9 +583,11 @@ const Header = () => {
               </li>
               <li
                 className={`gnbMenu-mobile ${isActive[8] ? "active" : ""}`}
-                onClick={() => menuOnOffAndToggleClass(8)}
+                onClick={(e) => menuOnOffAndToggleClass(8, e)}
               >
-                <Link to="/">국립극단</Link>
+                <Link to="/" className="menulink">
+                  국립극단
+                </Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[8] ? "active" : ""

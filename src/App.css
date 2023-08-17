@@ -225,6 +225,19 @@ textarea[disabled] {
 :root {
   /* size */
   /* body 기본 16px 기준 */
+  --createrem: 6rem; /* 96px */
+  --catchrem: 5.25rem; /* 84px */
+  --h1rem: 4rem; /* 64px */
+  --h2rem: 3rem; /* 48px */
+  --h3rem: 2.25rem; /* 36px */
+  --h4rem: 2rem; /* 32px */
+  --h5rem: 1.88rem; /* 30px */
+  --h6rem: 1.5rem; /* 24px */
+  --titlerem: 1.25rem; /* 20px */
+  --baseSizerem: 1rem; /* 16px */
+  --smallrem: 0.88rem; /* 14px */
+  --xSmallrem: 0.75rem; /* 12px */
+  --minrem: 0.63rem; /* 10px */
   --create: 5vw; /* 96px */
   --catch: 4.38vw; /* 84px */
   --h1: 3.33vw; /* 64px */

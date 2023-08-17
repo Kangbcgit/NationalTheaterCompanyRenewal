@@ -2,7 +2,43 @@
 
 @include mobile {
   .SectionCatchPhrase {
-    background-color: yellow;
+    background: url(../public/images/catchPhrase/bgImg.svg) no-repeat center
+      center;
+    background-size: cover;
+    width: 100vw;
+    min-height: 600px;
+    //height: 100vh;
+    position: relative; /* .wrapTxt 기준 정하기 위함 */
+    a {
+      color: #fff;
+    }
+    //바닥쪽의 흰색 선 두 줄
+    .wrapLine {
+      width: 100%;
+      height: fit-content;
+      position: absolute;
+      top: 65%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  //캐치프라이즈 문구
+  .wrapTxt {
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    h2 {
+      font-size: var(--h1);
+      font-weight: 500;
+    }
+    h1 {
+      font-size: var(--catch);
+      font-weight: 900;
+    }
   }
 }
 
