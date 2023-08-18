@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import "./Header.scss";
 import "./SectionCatchPhrase.scss";
@@ -31,6 +31,19 @@ function App() {
     const WrapperTop = Wrapper.getBoundingClientRect().top;
     setWrapperTop(WrapperTop);
   }
+  const scrolling = e => {
+    e.preventDefault();
+    if(e.deltaY>0) {
+      console.log('scrollDown');
+      setScroll(currentScroll + window.innerHeight);
+    }
+  }
+  const [currentScroll, setScroll] = useState(0);
+  useEffect(() => {
+    window.addEventListener('wheel', scrolling ,{passive: false});
+    window.scrollTo({top: currentScroll, behavior: 'smooth'});
+    return () => {window.removeEventListener('wheel', scrolling)}
+  },[currentScroll]);
   return (
     <>
       <GlobalStyle/>
@@ -46,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
