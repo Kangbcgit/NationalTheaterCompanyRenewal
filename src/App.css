@@ -70,6 +70,7 @@ figcaption {
 html,
 body {
   width: 100%;
+  overflow-x: hidden;
 }
 html {
   /* font-size: 20px; */
