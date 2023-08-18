@@ -348,9 +348,11 @@
       background-color: rgba(#2b2e31, 0.5);
       backdrop-filter: blur(6px);
       transition: 0.3s;
+      pointer-events: none;
     }
     .wrapGnb-mobile.view {
       opacity: 1;
+      pointer-events: auto;
     }
     .gnb-mobile {
       //네비게이션 메뉴 ul
