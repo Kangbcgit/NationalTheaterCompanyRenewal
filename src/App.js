@@ -11,6 +11,11 @@ function App () {
     const WrapperTop = Wrapper.getBoundingClientRect().top;
     setWrapperTop(WrapperTop);
   }
+
+  useEffect(() => {
+    
+  },[]);
+
   return (
     <>
       <GlobalStyle/>

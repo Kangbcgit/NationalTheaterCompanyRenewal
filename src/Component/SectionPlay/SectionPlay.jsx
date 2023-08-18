@@ -172,7 +172,7 @@ export default class SectionPlay extends Component {
       frontView: 3,
       backView: 3,
       images: [
-        'images/play/pelay1.svg',
+        'images/play/play1.svg',
         'images/play/play2.svg',
         'images/play/play3.svg',
         'images/play/play4.svg',

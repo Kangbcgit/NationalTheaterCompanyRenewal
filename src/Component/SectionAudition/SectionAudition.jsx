@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     flex-flow: wrap;
-    height: 963px;
+    height: 100vh;
     border: 1px solid #000;
 
     overflow:hidden;
