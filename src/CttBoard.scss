@@ -197,16 +197,21 @@
   }
   .wrapIcons img {
     border: 3px solid #fff;
-    width: 40%; //180px
-    height: 40%;
+    width: 130px; //180px -> 130px
+    height: 130px;
     border-radius: 20px;
     padding: 1rem;
     margin-bottom: 1rem;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.1);
+      border: 3px solid #6892ff;
+    }
   }
   .wrapIcons a {
     color: #fff;
   }
-  .wrapIcons h3 {
+  .wrapIcons a h3 {
     font-size: var(--h5);
     margin-bottom: 0.5rem;
   }

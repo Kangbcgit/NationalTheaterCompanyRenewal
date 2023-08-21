@@ -44,10 +44,12 @@ const Header = () => {
       <header>
         <div className="inner">
           <div className="logo">
-            <img
-              src={`${process.env.PUBLIC_URL}/images/로고수정04.svg`}
-              alt=""
-            />
+            <Link to="/">
+              <img
+                src={`${process.env.PUBLIC_URL}/images/로고수정04.svg`}
+                alt=""
+              />
+            </Link>
           </div>
           {/* 데스크탑 메뉴 */}
           <ul className="gnb">

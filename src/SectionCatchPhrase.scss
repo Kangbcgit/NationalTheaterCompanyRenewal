@@ -2,7 +2,6 @@
 
 @include mobile {
   .SectionCatchPhrase {
-    background-size: cover;
     width: 100%;
     height: 100vh;
     position: relative; /* .wrapTxt 기준 정하기 위함 */
@@ -11,7 +10,9 @@
     }
     //비디오
     video {
-      background-size: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
   //캐치프라이즈 문구
@@ -42,6 +43,12 @@
     a {
       color: #fff;
     }
+    //비디오
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   //캐치프라이즈 문구
   .wrapTxt {
@@ -70,6 +77,12 @@
 
     a {
       color: #fff;
+    }
+    //비디오
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
   //캐치프라이즈 문구
