@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { styled } from 'styled-components'
 import MapNaver from './MapNaver';
+import { Link } from 'react-router-dom';
 
 
 const FrameFooter = styled.footer`
-  height: 100vh;
   background: #000;
   /* overflow: hidden; */
 `;
@@ -25,7 +25,8 @@ const WrapInfoCompany = styled.div`
   width: 1678px;
   
   margin: 0 auto;
-  border: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  padding: 0 0px 40px;
 `;
 const WrapLeftInfo = styled.div`
   display: flex;
@@ -33,21 +34,28 @@ const WrapLeftInfo = styled.div`
   align-items: center;
   
   width: 900px;
-  &>.wrapLogo {
-    width: 133px;
-    height: 133px;
-  }
   &>.wrapDesc {
     color: var(--white);
+  }
+`;
+const WrapLogoLeft = styled(Link)`
+  width: 133px;
+  height: 133px;
+`;
+const WrapDescLeft = styled.div`
+  color: var(--white);
+  &>h3 {
+    font-size: var(--h4);
   }
 `;
 const WrapRightInfo = styled.div`
   display: flex;
   flex-flow: column;
   align-items: end;
+  gap: 20px;
   
 
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   width: 30%;
 
   &>.wrapGoTop {
@@ -55,8 +63,34 @@ const WrapRightInfo = styled.div`
   }
   &>.wrapSns {
     display: flex;
+    justify-content: space-between;
+
+    width: 360px;
   }
 `;
+
+const FooterLink = styled.div`
+  display: flex;
+  width: 1678px;
+  height: 100px;
+  margin: 0 auto;
+
+
+  color: var(--white);
+`;
+const Links = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 1200px;
+  color: inherit;
+
+  /* border: 1px solid #fff; */
+  &>a {
+    color: var(--white);
+  }
+`;
+
 export default class Footer extends Component {
   constructor(props) {
     super(props);
@@ -77,10 +111,10 @@ export default class Footer extends Component {
         </WrapMaps>
         <WrapInfoCompany>
           <WrapLeftInfo>
-            <div className="wrapLogo">
+            <WrapLogoLeft to='#none'>
               <img src={`${process.env.PUBLIC_URL}/images/footer/logoWhite.svg`} alt="" />
-            </div>
-            <div className="wrapDesc">
+            </WrapLogoLeft>
+            <WrapDescLeft>
               <h3>재단법인 국립극단</h3>
               <p>
                 04302 서울특별시 용산구 청파로373 | 대표 : 김광보 <br/>
@@ -88,31 +122,50 @@ export default class Footer extends Component {
                 사업자등록번호 201-82-07107 | 통신판매업신고번호 제2012-서울용산-00305<br/>
                 COPYRIGHT 2014 NATIONAL THEATER COMPANY OF KOREA RIGHTS RESERVED.
               </p>
-            </div>
+            </WrapDescLeft>
           </WrapLeftInfo>
           <WrapRightInfo>
             <div className="wrapGoTop">
               <img src={`${process.env.PUBLIC_URL}/images/footer/topBtn.svg`} alt="" />
             </div>
             <div className="wrapSns">
-              <div className="wrapImg">
+              <a href='#none' className="wrapImg">
                 <img src={`${process.env.PUBLIC_URL}/images/footer/facebook.svg`} alt="" />
-              </div>
-              <div className="wrapImg">
+              </a>
+              <a href='#none' className="wrapImg">
                 <img src={`${process.env.PUBLIC_URL}/images/footer/twitter.svg`} alt="" />
-              </div>
-              <div className="wrapImg">
+              </a>
+              <a href='#none' className="wrapImg">
                 <img src={`${process.env.PUBLIC_URL}/images/footer/youtube.svg`} alt="" />
-              </div>
-              <div className="wrapImg">
+              </a>
+              <a href='#none' className="wrapImg">
                 <img src={`${process.env.PUBLIC_URL}/images/footer/blog.svg`} alt="" />
-              </div>
-              <div className="wrapImg">
+              </a>
+              <a href='#none' className="wrapImg">
                 <img src={`${process.env.PUBLIC_URL}/images/footer/instagram.svg`} alt="" />
-              </div>
+              </a>
             </div>
           </WrapRightInfo>
         </WrapInfoCompany>
+        <FooterLink>
+          <Links>
+            <Link to={'#none'}>회원서비스약관</Link>
+            <Link to={'#none'}>개인정보처리방침</Link>
+            <Link to={'#none'}>영상정보처리기기 운영방침</Link>
+            <Link to={'#none'}>저작권정책</Link>
+            <Link to={'#none'}>이메일무단수집거부</Link>
+            <Link to={'#none'}>민원신청</Link>
+            <Link to={'#none'}>CONTACT US</Link>
+            <Link to={'#none'}>사이트맵</Link>
+          </Links>
+          <div className="box">
+            <select name="" id="" placeholder='여기저기고르세요'>
+              <option value="">관련기관 바로가기</option>
+              <option value="">저기</option>
+              <option value="">아무데나</option>
+            </select>
+          </div>
+        </FooterLink>
       </FrameFooter>
     )
   }

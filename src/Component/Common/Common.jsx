@@ -140,6 +140,10 @@ h6 {
   font-size: 100%;
   font-weight: inherit;
 }
+a {
+  color: inherit;
+}
+
 ul,
 ol,
 li {

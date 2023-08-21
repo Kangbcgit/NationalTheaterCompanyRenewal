@@ -166,7 +166,6 @@ export default class SectionAudition extends Component {
     const wrapper = this.wrapper.current;
     this.props.tossWrapperTopCalc(wrapper);
     const RectTop = this.props.tossWrapperTop;
-    console.log(RectTop);
     if (RectTop > 0) {
       this.setState({transform: 0});
       return;

@@ -84,7 +84,10 @@ const Circle = styled.div`
     top: 50%;
     transform-origin: 475px 0;
 
+    display: inline;
+
     font-size: 1.5rem;
+    border:1px solid #fff;
     color: #fff;
 
     cursor: pointer;
@@ -114,7 +117,7 @@ export default class SectionPlay extends Component {
     this.state = {
       deg: 0, // 현재 부모 rotate deg
       step: 0, //중앙으로부터 멀어진 양 max 2
-      itemList:[1, 2, 3, 4, 5], //임시로 map 돌리기 위한~ item 번호들
+      itemList:[[1, 'Tank; 0-24'], [2, '조씨고아 복수의 씨앗'], [3, 'X의 비극'], [4, '이 불안한 집'], [5, '스고파라갈']], //임시로 map 돌리기 위한~ item 번호들
       text: [
         
         (
@@ -227,12 +230,12 @@ export default class SectionPlay extends Component {
           <Parent deg={`${this.state.deg}deg`}>
             <Circle>
               {this.state.itemList.map((item, index) => {
-                const itemCalc = item - 3;
+                const itemCalc = item[0] - 3;
                 const degCalc = (itemCalc) * 30;
                 return(
-                  <div data-deg={degCalc} data-order={item} style={{opacity: this.state.deg !== degCalc ? `${1 / ((Math.abs(this.state.deg - degCalc) / 30) + 1)}` : '1', fontSize: this.state.deg !== degCalc ? '1.5rem' : '1.7rem'}} onClick={e => {
+                  <div data-deg={degCalc} data-order={item[0]} style={{opacity: this.state.deg !== degCalc ? `${1 / ((Math.abs(this.state.deg - degCalc) / 30) + 1)}` : '1', fontSize: this.state.deg !== degCalc ? '1.5rem' : '1.7rem'}} onClick={e => {
                     this.throttledEffected(e);
-                  }}>메뉴 {item}번 입니다.</div>//
+                  }}>{item[1]}</div>//
                 );
               })}
             </Circle>
