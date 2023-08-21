@@ -2,25 +2,17 @@
 
 @include mobile {
   .SectionCatchPhrase {
-    background: url(../public/images/catchPhrase/bgImg.svg) no-repeat center
-      center;
-    background-size: cover;
-    width: 100vw;
-    min-height: 600px;
-    //height: 100vh;
+    width: 100%;
+    height: 100vh;
     position: relative; /* .wrapTxt 기준 정하기 위함 */
     a {
       color: #fff;
     }
-    //바닥쪽의 흰색 선 두 줄
-    .wrapLine {
+    //비디오
+    video {
       width: 100%;
-      height: fit-content;
-      position: absolute;
-      top: 65%;
-      img {
-        width: 100%;
-      }
+      height: 100%;
+      object-fit: cover;
     }
   }
   //캐치프라이즈 문구
@@ -32,11 +24,11 @@
     transform: translate(-50%, -50%);
     text-align: center;
     h2 {
-      font-size: var(--h1);
+      font-size: clamp(1rem, 0.83vw, 1.04rem);
       font-weight: 500;
     }
     h1 {
-      font-size: var(--catch);
+      font-size: clamp(1.5rem, 1.25vw, 1.88rem);
       font-weight: 900;
     }
   }
@@ -44,25 +36,17 @@
 
 @include tablet {
   .SectionCatchPhrase {
-    background: url(../public/images/catchPhrase/bgImg.svg) no-repeat center
-      center;
     background-size: cover;
-    width: 100vw;
-    min-height: 600px;
-    //height: 100vh;
+    width: 100%;
+    height: 100vh;
     position: relative; /* .wrapTxt 기준 정하기 위함 */
     a {
       color: #fff;
     }
-    //바닥쪽의 흰색 선 두 줄
-    .wrapLine {
+    video {
       width: 100%;
-      height: fit-content;
-      position: absolute;
-      top: 65%;
-      img {
-        width: 100%;
-      }
+      height: 100%;
+      object-fit: cover;
     }
   }
   //캐치프라이즈 문구
@@ -74,11 +58,11 @@
     transform: translate(-50%, -50%);
     text-align: center;
     h2 {
-      font-size: var(--h1);
+      font-size: clamp(1.25rem, 0.83vw, 1.88rem);
       font-weight: 500;
     }
     h1 {
-      font-size: var(--catch);
+      font-size: clamp(2rem, 1.25vw, 2.25rem);
       font-weight: 900;
     }
   }
@@ -86,24 +70,17 @@
 
 @include desktop {
   .SectionCatchPhrase {
-    background: url(../public/images/catchPhrase/bgImg.svg) no-repeat center
-      center;
     background-size: cover;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
     a {
       color: #fff;
     }
-    //바닥쪽의 흰색 선 두 줄
-    .wrapLine {
+    video{
       width: 100%;
-      height: fit-content;
-      position: absolute;
-      top: 60%;
-      img {
-        width: 100%;
-      }
+      height: 100%;
+      object-fit: cover;
     }
   }
   //캐치프라이즈 문구

@@ -1,17 +1,17 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react';
-
-import "./Header.scss";
-import "./SectionCatchPhrase.scss";
-import Logo from './Component/Logo';
-import Header from './Component/Header';
-import SectionCatchPhrase from './Component/SectionCatchPhrase';
-import Main from './Component/Main';
-import Create from './Component/Create';
+import React, { useState } from 'react';
+import { Router, Switch, Route, Link } from "react-router-dom";
 
 import { GlobalStyle } from './Component/Common/Common';
-import SectionAudition from './Component/SectionAudition/SectionAudition';
+import "./Header.scss";
+
+import Logo from './Component/Intro/Logo';
+import Header from './Component/Header';
+import SectionCatchPhrase from './Component/SectionCatchPhrase';
 import SectionPlay from './Component/SectionPlay/SectionPlay';
+import SectionAudition from './Component/SectionAudition/SectionAudition';
+import Create from './Component/Create/Create';
+import CttBoard from "./Component/CttBoard";
 import Footer from './Component/Footer/Footer';
 
 /* 수정해야할거
@@ -31,19 +31,6 @@ function App() {
     const WrapperTop = Wrapper.getBoundingClientRect().top;
     setWrapperTop(WrapperTop);
   }
-  const scrolling = e => {
-    e.preventDefault();
-    if(e.deltaY>0) {
-      console.log('scrollDown');
-      setScroll(currentScroll + window.innerHeight);
-    }
-  }
-  const [currentScroll, setScroll] = useState(0);
-  useEffect(() => {
-    window.addEventListener('wheel', scrolling ,{passive: false});
-    window.scrollTo({top: currentScroll, behavior: 'smooth'});
-    return () => {window.removeEventListener('wheel', scrolling)}
-  },[currentScroll]);
   return (
     <>
       <GlobalStyle/>
@@ -52,11 +39,13 @@ function App() {
       <SectionCatchPhrase />
       <SectionPlay/>
       <SectionAudition tossWrapperTopCalc={propsRectTop} tossWrapperTop={WrapperTop}/>
-      <Create></Create>
-      <Main></Main>
-      <Footer/>
+      <div style={{overflowX:'hidden'}}>
+        <Create></Create>
+        <CttBoard></CttBoard>
+        <Footer/>
+      </div>
     </>    
   );
 }
 
-export default App
+export default App;

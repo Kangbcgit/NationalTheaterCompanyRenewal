@@ -108,6 +108,7 @@ figcaption {
 html,
 body {
   width: 100%;
+  box-sizing: border-box;
 }
 html {
   /* font-size: 20px; */

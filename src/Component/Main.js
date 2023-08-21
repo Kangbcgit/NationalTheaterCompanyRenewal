@@ -11,6 +11,7 @@ const MainSection = styled.div`
   align-items: center;
 `;
 function Main() {
+  
   return (
     <MainSection>Main</MainSection>
   )
