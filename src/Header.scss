@@ -381,7 +381,6 @@
       .wrapSubMenu-mobile {
         display: none;
         ul {
-          height: 0;
           margin-top: 1rem;
           border-radius: 10px;
           background-color: rgba($color: #b2b2b2, $alpha: 0.32);
@@ -394,8 +393,8 @@
         ul li a {
           font-weight: 500;
           color: #dedcdc;
-          //display: block;
-          //padding: 0.8rem 0;
+          display: block;
+          padding: 0.8rem 0;
         }
       }
     }

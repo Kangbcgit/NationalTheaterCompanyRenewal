@@ -7,12 +7,12 @@ const SectionCatchPhrase = () => {
 
   return (
     <div className="SectionCatchPhrase">
+      <video muted autoPlay loop>
+        <source src="/images/catchPhrase/국립극단.mp4" type="video/mp4" />
+      </video>
       <div className="wrapTxt">
         <h2>당연했던 극장에 던진 질문</h2>
         <h1>연극의 또다른 도전</h1>
-      </div>
-      <div className="wrapLine">
-        <img src={`${process.env.PUBLIC_URL}/images/catchPhrase/line.svg`} />
       </div>
     </div>
   );
