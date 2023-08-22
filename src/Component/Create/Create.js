@@ -122,20 +122,32 @@ const CreateWrap = styled.div`
     }
   }
 `;
+
 /* 모바일 버전 */
 const MobileCreateCards = styled.ul``;
 const MobileCardsUL = styled.ul``;
 const MobileCreateDesc = styled.div``;
+const MobileBar = styled.div``;
 
 const MobileCreateWrap = styled.div`
 display: ${(props) => (props.isVisible ? 'none' : 'block')};
-width: 100%;
-  h2{
+width: 100%; height: auto;
+position: relative;
+  &>h2{
     margin: 200px 0 ;
-    font-size: var(--h1rem);
+    font-size: clamp(4.4rem, 8.48vw, 5rem);
     font-family: "EF_Rebecca";
     color:var(--gray1);
     text-align: center;
+  }
+  /* bar 위치랑 길이 조절하셈 병원다녀오면 */
+  &>${MobileBar}{
+    width: 4px; height: 3500px;
+    background-color: #f4f4f4;
+    position: absolute;
+    left: 50%;
+    top: 7%;
+    z-index: -1;
   }
   &>${MobileCreateCards}{
     position: relative;
@@ -143,18 +155,21 @@ width: 100%;
   }
   &>${MobileCreateCards}>li>a{
     display: block;
-    border: 1px solid red;
   }
   &>${MobileCreateCards}>li>a>${MobileCreateDesc}{
     font-size: var(--h6rem);
     font-weight: bold;
     margin: 3rem 0;
-    border: 1px solid blue;
+    &>.CardFirst{
+      position: absolute;
+    }
+    &>.CardSecond{}
+    &>.CardThird{}
   }
   &>${MobileCreateCards}>li>a>${MobileCardsUL}{
     position: relative;
     &>li{&>img{
-          width: 450px;
+          width: clamp(400px,59.36vw,450px);
           height: 505px;
           object-fit: contain;
         }}
@@ -164,12 +179,14 @@ width: 100%;
       top: 0;
       left: 0;
       width: 100%;
+      transform: rotate(-4.51deg);
     }
     &>li:nth-of-type(2){
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
+      transform: rotate(5.63deg);
       z-index:2;
     }
     &>li:nth-of-type(3){
@@ -178,6 +195,7 @@ width: 100%;
       top: 0;
       left: 0;
       width: 100%;
+      transform: rotate(15.58deg);
     }
   }
 `;
@@ -329,6 +347,7 @@ function Create() {
     {/* 모바일용 */}
     <MobileCreateWrap isVisible={isVisible}>
       <h2>"창작공감,</h2>
+      <MobileBar></MobileBar>
       <MobileCreateCards>
         <li>
           <Link to='/'>
@@ -338,7 +357,7 @@ function Create() {
               <li className="Author"><img src={`${process.env.PUBLIC_URL}/images/create/poster-작가.png`} /></li>
             </MobileCardsUL>
             <MobileCreateDesc>
-              <p>동시대적 질문 탐구</p>
+              <p className="CardFirst">동시대적 질문 탐구</p>
             </MobileCreateDesc>
           </Link>
         </li>
@@ -350,7 +369,7 @@ function Create() {
               <li className="Production"><img src={`${process.env.PUBLIC_URL}/images/create/poster-연출.png`} /></li>
             </MobileCardsUL>
             <MobileCreateDesc>
-              <p>연극적 실험</p>
+              <p className="CardSecond">연극적 실험</p>
             </MobileCreateDesc>
           </Link>
         </li>
@@ -362,7 +381,7 @@ function Create() {
               <li className="Drama"><img src={`${process.env.PUBLIC_URL}/images/create/poster-희곡.png`} /></li>
             </MobileCardsUL>
             <MobileCreateDesc>
-              <p>교감과 연대</p>
+              <p className="CardThird">교감과 연대</p>
             </MobileCreateDesc>
           </Link>
         </li>
