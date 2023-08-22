@@ -90,6 +90,13 @@ const Links = styled.div`
     color: var(--white);
   }
 `;
+const Box = styled.div`
+&>select {
+  background: var(--primary);
+  border: none;
+  color: var(--white);
+}
+`;
 
 export default class Footer extends Component {
   constructor(props) {
@@ -158,13 +165,13 @@ export default class Footer extends Component {
             <Link to={'#none'}>CONTACT US</Link>
             <Link to={'#none'}>사이트맵</Link>
           </Links>
-          <div className="box">
+          <Box>
             <select name="" id="" placeholder='여기저기고르세요'>
               <option value="">관련기관 바로가기</option>
               <option value="">저기</option>
               <option value="">아무데나</option>
             </select>
-          </div>
+          </Box>
         </FooterLink>
       </FrameFooter>
     )

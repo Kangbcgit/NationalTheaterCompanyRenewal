@@ -27,7 +27,7 @@ function App () {
       );
     }
     window.scrollTo({ top: currentScroll.current, behavior: "smooth" });
-  }, 1000);
+  }, 1000, {trailing:false});
 
   useEffect(() => {
     const preventDefaultScroll = (e) => {

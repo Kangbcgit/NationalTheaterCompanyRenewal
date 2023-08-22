@@ -7,39 +7,37 @@ const Wrapper = styled.div`
   height: 200vh;
   min-height: 1926px;
   background: #fff;
-  &>.wrapTopContents {
-    position: sticky;
-    top: 0;
-
-    display: flex;
-    justify-content: space-between;
-    flex-flow: wrap;
-    height: 100vh;
-    border: 1px solid #000;
-
-    overflow:hidden;
-
-    &>.wrapTitle {
-      display: flex;
-      flex-direction: column;
-
-      margin: clamp(0px, 4.1667vw, 80px) 0  0 clamp(0px, 7.9167vw, 152px);
-
-      &>.main {
-        font-family: EF_Rebecca;
-        font-size: var(--create);
-      }
-      &>.sub {
-        font-family: Interop;
-        font-size: var(--h6);
-        font-weight: 700;
-      }
-    }
-    &>.wrapImg {
-      margin: clamp(0px, 4.1667vw, 80px) clamp(0px, 5.8333vw, 112px) 0 0;
-    }
-  }
 `;  
+const WrapTopContents = styled.div`
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  height: 100vh;
+  border: 1px solid #000;
+
+  overflow:hidden;
+`;
+const WrapTitle = styled.div`display: flex;
+  flex-direction: column;
+
+  margin: clamp(0px, 4.1667vw, 80px) 0  0 clamp(0px, 7.9167vw, 152px);
+  
+  &>span {
+    font-family: EF_Rebecca;
+    font-size: var(--create);
+  }
+  &>h6 {
+    font-family: Interop;
+    font-size: var(--h6);
+    font-weight: 700;
+  }
+`;
+const WrapImg = styled.div`
+  margin: clamp(0px, 4.1667vw, 80px) clamp(0px, 5.8333vw, 112px) 0 0;
+`;
 const FrameSectionAudition = styled.div`
 
   width: 100%;
@@ -179,14 +177,14 @@ export default class SectionAudition extends Component {
   render() {
     return (
       <Wrapper ref={this.wrapper}>
-      <div className="wrapTopContents">
-        <div className="wrapTitle">
-          <span className='main'>JOIN US?</span>
-          <h6 className='sub'>국립극단에서 진행하는 오디션에는 배우라면 누구나 지원하실 수 있습니다.</h6>
-        </div>
-        <div className="wrapImg">
+      <WrapTopContents>
+        <WrapTitle>
+          <span>JOIN US?</span>
+          <h6>국립극단에서 진행하는 오디션에는 배우라면 누구나 지원하실 수 있습니다.</h6>
+        </WrapTitle>
+        <WrapImg>
           <img src="images/audition/viewMore.svg" alt="" />
-        </div>
+        </WrapImg>
         <FrameSectionAudition >
           <div style={{position: 'absolute', bottom: 'clamp(0px, 4.1667vw, 80px)', left: 0, width:"calc(100vw - 10px)", overflow : 'hidden'}}>
             <Items itemsLenght={this.state.items.length} transform={this.state.transform} ref={this.items}>
@@ -196,7 +194,7 @@ export default class SectionAudition extends Component {
             </Items>
           </div>
         </FrameSectionAudition>
-      </div>
+      </WrapTopContents>
         
       </Wrapper>
     )

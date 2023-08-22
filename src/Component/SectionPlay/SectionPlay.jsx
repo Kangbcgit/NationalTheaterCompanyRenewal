@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import { throttle } from 'lodash'
-
+const sizes = {
+  mobile: 375,
+}
+const media = {
+  mobile: `(max-width: ${sizes.mobile}px)`,
+}
 const Wrapper = styled.div`
 position: relative;
 width: calc(100vw - 10px);
 height: 100vh;
 
 overflow: hidden;
-&>.wrapImg {
+`;
+const WrapImg = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -47,24 +53,32 @@ overflow: hidden;
     
     filter: brightness(.6);
   }
-  &>.wrapText {
-    position: absolute;
-    z-index: -1;
-    left: 5%;
-    bottom: 8%;
-    color: #fff;
+`;
+const WrapText = styled.div`
+  position: absolute;
+  z-index: -1;
+  left: 5%;
+  bottom: 8%;
+  color: #fff;
+  @media ${media.mobile} {
+    bottom: 15%;
+    line-height: 1.5;
   }
-}
 `;
 const Parent =styled.div`
   position: absolute;
   right: 0;
   top: 50%;
-  transform: translate(65%, -50%) rotate(${props => props.deg || 0});
+  transform: translate(65%, -50%) rotate(${props => `${props.deg}deg` || 0});
   transition: 1s;
 
   width: 1000px;
   height: 1000px;
+  @media ${media.mobile} {
+    right: 0;
+    top: 100%;
+    transform: translate(50%, -50%) rotate(${props => `${+props.deg + 45}deg`});
+  }
 `;
 const Circle = styled.div`
   position: absolute;
@@ -83,11 +97,13 @@ const Circle = styled.div`
     left: -250px;
     top: 50%;
     transform-origin: 475px 0;
+/* 
+    display: flex;
+    justify-content: end;
 
-    display: inline;
+    width: 210px; */
 
     font-size: 1.5rem;
-    border:1px solid #fff;
     color: #fff;
 
     cursor: pointer;
@@ -109,6 +125,38 @@ const Circle = styled.div`
       transform: translateY(-50%) rotate(-60deg);
     }
   }
+  @media ${media.mobile} {
+    width: 300px;
+    height: 300px;
+    border: 5px solid #ff0000;
+    &>div {
+      left: 0;
+      transform-origin: 162.5px 15px;
+      
+      &:nth-child(1) {
+        transform: translate(calc(-50% - 2.5px), -50%) rotate(60deg);
+      }
+      &:nth-child(2) {
+        transform: translate(calc(-50% - 2.5px), -50%) rotate(30deg);
+      }
+      &:nth-child(3) {
+        transform: translate(calc(-50% - 2.5px), -50%);
+      }
+      &:nth-child(4) {
+        transform: translate(calc(-50% - 2.5px), -50%) rotate(-30deg);
+      }
+      &:nth-child(5) {
+        transform: translate(calc(-50% - 2.5px), -50%) rotate(-60deg);
+      }
+      &>div {
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+        background: red;
+        cursor: pointer;
+      }
+    }
+  }
 `;
 
 export default class SectionPlay extends Component {
@@ -119,58 +167,51 @@ export default class SectionPlay extends Component {
       step: 0, //중앙으로부터 멀어진 양 max 2
       itemList:[[1, 'Tank; 0-24'], [2, '조씨고아 복수의 씨앗'], [3, 'X의 비극'], [4, '이 불안한 집'], [5, '스고파라갈']], //임시로 map 돌리기 위한~ item 번호들
       text: [
-        
-        (
-          <div className="wrapText" style={{fontSize: '32px'}}>
-            [창작공감:작가]<br/>
-            <span style={{fontSize: '64px'}}>TANK; 0-24</span><br/>
-            “이래 죽으나, 저래 죽으나 제대로 살다 가자”<br/>
-            전쟁의 한 가운데에서도 인간임을 잃지 않으려는 청춘의 목소리!<br/>
-            <span style={{fontSize: '20px'}}>2023.08.24~2023.09.17<br/>
-            홍익대 아트센터 소극장</span>
-          </div>
-        ),
-        (
-          <div className="wrapText" style={{fontSize: '32px'}}>
-            [국립극단 대표 레퍼토리]<br/>
-            <span style={{fontSize: '64px'}}>조씨고아, 복수의 씨앗</span><br/>
-            참혹한 과거를 가진 가문의 마지막 핏줄<br/>
-            지난 날에 대한 복수의 씨앗이 싹튼다!<br/>
-            <span style={{fontSize: '20px'}}>2023.08.24~2023.09.17<br/>
-            홍익대 아트센터 소극장</span>
-          </div> 
-        ),
-        (
-          <div className="wrapText" style={{fontSize: '32px'}}>
-            Tragedy of X<br/>
-            <span style={{fontSize: '64px'}}>X의 비극</span><br/>
-            “아무것도 하고싶지 않다.”<br/>
-            번아웃에서 시작된 X의 비극이 전염병처럼 번지다.<br/>
-            <span style={{fontSize: '20px'}}>2023.08.24~2023.09.17<br/>
-            홍익대 아트센터 소극장</span>
-            </div>
-        ),
-        (
-          <div className="wrapText" style={{fontSize: '32px'}}>
-            This Restless House<br/>
-            <span style={{fontSize: '64px'}}>이 불안한 집</span><br/>
-            그리스 대표 비극<br/>
-            『오레스테이아』의 새로운 탄생!<br/>
-            <span style={{paddingTop: '10px'}}>언젠간 지옥이 덮쳐올 것이다.</span>
-            <span style={{fontSize: '20px'}}>2023.08.24~2023.09.17<br/>
-            홍익대 아트센터 소극장</span>
-          </div>
-        ),
-        (
-          <div className="wrapText" style={{fontSize: '32px'}}>
-            [창작공감:연출]<br/>
-            <span style={{fontSize: '64px'}}>스고파라갈</span><br/>
-            자본주의가 만들어낸 뒤틀린 세계<br/>
-            땅거북은 돈이 된다!<br/>
-            <span style={{fontSize: '20px'}}>2023.08.24~2023.09.17<br/>
-            홍익대 아트센터 소극장</span>
-          </div>
-        ),
+        {
+          text1: `[창작공감:작가]`,
+          text2: `TANK; 0-24`,
+          text3 : `“이래 죽으나, 저래 죽으나 제대로 살다 가자”`,
+          text4: `전쟁의 한 가운데에서도 인간임을 잃지 않으려는 청춘의 목소리!`,
+          text5: `2023.08.24~2023.09.17`,
+          text6: `홍익대 아트센터 소극장`,
+          
+        },
+        {
+          text1: `[국립극단 대표 레퍼토리]`,
+          text2: `조씨고아, 복수의 씨앗`,
+          text3 : `참혹한 과거를 가진 가문의 마지막 핏줄`,
+          text4: `지난 날에 대한 복수의 씨앗이 싹튼다!`,
+          text5: `2023.08.24~2023.09.17`,
+          text6: `홍익대 아트센터 소극장`,
+          
+        },
+        {
+          text1: `Tragedy of X`,
+          text2: `X의 비극`,
+          text3 : `“아무것도 하고싶지 않다.”`,
+          text4: `번아웃에서 시작된 X의 비극이 전염병처럼 번지다.`,
+          text5: `2023.08.24~2023.09.17`,
+          text6: `홍익대 아트센터 소극장`,
+          
+        },
+        {
+          text1: `This Restless House`,
+          text2: `이 불안한 집`,
+          text3 : `그리스 대표 비극 ${(<br/>)}『오레스테이아』의 새로운 탄생!`,
+          text4: `언젠간 지옥이 덮쳐올 것이다.`,
+          text5: `2023.08.24~2023.09.17`,
+          text6: `홍익대 아트센터 소극장`,
+          
+        },
+        {
+          text1: `[창작공감:연출]`,
+          text2: `스고파라갈`,
+          text3 : `자본주의가 만들어낸 뒤틀린 세계`,
+          text4: `땅거북은 돈이 된다!`,
+          text5: `2023.08.24~2023.09.17`,
+          text6: `홍익대 아트센터 소극장`,
+          
+        },
       ],
       frontView: 3,
       backView: 3,
@@ -183,59 +224,86 @@ export default class SectionPlay extends Component {
       ],
       isActiveUp: false,
       isActiveDown: false,
+      isDesktop: true,
+      isMobile: false,
     }
   }
   componentDidMount() {
     this.throttledEffected = throttle(this.Effected, 1000, {
       trailing: false,
     });
+    this.checkResize();
+    window.addEventListener('resize', this.checkResize);
   }
   Effected = e => {
     const { deg } = this.state;
-    const { dataset } = e.target;
+    const { dataset } = e.currentTarget;
     if (dataset.deg > deg) {
       this.setState({deg: deg + Math.abs(dataset.deg - deg)});
       this.imageUpAnimation(e, dataset);
       
     } else if (dataset.deg < deg) {
       this.setState({deg: deg - Math.abs(dataset.deg - deg)});
-      this.imageDownAnimation(e, dataset); 
+      this.imageDownAnimation(dataset, dataset); 
     }
   }
   imageUpAnimation = (e, dataset) => {
-    this.setState({backView: +e.target.dataset.order, isActiveUp: !this.state.isActiveUp});
+    this.setState({backView: +dataset.order, isActiveUp: !this.state.isActiveUp});
     setTimeout(() => {
-      this.setState({frontView: +e.target.dataset.order, isActiveUp: !this.state.isActiveUp, step: dataset.deg / 30})
+      this.setState({frontView: +dataset.order, isActiveUp: !this.state.isActiveUp, step: dataset.deg / 30})
     }, 1000)
   }
   imageDownAnimation = (e, dataset) => {
-    this.setState({backView: +e.target.dataset.order, isActiveDown: !this.state.isActiveDown});
+    this.setState({backView: +dataset.order, isActiveDown: !this.state.isActiveDown});
     setTimeout(() => {
-      this.setState({frontView: +e.target.dataset.order, isActiveDown: !this.state.isActiveDown, step: dataset.deg / 30})
+      this.setState({frontView: +dataset.order, isActiveDown: !this.state.isActiveDown, step: dataset.deg / 30})
     }, 1000)
+  }
+  checkResize = () => {
+    if (window.innerWidth <= 375) {
+      this.setState({isMobile: true});
+      console.log('is Mobile status');
+      console.log('window.innerWidth: ' + window.innerWidth);
+    } else {
+      this.setState({isMobile: false});
+      console.log('is Desktop status');
+      console.log('window.innerWidth: ' + window.innerWidth);
+    }
   }
 
   render() {
     return (
       <>
         <Wrapper>
-          <div className="wrapImg">
+          <WrapImg>
             <img src={`images/play/play${this.state.backView}.svg`} alt="" />
-              {this.state.text[this.state.backView - 1]}
-          </div>
-          <div className={`wrapImg ${this.state.isActiveUp === true ? 'activeUp' : this.state.isActiveDown === true ? 'activeDown' : ""}`} >
+            <WrapText style={{fontSize: this.state.isMobile ? 'var(--small)' : '32px'}}>
+              <span style={{fontSize: this.state.isMobile ? '11px' : 'inherit'}}>{this.state.text[this.state.backView - 1].text1}</span><br/>
+              <span style={{fontSize: this.state.isMobile ? 'var(--h6)' : '64px'}}>{this.state.text[this.state.backView - 1].text2}</span><br/>
+              {this.state.text[this.state.backView - 1].text3}<br/>
+              {this.state.text[this.state.backView - 1].text4}<br/>
+              <span style={{fontSize: this.state.isMobile ? 'var(--xSmall)' : '20px'}}>{this.state.text[this.state.backView - 1].text5}<br/>
+              {this.state.text[this.state.backView - 1].text6}</span>
+            </WrapText>
+          </WrapImg>
+          <WrapImg className={`${this.state.isActiveUp === true ? 'activeUp' : this.state.isActiveDown === true ? 'activeDown' : ""}`} >
             <img src={`images/play/play${this.state.frontView}.svg`} alt="" />
-              {this.state.text[this.state.frontView - 1]}
-          </div>
-          <Parent deg={`${this.state.deg}deg`}>
+            <WrapText style={{fontSize: this.state.isMobile ? 'var(--small)' : '32px'}}>
+              <span style={{fontSize: this.state.isMobile ? '11px' : 'inherit'}}>{this.state.text[this.state.frontView - 1].text1}</span><br/>
+              <span style={{fontSize: this.state.isMobile ? 'var(--h6)' : '64px'}}>{this.state.text[this.state.frontView - 1].text2}</span><br/>
+              {this.state.text[this.state.frontView - 1].text3}<br/>
+              {this.state.text[this.state.frontView - 1].text4}<br/>
+              <span style={{fontSize: this.state.isMobile ? 'var(--xSmall)' : '20px'}}>{this.state.text[this.state.frontView - 1].text5}<br/>
+              {this.state.text[this.state.frontView - 1].text6}</span>
+            </WrapText>
+          </WrapImg>
+          <Parent deg={`${this.state.deg}`}>
             <Circle>
               {this.state.itemList.map((item, index) => {
                 const itemCalc = item[0] - 3;
                 const degCalc = (itemCalc) * 30;
                 return(
-                  <div data-deg={degCalc} data-order={item[0]} style={{opacity: this.state.deg !== degCalc ? `${1 / ((Math.abs(this.state.deg - degCalc) / 30) + 1)}` : '1', fontSize: this.state.deg !== degCalc ? '1.5rem' : '1.7rem'}} onClick={e => {
-                    this.throttledEffected(e);
-                  }}>{item[1]}</div>//
+                  <div className={`${this.state.deg === degCalc ? 'active' : ''}`} data-deg={degCalc} data-order={item[0]} style={{opacity: !this.state.isMobile ? this.state.deg !== degCalc ? `${1 / ((Math.abs(this.state.deg - degCalc) / 30) + 1)}` : '1' : '1', fontSize: this.state.deg !== degCalc ? '1.5rem' : '1.7rem'}} onClick={this.throttledEffected}>{this.state.isMobile ? (<div></div>) : item[1]}</div>
                 );
               })}
             </Circle>
