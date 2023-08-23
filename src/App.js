@@ -1,10 +1,10 @@
-import Header from "./Component/Header";
-import SectionCatchPhrase from "./Component/SectionCatchPhrase";
-import CttBoard from "./Component/CttBoard";
+import Header from "./Component/Header/Header";
+import SectionCatchPhrase from "./Component/CatchPhrase/SectionCatchPhrase";
+import CttBoard from "./Component/CttBoard/CttBoard";
 import "./App.css";
-import "./Header.scss";
-import "./SectionCatchPhrase.scss";
-import "./CttBoard.scss";
+import "./Component/Header/Header.scss";
+import "./Component/CatchPhrase/SectionCatchPhrase.scss";
+import "./Component/CttBoard/CttBoard.scss";
 import { Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {

@@ -1,9 +1,9 @@
-@import "./mixin";
+@import "../Scss/mixin";
 
 @include mobile {
   .cttBoard {
     position: relative;
-    background: url(./../public/images/board/backgroundImg.svg);
+    background: url(../../../public/images/board/backgroundImg.svg);
     width: 100%;
     height: 100vh;
   }
@@ -80,7 +80,7 @@
 @include tablet {
   .cttBoard {
     position: relative;
-    background: url(./../public/images/board/backgroundImg.svg);
+    background: url(../../../public/images/board/backgroundImg.svg);
     width: 100%;
     height: 100vh;
   }
@@ -157,7 +157,7 @@
 @include desktop {
   .cttBoard {
     position: relative;
-    background: url(./../public/images/board/backgroundImg.svg);
+    background: url(../../../public/images/board/backgroundImg.svg);
     width: 100%;
     height: 100vh;
   }
