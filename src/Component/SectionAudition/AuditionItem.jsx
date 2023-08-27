@@ -59,12 +59,12 @@ const Item = styled.div`
   &>${HoverItem} {
     position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
 
     display: flex;
 
     width: 100%;
-    height: 100%;
+    height: 90%;
     
     background: rgb(214, 36, 36, 50%);
     color: var(--white);
@@ -76,8 +76,8 @@ const Item = styled.div`
     &>.wrapHover {
       position: absolute;
       left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      bottom: 50%;
+      transform: translate(-50%, 50%);
       gap: clamp(0px, 0.8854vw, 17px);
 
       display: flex;
