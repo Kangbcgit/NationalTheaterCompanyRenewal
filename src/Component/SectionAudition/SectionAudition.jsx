@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { styled } from 'styled-components';
 import AuditionItem from './AuditionItem';
 
+const sizes = {
+  mobile: 375,
+}
+const media = {
+  mobile: `(max-width: ${sizes.mobile}px)`,
+}
+
 const Wrapper = styled.div`
   width: calc(100vw - 10px);
   height: 200vh;
@@ -19,6 +26,9 @@ const WrapTopContents = styled.div`
   border: 1px solid #000;
 
   overflow:hidden;
+  @media ${media.mobile} {
+    align-items: center;
+  }
 `;
 const WrapTitle = styled.div`display: flex;
   flex-direction: column;
@@ -34,9 +44,30 @@ const WrapTitle = styled.div`display: flex;
     font-size: var(--h6);
     font-weight: 700;
   }
+  @media ${media.mobile} {
+    &>span {
+      font-size: var(--h3);
+    }
+    &>h6 {
+      width: 183px;
+      margin-left: 37px;
+      font-size: var(--xSmall);
+    }
+  }
 `;
 const WrapImg = styled.div`
   margin: clamp(0px, 4.1667vw, 80px) clamp(0px, 5.8333vw, 112px) 0 0;
+  width: fit-content;
+  height: fit-content;
+  &>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media ${media.mobile} {
+    width: 60px;
+    height: 60px;
+  }
 `;
 const FrameSectionAudition = styled.div`
 
@@ -50,11 +81,16 @@ const Items = styled.div`
   display: grid;
   grid-template-columns: repeat(${props => props.itemsLenght}, 500px);
   grid-auto-rows: 500px;
-  gap: clamp(0px, 3.125vw, 60px);
+  gap: 60px;
   width: fit-content;
   height: 500px;
   
   transition: transform .1s;
+  @media ${media.mobile} {
+    grid-template-columns: repeat(${props => props.itemsLenght}, 294px);
+    gap: 15px;
+    margin-left: calc(${`${(window.innerWidth - 294) / 2}px`})
+  }
 `;
 
 export default class SectionAudition extends Component {
@@ -167,35 +203,34 @@ export default class SectionAudition extends Component {
     if (RectTop > 0) {
       this.setState({transform: 0});
       return;
-    } else if(RectTop < -1000) {
+    } else if(RectTop - window.innerHeight < -wrapper.scrollHeight) {
+      this.setState({transform: window.innerWidth > 375 ? -this.state.calcWidth : -this.state.calcWidth - ((window.innerWidth - 294))});
       return;
     }
     this.setState({wrapperTop: RectTop});
     let calc = RectTop / (wrapper.clientHeight - window.innerHeight);
     this.setState({transform: this.state.calcWidth * calc});
+    console.log(this.state.calcWidth * calc);
   }
   render() {
     return (
       <Wrapper ref={this.wrapper}>
-      <WrapTopContents>
-        <WrapTitle>
-          <span>JOIN US?</span>
-          <h6>국립극단에서 진행하는 오디션에는 배우라면 누구나 지원하실 수 있습니다.</h6>
-        </WrapTitle>
-        <WrapImg>
-          <img src="images/audition/viewMore.svg" alt="" />
-        </WrapImg>
-        <FrameSectionAudition >
-          <div style={{position: 'absolute', bottom: 'clamp(0px, 4.1667vw, 80px)', left: 0, width:"calc(100vw - 10px)", overflow : 'hidden'}}>
-            <Items itemsLenght={this.state.items.length} transform={this.state.transform} ref={this.items}>
-              {this.state.items.map((item, index) => {
-                return (<AuditionItem order={`0${index + 1}`} item={item} year={this.state.year}/>)
-              })}
-            </Items>
-          </div>
-        </FrameSectionAudition>
-      </WrapTopContents>
-        
+        <WrapTopContents>
+          <WrapTitle>
+            <span>JOIN US?</span>
+            <h6>국립극단에서 진행하는 오디션에는 배우라면 누구나 지원하실 수 있습니다.</h6>
+          </WrapTitle>
+          <WrapImg>
+            <img src="images/audition/viewMore.svg" alt="" />
+          </WrapImg>
+          <FrameSectionAudition >
+              <Items itemsLenght={this.state.items.length} transform={this.state.transform} ref={this.items}>
+                {this.state.items.map((item, index) => {
+                  return (<AuditionItem order={`0${index + 1}`} item={item} year={this.state.year}/>)
+                })}
+              </Items>
+          </FrameSectionAudition>
+        </WrapTopContents>
       </Wrapper>
     )
   }

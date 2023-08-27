@@ -1,0 +1,2 @@
+반응형으로 바꾸면 SectionAudition의 스크롤 transfrom translateX가 이상해짐.
+스크롤 일시정지 구현 실패

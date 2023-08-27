@@ -2,11 +2,28 @@ import { debounce } from 'lodash';
 import React, { useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 
+const sizes = {
+  mobile: 375,
+}
+const media = {
+  mobile: `(max-width: ${sizes.mobile}px)`,
+}
+
 const WrapTop = styled.div`
   &>h4 {
     text-align: center;
     color: var(--white);
     font-size: var(--h4);
+  }
+  @media ${media.mobile} {
+    &>h4 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      font-size: var(--baseSize);
+      margin-bottom: 9px;
+    }
   }
 `;
 const FrameMap = styled.div`

@@ -3,10 +3,17 @@ import { styled } from 'styled-components'
 import MapNaver from './MapNaver';
 import { Link } from 'react-router-dom';
 
+const sizes = {
+  mobile: 375,
+}
+const media = {
+  mobile: `(max-width: ${sizes.mobile}px)`,
+}
 
 const FrameFooter = styled.footer`
+  position: relative;
   background: #000;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 const WrapMaps = styled.div`
   display: grid;
@@ -14,9 +21,16 @@ const WrapMaps = styled.div`
   grid-auto-rows: 466px;
   column-gap: clamp(0px, 3.0208vw, 58px);
 
-  width: 1678px;
+  width: fit-content;
 
   margin: 220px auto 100px;
+
+  @media ${media.mobile} {
+    grid-template-columns: 295px;
+    grid-auto-rows: 188px;
+    gap: 40px;
+  }
+
 `;
 const WrapInfoCompany = styled.div`
   display: flex;
@@ -25,8 +39,12 @@ const WrapInfoCompany = styled.div`
   width: 1678px;
   
   margin: 0 auto;
+  padding-bottom: 25px;
   border-bottom: 1px solid #fff;
-  padding: 0 0px 40px;
+  @media ${media.mobile} {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 const WrapLeftInfo = styled.div`
   display: flex;
@@ -37,15 +55,35 @@ const WrapLeftInfo = styled.div`
   &>.wrapDesc {
     color: var(--white);
   }
+  @media ${media.mobile} {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 const WrapLogoLeft = styled(Link)`
   width: 133px;
   height: 133px;
+  @media ${media.mobile} {
+    margin-bottom: 30px;
+  }
 `;
 const WrapDescLeft = styled.div`
   color: var(--white);
   &>h3 {
     font-size: var(--h4);
+  }
+  @media ${media.mobile} {
+    width: 300px;
+    &>h3 {
+      font-family: EF_Rebecca;
+      font-size: var(--h6);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    &>p {
+      font-size: var(--xSmall);
+      line-height: 1.7;
+    }
   }
 `;
 const WrapRightInfo = styled.div`
@@ -60,6 +98,7 @@ const WrapRightInfo = styled.div`
 
   &>.wrapGoTop {
     width: fit-content;
+    cursor: pointer;
   }
   &>.wrapSns {
     display: flex;
@@ -67,16 +106,46 @@ const WrapRightInfo = styled.div`
 
     width: 360px;
   }
+  @media ${media.mobile} {
+    width: 100%;
+    align-items: center;
+    &>.wrapSns {
+      width: 280px;
+      margin: 70px 0;
+    }
+    &>.wrapGoTop {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      width: 40px;
+      &>img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+  }
 `;
 
 const FooterLink = styled.div`
   display: flex;
+
   width: 1678px;
   height: 100px;
   margin: 0 auto;
 
 
   color: var(--white);
+
+  @media ${media.mobile} {
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 312px;
+    height: fit-content;
+    font-size: var(--min);
+  }
 `;
 const Links = styled.div`
   display: flex;
@@ -89,12 +158,28 @@ const Links = styled.div`
   &>a {
     color: var(--white);
   }
+  @media ${media.mobile} {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 312px;
+    margin-bottom: 44px;
+  }
 `;
 const Box = styled.div`
 &>select {
   background: var(--primary);
   border: none;
   color: var(--white);
+}
+@media ${media.mobile} {
+  overflow: hidden;
+  &>select {
+    width:243px;
+    height: 51px;
+    font-size: var(--title);
+    margin: 39px 0;
+  }
 }
 `;
 
@@ -107,6 +192,9 @@ export default class Footer extends Component {
         ['명동예술극장', 37.563999, 126.9841738]
       ]
     }
+  }
+  goTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
   }
   render() {
     return (
@@ -132,7 +220,7 @@ export default class Footer extends Component {
             </WrapDescLeft>
           </WrapLeftInfo>
           <WrapRightInfo>
-            <div className="wrapGoTop">
+            <div className="wrapGoTop" onClick={this.goTop}>
               <img src={`${process.env.PUBLIC_URL}/images/footer/topBtn.svg`} alt="" />
             </div>
             <div className="wrapSns">

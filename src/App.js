@@ -19,8 +19,10 @@ function App () {
   const throttledHandleScroll = throttle((e) => {
     console.log("throttled");
     if (e.deltaY > 0) {
+      if (document.body.scrollHeight <= currentScroll + 100) return;
       currentScroll.current += window.innerHeight;
     } else if (e.deltaY < 0) {
+      if (0 >= window.scrollY) return;
       currentScroll.current = Math.max(
         0,
         currentScroll.current - window.innerHeight
