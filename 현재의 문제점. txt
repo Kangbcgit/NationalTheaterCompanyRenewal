@@ -1,2 +1,7 @@
 반응형으로 바꾸면 SectionAudition의 스크롤 transfrom translateX가 이상해짐.
 스크롤 일시정지 구현 실패
+
+2023.08.29 해야할 목표
+1. 모바일 audition에서 touchEnd 이벤트로 놓은 위치에서 가장 가까운 item을 중앙정렬 시키기
+2. section 일시정지 스크롤
+3. 지도 api 카카오로 변경

@@ -8,11 +8,11 @@ const media = {
   mobile: `(max-width: ${sizes.mobile}px)`,
 }
 const Wrapper = styled.div`
-position: relative;
-width: calc(100vw - 10px);
-height: 100vh;
+  position: relative;
+  width: ${props=> props.isMobile ? '100vw' : 'calc(100vw - 10px)'};
+  height: 100vh;
 
-overflow: hidden;
+  overflow: hidden;
 `;
 const WrapImg = styled.div`
   position: absolute;
@@ -274,7 +274,7 @@ export default class SectionPlay extends Component {
   render() {
     return (
       <>
-        <Wrapper>
+        <Wrapper isMobile={this.props.isMobile}>
           <WrapImg>
             <img src={`images/play/play${this.state.backView}.svg`} alt="" />
             <WrapText style={{fontSize: this.state.isMobile ? 'var(--small)' : '32px'}}>

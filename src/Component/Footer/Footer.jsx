@@ -23,7 +23,7 @@ const WrapMaps = styled.div`
 
   width: fit-content;
 
-  margin: 220px auto 100px;
+  margin: 120px auto 100px;
 
   @media ${media.mobile} {
     grid-template-columns: 295px;
@@ -131,6 +131,8 @@ const WrapRightInfo = styled.div`
 
 const FooterLink = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-around;
 
   width: 1678px;
   height: 100px;
@@ -168,15 +170,23 @@ const Links = styled.div`
 `;
 const Box = styled.div`
 &>select {
+  width:243px;
+  height: 51px;
   background: var(--primary);
   border: none;
   color: var(--white);
+
+  font-size: vaR(--title);
+  text-align: center;
+  &>option {
+    background: var(--white);
+    color: var(--primary);
+    height: 51px;
+  }
 }
 @media ${media.mobile} {
   overflow: hidden;
   &>select {
-    width:243px;
-    height: 51px;
     font-size: var(--title);
     margin: 39px 0;
   }

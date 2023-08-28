@@ -10,6 +10,8 @@ import _, { debounce, throttle } from 'lodash';
 function App () {
   const [WrapperTop, setWrapperTop] = useState(0);
   const [wheelLock, setWheelLock] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentWindowWidth, setCurrentWindowWidth] = useState(0);
   const propsRectTop = (Wrapper) => {
     const WrapperTop = Wrapper.getBoundingClientRect().top;
     setWrapperTop(WrapperTop);
@@ -17,7 +19,6 @@ function App () {
   const currentScroll = useRef(0);
 
   const throttledHandleScroll = throttle((e) => {
-    console.log("throttled");
     if (e.deltaY > 0) {
       if (document.body.scrollHeight <= currentScroll + 100) return;
       currentScroll.current += window.innerHeight;
@@ -32,24 +33,41 @@ function App () {
   }, 1000, {trailing:false});
 
   useEffect(() => {
+    mobileCensor();
+    window.addEventListener("resize", mobileCensor);
+
+    return () => {
+      window.removeEventListener("resize", mobileCensor);
+    };
+  }, []);
+  useEffect(() => {
     const preventDefaultScroll = (e) => {
       e.preventDefault();
     };
-
-    window.addEventListener("wheel", throttledHandleScroll, { passive: true });
-    window.addEventListener("wheel", preventDefaultScroll, { passive: false });
+    if(!isMobile) {
+      window.addEventListener("wheel", throttledHandleScroll, { passive: true });
+      window.addEventListener("wheel", preventDefaultScroll, { passive: false });
+    }
 
     return () => {
       window.removeEventListener("wheel", throttledHandleScroll);
       window.removeEventListener("wheel", preventDefaultScroll);
-    };
-  }, []);
+    }
+  },[isMobile])
 
   const [pauseWheelLock, setPauseWheelLock] = useState(false);
   const wheelLockController = (target) => {
     if (target.scrollHeight >= window.innerHeight) {
       setPauseWheelLock(true);
     }
+  }
+  const mobileCensor = () => {
+    if(window.innerWidth <= 375) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+    setCurrentWindowWidth(window.innerWidth);
   }
 
   return (
@@ -58,8 +76,8 @@ function App () {
         <Route path='/' element={
           <>
             <GlobalStyle/>
-            <SectionPlay/>
-            <SectionAudition tossWrapperTopCalc={propsRectTop} tossWrapperTop={WrapperTop}/>
+            <SectionPlay isMobile={isMobile}/>
+            <SectionAudition tossWrapperTopCalc={propsRectTop} tossWrapperTop={WrapperTop} isMobile={isMobile} currentWindowWidth={currentWindowWidth}/>
           </>
         }>
         </Route>
