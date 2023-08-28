@@ -4,24 +4,47 @@ import { useState, useRef } from "react";
 
 //component 뿌려줄 함수
 const Icons = (props) => {
-  return (
-    <div className="IconComponent">
-      <div className="wrapImgs">
-        <Link>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/board/${props.ctt.img}`}
-            alt={props.ctt.title}
-          />
-        </Link>
+  // id가 2인 경우에만 Link를 추가합니다.
+  if (props.ctt.id === 2) {
+    return (
+      <div className="IconComponent">
+        <div className="wrapImgs">
+          <Link to="/Sub02GreenTicket">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/board/${props.ctt.img}`}
+              alt={props.ctt.title}
+            />
+          </Link>
+        </div>
+        <div className="wrapExplain">
+          <Link to="/your-link-here">
+            {" "}
+            {/* 여기에 링크 경로를 추가하세요 */}
+            <h3>{props.ctt.title}</h3>
+          </Link>
+          <p>{props.ctt.explain}</p>
+        </div>
       </div>
-      <div className="wrapExplain">
-        <Link>
+    );
+  } else {
+    // id가 2가 아닌 경우에는 링크를 추가하지 않습니다.
+    return (
+      <div className="IconComponent">
+        <div className="wrapImgs">
+          <Link to="/">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/board/${props.ctt.img}`}
+              alt={props.ctt.title}
+            />
+          </Link>
+        </div>
+        <div className="wrapExplain">
           <h3>{props.ctt.title}</h3>
-        </Link>
-        <p>{props.ctt.explain}</p>
+          <p>{props.ctt.explain}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 const CttBoard = () => {

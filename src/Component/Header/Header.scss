@@ -2,9 +2,6 @@
 
 @include mobile {
   // 헤더
-  .header a {
-    color: #fff;
-  }
   header {
     width: 100%;
     height: 100px;
@@ -12,6 +9,10 @@
     left: 0;
     top: 0;
     z-index: 999;
+    transition: transform 0.3s ease;
+  }
+  header.hidden {
+    transform: translateY(-110%); /* Header를 위로 숨김 */
   }
   header::before {
     content: "";
@@ -30,6 +31,37 @@
     height: 1px;
     bottom: -6%;
     background-color: rgba($color: #fff, $alpha: 0.3);
+  }
+  header.black {
+    background-color: #fff;
+    border-bottom: 1px solid rgba($color: #000, $alpha: 0.3);
+    &::after {
+      background-color: rgba($color: #000, $alpha: 0.3);
+    }
+    .inner {
+      .logo {
+        img {
+          filter: invert(100%);
+        }
+      }
+      .wrapMobileLeft a span {
+        background-color: #000;
+      }
+      .wrapMobileLeft img {
+        filter: invert(100%);
+      }
+      .gnb-mobile li a {
+        //color: #000;
+      }
+      .menuHoverBall-mobile {
+        span:nth-child(1) {
+          background-color: #ffffff;
+        }
+      }
+      .wrapSign-mobile img {
+        filter: invert(100%);
+      }
+    }
   }
   // 헤더 안쪽 이너
   .inner {
@@ -75,6 +107,7 @@
       background-color: rgba(#2b2e31, 0.5);
       backdrop-filter: blur(6px);
       transition: 0.3s;
+      //pointer-events: none;
     }
     .wrapGnb-mobile.view {
       opacity: 1;
@@ -99,6 +132,7 @@
         > a {
           //border: 1px solid red;
           display: block;
+          color: #fff;
         }
       }
 
@@ -275,6 +309,11 @@
 
 @include tablet {
   // 헤더
+  #Header {
+    a {
+      color: #fff;
+    }
+  }
   .header a {
     color: #fff;
   }
@@ -285,6 +324,10 @@
     left: 0;
     top: 0;
     z-index: 999;
+    transition: transform 0.3s ease;
+  }
+  header.hidden {
+    transform: translateY(-110%); /* Header를 위로 숨김 */
   }
   header::before {
     content: "";
@@ -303,6 +346,37 @@
     height: 1px;
     bottom: -6%;
     background-color: rgba($color: #fff, $alpha: 0.3);
+  }
+  header.black {
+    background-color: #fff;
+    border-bottom: 1px solid rgba($color: #000, $alpha: 0.8);
+    &::after {
+      background-color: rgba($color: #000, $alpha: 0.8);
+    }
+    .inner {
+      .logo {
+        img {
+          filter: invert(100%);
+        }
+      }
+      .wrapMobileLeft a span {
+        background-color: #000;
+      }
+      .wrapMobileLeft img {
+        filter: invert(100%);
+      }
+      .gnb-mobile li a {
+        //color: #000;
+      }
+      .menuHoverBall-mobile {
+        span:nth-child(1) {
+          background-color: #ffffff;
+        }
+      }
+      .wrapSign-mobile img {
+        filter: invert(100%);
+      }
+    }
   }
   // 헤더 안쪽 이너
   .inner {
@@ -561,6 +635,14 @@
     width: 100%;
     height: 100px;
     border-bottom: 1px solid rgba($color: #fff, $alpha: 0.3);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    a {
+      color: #fff;
+    }
+  }
+  header.hidden {
+    transform: translateY(-110%); /* Header를 위로 숨김 */
   }
   header::after {
     content: "";
@@ -572,6 +654,32 @@
   }
   .header a {
     color: #fff;
+  }
+  header.black {
+    background-color: #fff;
+    border-bottom: 1px solid rgba($color: #000, $alpha: 0.3);
+    &::after {
+      background-color: rgba($color: #000, $alpha: 0.3);
+    }
+    .inner {
+      ul li a {
+        color: #000;
+      }
+      .logo {
+        img {
+          filter: invert(100%);
+        }
+      }
+      .menuHoverBall,
+      .signHoverBall {
+        span:nth-child(1) {
+          background-color: #000;
+        }
+      }
+      .wrapSign img {
+        filter: invert(100%);
+      }
+    }
   }
   // 헤더 안쪽 이너
   .inner {
@@ -588,7 +696,7 @@
       width: 17%; //265px
       height: 100px;
       line-height: 100px;
-      color: #fff;
+      color: #ffffff;
       position: absolute;
       left: 0;
     }

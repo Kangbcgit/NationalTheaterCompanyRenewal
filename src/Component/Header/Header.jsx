@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ headerVisible }) => {
   //모달창 띄우려는 useState
   const [modal, setModal] = useState(0);
 
@@ -39,9 +40,18 @@ const Header = () => {
     setMenuToggle(newMenuToggle);
     setIsActive(newIsActive);
   };
+
+  //서브페이지 나누면서 헤더 색이 바뀜
+  const location = useLocation();
+  const subHeaderColor =
+    location.pathname === "/Sub02GreenTicket" ? "header black" : "";
+
+  // 헤더가 보이지 않을 때 headerVisible은 false이므로 hidden 클래스를 추가
+  const headerClass = headerVisible === true ? "" : "hidden";
+  console.log("으아아아악:", headerVisible);
   return (
-    <div className="header">
-      <header>
+    <div id="Header">
+      <header className={`${headerClass} ${subHeaderColor}`}>
         <div className="inner">
           <div className="logo">
             <Link to="/">
@@ -269,7 +279,6 @@ const Header = () => {
           <ul className="wrapSign">
             <li>
               <Link
-                to="/"
                 onClick={() => {
                   setModal(!modal);
                 }}
@@ -306,7 +315,7 @@ const Header = () => {
           </ul>
           {/* 모바일 메뉴 */}
           <div className="wrapMobileLeft">
-            <Link to="/">
+            <Link>
               <div
                 className={`wrapToggleBtn ${isOpen ? "on" : ""}`}
                 onClick={() => {
@@ -321,7 +330,6 @@ const Header = () => {
             </Link>
             <div className="search-mobile">
               <Link
-                to="/"
                 onClick={() => {
                   setModal(!modal);
                 }}
@@ -342,9 +350,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[0] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(0, e)}
               >
-                <Link to="/" className="menulink">
-                  공연안내
-                </Link>
+                <Link className="menulink">공연안내</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[0] ? "active" : ""
@@ -376,9 +382,7 @@ const Header = () => {
                 className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(1, e)}
               >
-                <Link to="/" className="menulink">
-                  온라인 극장
-                </Link>
+                <Link className="menulink">온라인 극장</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[1] ? "active" : ""
@@ -393,9 +397,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[2] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(2, e)}
               >
-                <Link to="/" className="menulink">
-                  관객참여
-                </Link>
+                <Link className="menulink">관객참여</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[2] ? "active" : ""
@@ -410,9 +412,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[3] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(3, e)}
               >
-                <Link to="/" className="menulink">
-                  오디션
-                </Link>
+                <Link className="menulink">오디션</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[3] ? "active" : ""
@@ -444,9 +444,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[4] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(4, e)}
               >
-                <Link to="/" className="menulink">
-                  커뮤니티
-                </Link>
+                <Link className="menulink">커뮤니티</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[4] ? "active" : ""
@@ -475,9 +473,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[5] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(5, e)}
               >
-                <Link to="/" className="menulink">
-                  이용안내
-                </Link>
+                <Link className="menulink">이용안내</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[5] ? "active" : ""
@@ -515,9 +511,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[6] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(6, e)}
               >
-                <Link to="/" className="menulink">
-                  고객센터
-                </Link>
+                <Link className="menulink">고객센터</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[6] ? "active" : ""
@@ -552,9 +546,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[7] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(7, e)}
               >
-                <Link to="/" className="menulink">
-                  정보공개
-                </Link>
+                <Link className="menulink">정보공개</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[7] ? "active" : ""
@@ -589,9 +581,7 @@ const Header = () => {
                 className={`gnbMenu-mobile ${isActive[8] ? "active" : ""}`}
                 onClick={(e) => menuOnOffAndToggleClass(8, e)}
               >
-                <Link to="/" className="menulink">
-                  국립극단
-                </Link>
+                <Link className="menulink">국립극단</Link>
                 <div
                   className={`menuHoverBall-mobile ${
                     isActive[8] ? "active" : ""
