@@ -41,6 +41,5 @@
   },
   "devDependencies": {
     "@types/navermaps": "^3.6.5"
-  },
-  "homepage": "https://kangbcgit.github.io/NationalTheaterCompanyRenewal/"
+  }
 }
