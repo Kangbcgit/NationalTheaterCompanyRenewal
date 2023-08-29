@@ -168,6 +168,7 @@ const SectionAudition = props => {
         }
       },
     ],
+    MobileItemsCenterAlignmentData: [],
     year: new Date().getFullYear(),
     wrapperTop: 0,
     transform: 0,
@@ -206,17 +207,18 @@ const SectionAudition = props => {
       }
       setState(prevState => ({...prevState, wrapperTop: RectTop}));
       let calc = RectTop / (wrapperElement.clientHeight - window.innerHeight);
-      setState(prevState => ({...prevState, transform: state.calcWidth * calc}));
+      setState(prevState => ({...prevState, transform: state.calcWidth * calc || 0}));
       console.log('is Mobile: ' + props.isMobile);
     }
   };
   const setFirstTouchLocation = e => {
     if (!props.isMobile) return;
     console.log('startX: ' + startX.current);
+    console.log('state.transform: ' + state.transform);
     startTransform = state.transform;
+    console.log('startTransform : ' + startTransform);
     startX.current = e.touches[0].pageX - state.transform;
     console.log('e.touches[0].pageX: ' + e.touches[0].pageX);
-    console.log('state.transform: ' + state.transform);
   }
   const setMoveTouchLocation = e => {
     if (!props.isMobile) return;
@@ -227,32 +229,55 @@ const SectionAudition = props => {
     if (-items.current.scrollWidth + window.innerWidth - ((window.innerWidth - 294))>= deltaX) return;
     setState(prevState => ({...prevState, transform: deltaX}));
   }
+  const firstRenderingDataSet = () => {
+    state.items.forEach((item, index) => {
+      if (state.MobileItemsCenterAlignmentData.length >= state.items.length) return;
+      let newArr = state.MobileItemsCenterAlignmentData;
+      let data = items.current.scrollWidth / 5;
+      newArr.push([data * (index),data * (index + 1)]);
+      setState(prevState => ({...prevState, MobileItemsCenterAlignmentData: newArr}));
+      console.log(state.MobileItemsCenterAlignmentData);
+      console.log(items.current.scrollWidth);
+    })
+  }
+  const mobileItemsCenterAlignment = () => {
+    // console.log(items.current.scrollWidth);
+    if(-state.transform <= items.current.scrollWidth / 10) {
+      setState(prevState => ({...prevState, transform: 0}));
+    } else if (-state.transform >= (items.current.scrollWidth - (items.current.scrollWidth / 5)) / 10 * 9) {
+      setState(prevState => ({...prevState, transform: -items.current.scrollWidth + window.innerWidth - ((window.innerWidth - 294))}));
+    } else {
+      // if ()//현재 itemLength 기준 자동 범위 배열 생성..
+    }
+      // console.log('transform: ' + -state.transform);
+      // console.log('items.current.scrollWidth / 10 * 9: ' + (items.current.scrollWidth - (items.current.scrollWidth / 5)) / 10 * 9);
+  }
+
+
   //translateX 이벤트 + 최초 size측정 + resize 이벤트 할당
   useEffect(() => {
     setState(prevState => ({...prevState, calcWidth: (items.current.clientWidth - wrapper.current.clientWidth)}));
     mountItemsSet();
   },[]);
   useEffect(() => {
-    if (props.isMobile) return;
     window.addEventListener('scroll', desktopTranslateXEvent);
     return () => {
       window.removeEventListener('scroll', desktopTranslateXEvent);
     }
-  },[props.tossWrapperTop, state.transform, props.isMobile]);
-  //startX 초기화용
-  useEffect(() => {
-    startX = 0;
-    console.log(startX);
-  },[])
+  },[props.tossWrapperTop, props.isMobile]);
   useEffect(() => {
     items.current.addEventListener('touchstart', setFirstTouchLocation);
     items.current.addEventListener('touchmove', setMoveTouchLocation);
+    items.current.addEventListener('touchend', mobileItemsCenterAlignment);
     return () => {
       items.current.removeEventListener('touchstart', setFirstTouchLocation);
       items.current.removeEventListener('touchmove', setMoveTouchLocation);
-      
+      items.current.removeEventListener('touchend', mobileItemsCenterAlignment);
     }
-  },[setMoveTouchLocation, startX.current])
+  },[setMoveTouchLocation, startX.current, state.transform]);
+  useEffect(() => {
+    firstRenderingDataSet();
+  },[])
   return (
     <>
       <Wrapper ref={wrapper} isMobile={props.isMobile}>
