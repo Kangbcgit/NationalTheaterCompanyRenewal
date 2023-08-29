@@ -208,7 +208,6 @@ const SectionAudition = props => {
       let calc = RectTop / (wrapperElement.clientHeight - window.innerHeight);
       setState(prevState => ({...prevState, transform: state.calcWidth * calc}));
       console.log('is Mobile: ' + props.isMobile);
-      
     }
   };
   const setFirstTouchLocation = e => {
@@ -234,6 +233,7 @@ const SectionAudition = props => {
     mountItemsSet();
   },[]);
   useEffect(() => {
+    if (props.isMobile) return;
     window.addEventListener('scroll', desktopTranslateXEvent);
     return () => {
       window.removeEventListener('scroll', desktopTranslateXEvent);
@@ -242,7 +242,7 @@ const SectionAudition = props => {
   //startX 초기화용
   useEffect(() => {
     startX = 0;
-    console.log(startX)
+    console.log(startX);
   },[])
   useEffect(() => {
     items.current.addEventListener('touchstart', setFirstTouchLocation);
@@ -250,6 +250,7 @@ const SectionAudition = props => {
     return () => {
       items.current.removeEventListener('touchstart', setFirstTouchLocation);
       items.current.removeEventListener('touchmove', setMoveTouchLocation);
+      
     }
   },[setMoveTouchLocation, startX.current])
   return (
