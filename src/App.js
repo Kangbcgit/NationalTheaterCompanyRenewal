@@ -9,7 +9,7 @@ import _, { debounce, throttle } from 'lodash';
 
 function App () {
   const [WrapperTop, setWrapperTop] = useState(0);
-  const [wheelLock, setWheelLock] = useState(false);
+  const [wheelLock, setWheelLock] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [currentWindowWidth, setCurrentWindowWidth] = useState(0);
   const propsRectTop = (Wrapper) => {
@@ -17,8 +17,7 @@ function App () {
     setWrapperTop(WrapperTop);
   }
   const currentScroll = useRef(0);
-
-  const throttledHandleScroll = throttle((e) => {
+  const handleScroll = e => {
     if (e.deltaY > 0) {
       if (document.body.scrollHeight <= currentScroll + 100) return;
       currentScroll.current += window.innerHeight;
@@ -30,7 +29,27 @@ function App () {
       );
     }
     window.scrollTo({ top: currentScroll.current, behavior: "smooth" });
-  }, 1000, {trailing:false});
+  }
+  const preventDefaultScroll = (e) => {
+    if (!wheelLock) return; 
+      e.preventDefault();
+    };
+
+  const scrollWheelController = e => {
+    handleScroll(e);
+  }
+  const throttledHandleScroll = throttle(scrollWheelController, 1000, {trailing:false});
+  
+
+  const mobileCensor = () => {
+    if(window.innerWidth <= 375) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+    setCurrentWindowWidth(window.innerWidth);
+  }
+
 
   useEffect(() => {
     mobileCensor();
@@ -41,9 +60,6 @@ function App () {
     };
   }, []);
   useEffect(() => {
-    const preventDefaultScroll = (e) => {
-      e.preventDefault();
-    };
     if(!isMobile) {
       window.addEventListener("wheel", throttledHandleScroll, { passive: true });
       window.addEventListener("wheel", preventDefaultScroll, { passive: false });
@@ -53,23 +69,7 @@ function App () {
       window.removeEventListener("wheel", throttledHandleScroll);
       window.removeEventListener("wheel", preventDefaultScroll);
     }
-  },[isMobile])
-
-  const [pauseWheelLock, setPauseWheelLock] = useState(false);
-  const wheelLockController = (target) => {
-    if (target.scrollHeight >= window.innerHeight) {
-      setPauseWheelLock(true);
-    }
-  }
-  const mobileCensor = () => {
-    if(window.innerWidth <= 375) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-    setCurrentWindowWidth(window.innerWidth);
-  }
-
+  },[isMobile,wheelLock]);
   return (
     <>
       <Routes>
@@ -77,7 +77,7 @@ function App () {
           <>
             <GlobalStyle/>
             <SectionPlay isMobile={isMobile}/>
-            <SectionAudition tossWrapperTopCalc={propsRectTop} tossWrapperTop={WrapperTop} isMobile={isMobile} currentWindowWidth={currentWindowWidth}/>
+            <SectionAudition tossWrapperTopCalc={propsRectTop} tossWrapperTop={WrapperTop} isMobile={isMobile} currentWindowWidth={currentWindowWidth} />
           </>
         }>
         </Route>

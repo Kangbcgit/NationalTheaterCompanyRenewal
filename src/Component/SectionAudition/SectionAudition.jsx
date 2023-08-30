@@ -23,7 +23,6 @@ const WrapTopContents = styled.div`
   justify-content: space-between;
   flex-flow: wrap;
   height: 100vh;
-  border: 1px solid #000;
 
   overflow:hidden;
   @media ${media.mobile} {
@@ -90,6 +89,27 @@ const Items = styled.div`
     grid-template-columns: repeat(${props => props.itemsLenght}, 294px);
     gap: 15px;
     margin-left: ${props => `${(props.currentWindowWidth - 294) / 2}px`};
+  }
+`;
+const PageNation = styled.div`
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  height: 30px;
+  &>.pageNationDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: #D9D9D9;
+    &.activeDot {
+      background: #666666;
+    }
   }
 `;
 
@@ -169,6 +189,7 @@ const SectionAudition = props => {
       },
     ],
     MobileItemsCenterAlignmentData: [],
+    currentActivePageNationDot: 0,
     year: new Date().getFullYear(),
     wrapperTop: 0,
     transform: 0,
@@ -234,25 +255,26 @@ const SectionAudition = props => {
       if (state.MobileItemsCenterAlignmentData.length >= state.items.length) return;
       let newArr = state.MobileItemsCenterAlignmentData;
       let data = items.current.scrollWidth / 5;
-      newArr.push([data * (index),data * (index + 1)]);
+      let dataMinus = data - (data / 2);
+      newArr.push([(data * index) - dataMinus, (data * (index + 1) - dataMinus)]);
       setState(prevState => ({...prevState, MobileItemsCenterAlignmentData: newArr}));
       console.log(state.MobileItemsCenterAlignmentData);
       console.log(items.current.scrollWidth);
     })
   }
   const mobileItemsCenterAlignment = () => {
-    // console.log(items.current.scrollWidth);
-    if(-state.transform <= items.current.scrollWidth / 10) {
-      setState(prevState => ({...prevState, transform: 0}));
-    } else if (-state.transform >= (items.current.scrollWidth - (items.current.scrollWidth / 5)) / 10 * 9) {
-      setState(prevState => ({...prevState, transform: -items.current.scrollWidth + window.innerWidth - ((window.innerWidth - 294))}));
-    } else {
-      // if ()//현재 itemLength 기준 자동 범위 배열 생성..
-    }
-      // console.log('transform: ' + -state.transform);
-      // console.log('items.current.scrollWidth / 10 * 9: ' + (items.current.scrollWidth - (items.current.scrollWidth / 5)) / 10 * 9);
+    state.MobileItemsCenterAlignmentData.forEach((item, index) => {
+      if (-state.transform >= item[0] && state.transform <= item[1]) {
+        if (index === 0) {
+          setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index), currentActivePageNationDot: index + 1}));
+          console.log('첫번째임')
+          return;
+        }
+        setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index) - (3.75 * index), currentActivePageNationDot: index + 1}));
+      }
+    })
+    // state.MobileItemsCenterAlignmentData
   }
-
 
   //translateX 이벤트 + 최초 size측정 + resize 이벤트 할당
   useEffect(() => {
@@ -295,6 +317,11 @@ const SectionAudition = props => {
               return (<AuditionItem order={`0${index + 1}`} item={item} year={state.year}/>)
             })}
           </Items>
+          <PageNation>
+          {props.isMobile ? state.MobileItemsCenterAlignmentData.map((item, index) => {
+            return (<div className={`pageNationDot ${state.currentActivePageNationDot - 1 === index ? 'activeDot' : ''}`}></div>)
+          }) : null}
+          </PageNation>
         </FrameSectionAudition>
         </WrapTopContents>
       </Wrapper>
