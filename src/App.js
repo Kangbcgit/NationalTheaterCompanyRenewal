@@ -56,16 +56,16 @@ export default function App() {
   useEffect(() => {
     if (catchRef.current) {
       const height = catchRef.current.offsetTop;
-      console.log("catchRef 컴포넌트의 높이:", height);
+      console.log("catchRef 시작점:", height);
     }
 
     if (noneHeader.current) {
       const height = noneHeader.current.offsetTop;
-      console.log("noneHeader 높이:", height);
+      console.log("noneHeader 시작점:", height);
     }
     if (cttRef.current) {
       const height = cttRef.current.offsetTop;
-      console.log("cttRef 높이:", height);
+      console.log("cttRef 시작점:", height);
     }
   }, []);
 

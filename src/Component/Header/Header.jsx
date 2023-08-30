@@ -12,7 +12,7 @@ const Header = ({ headerVisible }) => {
   // 이 트리거 함수는 .gnbMenu-mobile이 isOpen된 상태에서 서브메뉴들을 클릭하여 각각 toggle된 상태에서 x를 눌러 다시 닫았다가 열었을 때, 열려있던 서브메뉴들이 다 닫힌 상태가 되도록 하기 위한 함수이다.
   const trigger = () => {
     if (!isOpen) {
-      //각각 9개의 요소를 가진 배열들이기 때문에 set으로 9개의 상태를 모두 false로 초기화해주어야 한다. 그렇지 않고 그냥 false만 쓰면 적용되지 않는다.
+      //각각 9개의 요소를 가진 배열들(li)이기 때문에 set으로 9개의 상태를 모두 false로 초기화해주어야 한다. 그렇지 않고 그냥 false만 쓰면 적용되지 않는다.
       setIsActive(Array(9).fill(false));
       setMenuToggle(Array(9).fill(false));
     }
@@ -25,14 +25,15 @@ const Header = ({ headerVisible }) => {
   //.gnbMenu-mobile 클릭시 서브메뉴 토글
   const [menuToggle, setMenuToggle] = useState(Array(9).fill(false)); //false값을 갖는 배열이 총 9개(.gnbMenu-mobile 개수만큼)
   const menuOnOffAndToggleClass = (idx, e) => {
-    //아래의 if문은 .wrapSubMenu-mobile의 각각의 li들을 클릭했을 때 상위 요소의 클릭이벤트가 함께 적용되어 토글이 닫히는 오류를 막기위한 코드로, li 안의 Link들에 각각 클래스를 따로 주어 선택된 타겟이 menulink라는 클래스를 가지고 있지 않을 때에만, 즉 서브메뉴의 하위 li들을 클릭했을 때에는 토글이 닫히지 않고 상위 메뉴인 .gnbMenu-mobile의 .li를 클릭했을 때에만 클릭이벤트가 적용되어 토글이 닫히도록 하기 위함이다.
+    //아래의 if문은 .wrapSubMenu-mobile의 각각의 li들을 클릭했을 때 상위 요소의 클릭이벤트가 함께 적용되어 토글이 닫히는 오류를 막기위한 코드로, li 안의 Link들에 각각 클래스를 따로 주어 선택된 타겟이 menulink라는 클래스를 가지고 있지 않을 때에만, 즉 서브메뉴의 하위 li들을 클릭했을 때에는 토글이 닫히지 않고 상위 메뉴인 .gnbMenu-mobile의 li를 클릭했을 때에만 클릭이벤트가 적용되어 토글이 닫히도록 하기 위함이다.
     if (!e.target.classList.contains("menulink")) {
       return;
     }
+    //.gnbMenu-mobile > ul > li에 적용
     const newMenuToggle = menuToggle.map((value, j) =>
       j === idx ? !value : false
     );
-
+    //.menuHoverBall-moblie에 적용
     const newIsActive = isActive.map((value, i) =>
       i === idx ? !value : false
     );
@@ -48,7 +49,8 @@ const Header = ({ headerVisible }) => {
 
   // 헤더가 보이지 않을 때 headerVisible은 false이므로 hidden 클래스를 추가
   const headerClass = headerVisible === true ? "" : "hidden";
-  console.log("으아아아악:", headerVisible);
+  console.log("props:", headerVisible);
+
   return (
     <div id="Header">
       <header className={`${headerClass} ${subHeaderColor}`}>
@@ -347,7 +349,7 @@ const Header = ({ headerVisible }) => {
           <div className={`wrapGnb-mobile ${isOpen ? "view" : ""}`}>
             <ul className="gnb-mobile">
               <li
-                className={`gnbMenu-mobile ${isActive[0] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(0, e)}
               >
                 <Link className="menulink">공연안내</Link>
@@ -394,7 +396,7 @@ const Header = ({ headerVisible }) => {
                 </div>
               </li>
               <li
-                className={`gnbMenu-mobile ${isActive[2] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(2, e)}
               >
                 <Link className="menulink">관객참여</Link>
@@ -409,7 +411,7 @@ const Header = ({ headerVisible }) => {
                 </div>
               </li>
               <li
-                className={`gnbMenu-mobile ${isActive[3] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(3, e)}
               >
                 <Link className="menulink">오디션</Link>
@@ -441,7 +443,7 @@ const Header = ({ headerVisible }) => {
                 </div>
               </li>
               <li
-                className={`gnbMenu-mobile ${isActive[4] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(4, e)}
               >
                 <Link className="menulink">커뮤니티</Link>
@@ -470,7 +472,7 @@ const Header = ({ headerVisible }) => {
                 </div>
               </li>
               <li
-                className={`gnbMenu-mobile ${isActive[5] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(5, e)}
               >
                 <Link className="menulink">이용안내</Link>
@@ -508,7 +510,7 @@ const Header = ({ headerVisible }) => {
                 </div>
               </li>
               <li
-                className={`gnbMenu-mobile ${isActive[6] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(6, e)}
               >
                 <Link className="menulink">고객센터</Link>
@@ -543,7 +545,7 @@ const Header = ({ headerVisible }) => {
                 </div>
               </li>
               <li
-                className={`gnbMenu-mobile ${isActive[7] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(7, e)}
               >
                 <Link className="menulink">정보공개</Link>
@@ -578,7 +580,7 @@ const Header = ({ headerVisible }) => {
                 </div>
               </li>
               <li
-                className={`gnbMenu-mobile ${isActive[8] ? "active" : ""}`}
+                className="gnbMenu-mobile"
                 onClick={(e) => menuOnOffAndToggleClass(8, e)}
               >
                 <Link className="menulink">국립극단</Link>
