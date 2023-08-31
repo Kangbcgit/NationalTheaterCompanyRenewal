@@ -270,6 +270,7 @@ export default class SectionPlay extends Component {
       console.log('window.innerWidth: ' + window.innerWidth);
     }
   }
+  
 
   render() {
     return (

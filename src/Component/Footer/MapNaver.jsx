@@ -1,5 +1,6 @@
 import { debounce } from 'lodash';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Map } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 const sizes = {
@@ -74,11 +75,16 @@ function MapNaver(props) {
       debounceInitMap();
     }
   }, []);
-  
   return (
     <WrapTop>
       <h4><img src={`${process.env.PUBLIC_URL}/images/footer/theatreIcon.svg`}></img>{props.mapList[0]}</h4>
-      <FrameMap ref={mapElement} />
+      {/* <FrameMap ref={mapElement}></FrameMap> */}
+      <Map 
+        center={{ lat: 33.5563, lng: 126.79581 }}   // 지도의 중심 좌표
+        style={{ width: '100%', height: '100%' }} // 지도 크기
+        level={3}                                   // 지도 확대 레벨
+      >
+      </Map>;
     </WrapTop>
   )
 }

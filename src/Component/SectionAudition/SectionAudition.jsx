@@ -275,6 +275,10 @@ const SectionAudition = props => {
     })
     // state.MobileItemsCenterAlignmentData
   }
+  //props event
+  const wheelLockEvent = (target) => {
+    props.wheelLockEvent(wrapper.current);
+  }
 
   //translateX 이벤트 + 최초 size측정 + resize 이벤트 할당
   useEffect(() => {
@@ -300,6 +304,12 @@ const SectionAudition = props => {
   useEffect(() => {
     firstRenderingDataSet();
   },[])
+  useEffect(() => {
+    window.addEventListener('wheel', wheelLockEvent);
+    return () => {
+      window.removeEventListener('wheel', wheelLockEvent);
+    }
+  },[props.wheelLock])
   return (
     <>
       <Wrapper ref={wrapper} isMobile={props.isMobile}>

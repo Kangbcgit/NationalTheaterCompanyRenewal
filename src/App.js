@@ -18,6 +18,7 @@ function App () {
   }
   const currentScroll = useRef(0);
   const handleScroll = e => {
+    if(!wheelLock) return;
     if (e.deltaY > 0) {
       if (document.body.scrollHeight <= currentScroll + 100) return;
       currentScroll.current += window.innerHeight;
@@ -34,7 +35,20 @@ function App () {
     if (!wheelLock) return; 
       e.preventDefault();
     };
-
+  const heightCheck = (target) => {
+    const height = target.scrollHeight;
+    const windowHeight = window.innerHeight;
+    if (height > windowHeight) {
+      const top = target.getBoundingClientRect().top;
+      if (top <= 0 && -top <= target.scrollHeight) {
+        setWheelLock(false);
+        console.log('휠 풀림');
+      } else {
+        setWheelLock(true);
+        console.log('휠 잠김')
+      }
+    }
+  }
   const scrollWheelController = e => {
     handleScroll(e);
   }
@@ -59,25 +73,25 @@ function App () {
       window.removeEventListener("resize", mobileCensor);
     };
   }, []);
-  useEffect(() => {
-    if(!isMobile) {
-      window.addEventListener("wheel", throttledHandleScroll, { passive: true });
-      window.addEventListener("wheel", preventDefaultScroll, { passive: false });
-    }
+  // useEffect(() => {
+  //   if(!isMobile) {
+  //     window.addEventListener("wheel", preventDefaultScroll, { passive: false });
+  //     window.addEventListener("wheel", throttledHandleScroll);
+  //   }
 
-    return () => {
-      window.removeEventListener("wheel", throttledHandleScroll);
-      window.removeEventListener("wheel", preventDefaultScroll);
-    }
-  },[isMobile,wheelLock]);
+  //   return () => {
+  //     window.removeEventListener("wheel", preventDefaultScroll);
+  //     window.removeEventListener("wheel", throttledHandleScroll);
+  //   }
+  // },[isMobile,wheelLock]);
   return (
     <>
       <Routes>
         <Route path='/' element={
           <>
             <GlobalStyle/>
-            <SectionPlay isMobile={isMobile}/>
-            <SectionAudition tossWrapperTopCalc={propsRectTop} tossWrapperTop={WrapperTop} isMobile={isMobile} currentWindowWidth={currentWindowWidth} />
+            <SectionPlay isMobile={isMobile} start={heightCheck}/>
+            <SectionAudition tossWrapperTopCalc={propsRectTop} tossWrapperTop={WrapperTop} isMobile={isMobile} currentWindowWidth={currentWindowWidth} wheelLockEvent={heightCheck} wheelLock={wheelLock} />
           </>
         }>
         </Route>
