@@ -65,7 +65,7 @@ const WrapText = styled.div`
     line-height: 1.5;
   }
 `;
-const Parent =styled.div`
+const Parent = styled.div`
   position: absolute;
   right: 0;
   top: 50%;
@@ -92,69 +92,65 @@ const Circle = styled.div`
   border: 15px solid #ff00008b;
   border-radius: 50%;
 
-  &>div {
-    position: absolute;
-    left: -250px;
-    top: 50%;
-    transform-origin: 475px 0;
-/* 
-    display: flex;
-    justify-content: end;
-
-    width: 210px; */
-
-    font-size: 1.5rem;
-    color: #fff;
-
-    cursor: pointer;
-
-    transition: 1s;
-    &:nth-child(1) {
-      transform: translateY(-50%) rotate(60deg);
-    }
-    &:nth-child(2) {
-      transform: translateY(-50%) rotate(30deg);
-    }
-    &:nth-child(3) {
-      transform: translateY(-50%);
-    }
-    &:nth-child(4) {
-      transform: translateY(-50%) rotate(-30deg);
-    }
-    &:nth-child(5) {
-      transform: translateY(-50%) rotate(-60deg);
-    }
-  }
   @media ${media.mobile} {
     width: 300px;
     height: 300px;
     border: 5px solid #ff0000;
+  }
+`;
+const CircleDot = styled.div`
+  position: absolute;
+  left: -250px;
+  top: 50%;
+  transform-origin: 475px 0;
+
+  font-size: 1.5rem;
+  color: #fff;
+
+  cursor: pointer;
+
+  transition: 1s;
+
+  //동적 할당 속성
+  /* display: ${props => `${props.deg === props.calcDeg ? 'block' : 'none'}`}; */
+  transform: translateY(-50%) rotate(${props => `${-props.calcDeg}deg`});
+  
+  opacity: ${props => {
+    return !props.isMobile ? (props.deg !== props.calcDeg ? `${1 / ((Math.abs(props.deg - props.calcDeg) / 30) + 1)}` : `1`) : (`1`);
+  }};
+  font-size: ${props => props.deg !== props.calcDeg ? '1.5rem' : '1.7rem'};
+
+  //반응형
+  @media ${media.mobile} {
+    left: 0;
+    transform-origin: 162.5px 15px;
+    transform: translate(calc(-50% - 2.5px), -50%) rotate(${props => `${-props.calcDeg}deg`});
+
     &>div {
-      left: 0;
-      transform-origin: 162.5px 15px;
-      
-      &:nth-child(1) {
-        transform: translate(calc(-50% - 2.5px), -50%) rotate(60deg);
-      }
-      &:nth-child(2) {
-        transform: translate(calc(-50% - 2.5px), -50%) rotate(30deg);
-      }
-      &:nth-child(3) {
-        transform: translate(calc(-50% - 2.5px), -50%);
-      }
-      &:nth-child(4) {
-        transform: translate(calc(-50% - 2.5px), -50%) rotate(-30deg);
-      }
-      &:nth-child(5) {
-        transform: translate(calc(-50% - 2.5px), -50%) rotate(-60deg);
-      }
-      &>div {
-        width: 30px;
-        height: 30px;
-        border-radius: 20px;
-        background: red;
-        cursor: pointer;
-      }
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      background: red;
+      cursor: pointer;
+    }
+  }
+`;
+const ImpactFrame = styled.div`
+  @media ${media.mobile} {
+    position: absolute;
+    z-index: -2;
+    left: 0;
+    top: 50%;
+    transform-origin: 162.5px 15px;
+    transform: translate(calc(-50% - 2.5px), -50%) rotate(${props => `${-props.deg}deg`});
+
+    transition: 1s;
+    &>div {
+      width: 30px;
+      height: 30px;
+      border: 1px solid red;
+      border-radius: 40px;
+      transform: scale(1.5);
     }
   }
 `;
@@ -299,14 +295,24 @@ export default class SectionPlay extends Component {
             </WrapText>
           </WrapImg>
           <Parent deg={`${this.state.deg}`}>
-            <Circle>
+            <Circle isMobile={this.state.deg}>
               {this.state.itemList.map((item, index) => {
                 const itemCalc = item[0] - 3;
-                const degCalc = (itemCalc) * 30;
+                const calcDeg = (itemCalc) * 30;
                 return(
-                  <div className={`${this.state.deg === degCalc ? 'active' : ''}`} data-deg={degCalc} data-order={item[0]} style={{opacity: !this.state.isMobile ? this.state.deg !== degCalc ? `${1 / ((Math.abs(this.state.deg - degCalc) / 30) + 1)}` : '1' : '1', fontSize: this.state.deg !== degCalc ? '1.5rem' : '1.7rem'}} onClick={this.throttledEffected}>{this.state.isMobile ? (<div></div>) : item[1]}</div>
+                  <>
+                    {/* <div className={`${this.state.deg === calcDeg ? 'active' : ''}`} data-deg={calcDeg} data-order={item[0]} style={{opacity: !this.state.isMobile ? this.state.deg !== calcDeg ? `${1 / ((Math.abs(this.state.deg - calcDeg) / 30) + 1)}` : '1' : '1', fontSize: this.state.deg !== calcDeg ? '1.5rem' : '1.7rem'}} onClick={this.throttledEffected}>
+                      {this.state.isMobile ? (<div></div>) : item[1]}
+                    </div> */}
+                    <CircleDot data-deg={calcDeg} onClick={this.throttledEffected} data-order={item[0]} deg={this.state.deg} calcDeg={calcDeg} isMobile={this.props.isMobile}>
+                      {this.state.isMobile ? (<div></div>) : item[1]}
+                    </CircleDot>
+                  </>
                 );
               })}
+              <ImpactFrame deg={this.state.deg}>
+                <div></div>
+              </ImpactFrame>
             </Circle>
           </Parent>
         </Wrapper>

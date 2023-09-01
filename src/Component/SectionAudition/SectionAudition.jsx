@@ -217,13 +217,13 @@ const SectionAudition = props => {
       return;
     } else {
       const wrapperElement = wrapper.current;
-      props.tossWrapperTopCalc(wrapperElement);
-      const RectTop = props.tossWrapperTop;
+      const RectTop = wrapperElement.getBoundingClientRect().top;
+      console.log('width' + props.currentWindowWidth)
       if (RectTop > 0) {
         setState(prevState => ({...prevState, transform: 0}));
         return;
       } else if(RectTop - window.innerHeight < -wrapperElement.scrollHeight) {
-        setState(prevState => ({...prevState, transform: window.innerWidth > 375 ? -state.calcWidth : -state.calcWidth - ((window.innerWidth - 294))}));
+        setState(prevState => ({...prevState, transform: props.currentWindowWidth > 375 ? -state.calcWidth : -state.calcWidth - ((props.currentWindowWidth - 294))}));
         return;
       }
       setState(prevState => ({...prevState, wrapperTop: RectTop}));
@@ -247,7 +247,7 @@ const SectionAudition = props => {
 
     let deltaX = (moveX - startX.current);
     if (0 <= deltaX) return;
-    if (-items.current.scrollWidth + window.innerWidth - ((window.innerWidth - 294))>= deltaX) return;
+    if (-items.current.scrollWidth + props.currentWindowWidth - ((props.currentWindowWidth - 294))>= deltaX) return;
     setState(prevState => ({...prevState, transform: deltaX}));
   }
   const firstRenderingDataSet = () => {
@@ -262,15 +262,24 @@ const SectionAudition = props => {
       console.log(items.current.scrollWidth);
     })
   }
+  const setCurrentActivePageNationDot = (index = 0) => {
+    setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index) - (3.75 * index)}));
+    setState(prevState => ({...prevState, currentActivePageNationDot: (index) + 1}));
+  }
+  const clickPageNationDot = (index) => {
+    setCurrentActivePageNationDot(index);
+  }
   const mobileItemsCenterAlignment = () => {
     state.MobileItemsCenterAlignmentData.forEach((item, index) => {
       if (-state.transform >= item[0] && state.transform <= item[1]) {
         if (index === 0) {
-          setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index), currentActivePageNationDot: index + 1}));
+          setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index)}));
+          setCurrentActivePageNationDot(index);
           console.log('첫번째임')
           return;
         }
-        setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index) - (3.75 * index), currentActivePageNationDot: index + 1}));
+        setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index) - (3.75 * index)}));
+        setCurrentActivePageNationDot(index);
       }
     })
     // state.MobileItemsCenterAlignmentData
@@ -279,14 +288,15 @@ const SectionAudition = props => {
   //translateX 이벤트 + 최초 size측정 + resize 이벤트 할당
   useEffect(() => {
     setState(prevState => ({...prevState, calcWidth: (items.current.clientWidth - wrapper.current.clientWidth)}));
+    setCurrentActivePageNationDot();
     mountItemsSet();
-  },[]);
+  },[props.currentWindowWidth]);
   useEffect(() => {
     window.addEventListener('scroll', desktopTranslateXEvent);
     return () => {
       window.removeEventListener('scroll', desktopTranslateXEvent);
     }
-  },[props.tossWrapperTop, props.isMobile]);
+  },[props.isMobile,props.currentWindowWidth]);
   useEffect(() => {
     items.current.addEventListener('touchstart', setFirstTouchLocation);
     items.current.addEventListener('touchmove', setMoveTouchLocation);
@@ -296,7 +306,7 @@ const SectionAudition = props => {
       items.current.removeEventListener('touchmove', setMoveTouchLocation);
       items.current.removeEventListener('touchend', mobileItemsCenterAlignment);
     }
-  },[setMoveTouchLocation, startX.current, state.transform]);
+  },[setMoveTouchLocation, startX.current, state.transform, props.currentWindowWidth]);
   useEffect(() => {
     firstRenderingDataSet();
   },[])
@@ -319,7 +329,7 @@ const SectionAudition = props => {
           </Items>
           <PageNation>
           {props.isMobile ? state.MobileItemsCenterAlignmentData.map((item, index) => {
-            return (<div className={`pageNationDot ${state.currentActivePageNationDot - 1 === index ? 'activeDot' : ''}`}></div>)
+            return (<div className={`pageNationDot ${state.currentActivePageNationDot - 1 === index ? 'activeDot' : ''}`} onClick={() => {clickPageNationDot(index)}}></div>)
           }) : null}
           </PageNation>
         </FrameSectionAudition>
@@ -329,148 +339,3 @@ const SectionAudition = props => {
   );
 }
 export default SectionAudition
-// export default class SectionAudition1 extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       items: [
-//         {
-//           title: '스카팽',
-//           ApplicationPeriod: {
-//             start: '23.08.10',
-//             end: '23.08.24'
-//           }, //신청 기간
-//           location: '소극장 판',
-//           target: {
-//             start: 30,
-//             end: 40,
-//             gender: ['남자','여자'],
-//             special: false,
-//           }
-//         },
-//         {
-//           title: '소년이 그랬다',
-//           ApplicationPeriod: {
-//             start: '23.08.10',
-//             end: '23.09.10'
-//           },
-//           location: '소극장 판',
-//           target: {
-//             start: 20,
-//             end: 40,
-//             gender: ['남자'],
-//             special: false,
-//           }
-//         },
-//         {
-//           title: '극동 시베리아 순례길',
-//           ApplicationPeriod: {
-//             start: '23.08.15',
-//             end: '23.09.15'
-//           },
-//           location: '백성희장민호 극장',
-//           target: {
-//             start: 20,
-//             end: 40, 
-//             gender: ['여자'],
-//             special: true,
-//             hardText: '20대, 40대 여자 배우 각 1명'
-//           }
-//         },
-//         {
-//           title: '금조 이야기',
-//           ApplicationPeriod: {
-//             start: '23.08.20',
-//             end: '23.09.20'
-//           },
-//           location: '명동 예술 극장',
-//           target: {
-//             start: 20,
-//             end: 55,
-//             gender: ['남자','여자'],
-//             special: false,
-//           }
-//         },
-//         {
-//           title: '밤의 사막 너머',
-//           ApplicationPeriod: {
-//             start: '23.08.24',
-//             end: '23.10.10'
-//           },
-//           location: '명동 예술 극장',
-//           target: {
-//             start: 20,
-//             end: 30,
-//             gender: ['남자','여자'],
-//             special: false,
-//           }
-//         },
-//       ],
-//       year: new Date().getFullYear(),
-//       wrapperTop: 0,
-//       transform: 0,
-//       calcWidth: 0,
-//     }
-//     this.wrapper = React.createRef();
-//     this.items = React.createRef();
-
-//     this.startX = 0;
-//     this.startY = 0;
-//   }
-//   componentDidMount() {
-//     window.addEventListener('scroll', this.desktopTranslateXEvent);
-//     this.setState({calcWidth: (this.items.current.clientWidth - this.wrapper.current.clientWidth)});
-//     this.mountItemsSet();
-//   }
-//   componentWillUnmount() {
-//     window.removeEventListener('scroll', this.desktopTranslateXEvent);
-//   }
-//   mountItemsSet = () => {
-//     const newItems = this.state.items;
-//     this.state.items.forEach((item, index) => {
-//       const src = this.state.items[index].title;
-//       newItems[index].tag = `#${src}`;
-//       newItems[index].src = `images/audition/0${ 
-//         index + 1}${src}.svg`;
-//     });
-//     this.setState({items: newItems})
-//   }
-//   desktopTranslateXEvent = () => {
-//     if (this.props.isMobile) return;
-//     const wrapper = this.wrapper.current;
-//     this.props.tossWrapperTopCalc(wrapper);
-//     const RectTop = this.props.tossWrapperTop;
-//     if (RectTop > 0) {
-//       this.setState({transform: 0});
-//       return;
-//     } else if(RectTop - window.innerHeight < -wrapper.scrollHeight) {
-//       this.setState({transform: window.innerWidth > 375 ? -this.state.calcWidth : -this.state.calcWidth - ((window.innerWidth - 294))});
-//       return;
-//     }
-//     this.setState({wrapperTop: RectTop});
-//     let calc = RectTop / (wrapper.clientHeight - window.innerHeight);
-//     this.setState({transform: this.state.calcWidth * calc});
-//   }
-//   render() {
-//     return (
-//       <Wrapper ref={this.wrapper}>
-//         <WrapTopContents>
-//           <WrapTitle>
-//             <span>JOIN US?</span>
-//             <h6>국립극단에서 진행하는 오디션에는 배우라면 누구나 지원하실 수 있습니다.</h6>
-//           </WrapTitle>
-//           <WrapImg>
-//             <img src="images/audition/viewMore.svg" alt="" />
-//           </WrapImg>
-//           <FrameSectionAudition >
-//               <Items itemsLenght={this.state.items.length} transform={this.state.transform} ref={this.items}>
-//                 {this.state.items.map((item, index) => {
-//                   return (<AuditionItem order={`0${index + 1}`} item={item} year={this.state.year}/>)
-//                 })}
-//               </Items>
-//           </FrameSectionAudition>
-//         </WrapTopContents>
-//       </Wrapper>
-//     )
-//   }
-// }

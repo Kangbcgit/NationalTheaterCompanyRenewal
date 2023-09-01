@@ -8,3 +8,9 @@
 
 2023.08.30 
 1 문제 꺠달음. 개발자도구를 켰다가 끄면 innerWidth가 개발자 도구를 킨 상태 그대로여서 transform 최대 한도가 늘어남. 그만큼. 이거 갱신 잘 되도록 수정하면 될듯
+
+2023.09.01 
+1. resize props.currentWindowWidth 값이 빨ㄹ ㅣ바뀔시 인식 안됨
+2. 아래 페이지 이동 select 스타일링 
+3. kakao api 불러오기
+4. 반응형(tablet 사이즈);
