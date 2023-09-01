@@ -78,13 +78,13 @@ function MapNaver(props) {
   return (
     <WrapTop>
       <h4><img src={`${process.env.PUBLIC_URL}/images/footer/theatreIcon.svg`}></img>{props.mapList[0]}</h4>
-      {/* <FrameMap ref={mapElement}></FrameMap> */}
-      <Map 
+      <FrameMap ref={mapElement}></FrameMap>
+      {/* <Map 
         center={{ lat: 33.5563, lng: 126.79581 }}   // 지도의 중심 좌표
         style={{ width: '100%', height: '100%' }} // 지도 크기
         level={3}                                   // 지도 확대 레벨
       >
-      </Map>;
+      </Map>; */}
     </WrapTop>
   )
 }
