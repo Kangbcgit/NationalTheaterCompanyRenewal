@@ -4,29 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from "react-router-dom";
 import React, { useEffect,useRef ,useState } from "react";
 import styled from "styled-components";
-/* 
-1.크리에이트 섹션 도달하면 고정되고
-2.고정된 상태에서 스크롤 하면
-3.포스터가 한장씩 날라감
-4.단 날라가는 효과는 스크롤 내리면서 같이 날라가는게 아니라, 스크롤하고 한장 바로 날라가게
-
-add class를 사용 해야 할지도 모름..
-
-gsap onEnter : () =>{
-  $('#header').addClass('none');
-  $('._m .s_4 .bt .t, ._m .s_4 .count dl').removeClass('active');
-  $('._m .s_4 .bt .t').eq(0).addClass('active');
-  $('._m .s_4 .count dl').eq(0).addClass('active');
-}
-이런식으로 스크롤시 저렇게 행동시키도록 해야할듯??
-리액트로 어떻게 해야할까?
---> ref로 해결
-*/
-/* 
---> gsap.pause() 이용해서 반응형일때 일시정지 되게 해야할듯???
-연구 필요.
-
-*/
+​
 const DivBar = styled.div``;
 const CreateTitle = styled.div``;
 const CardUl = styled.ul``;
@@ -102,7 +80,7 @@ const CreateWrap = styled.div`
       @media screen and (max-width: 1579px) and (min-width: 758px) {
       font-size: clamp(24px, 2.28vw, 35px);
       }
-
+​
       &>p{
         text-align: right;  
         transform: translateY(150%);
@@ -114,13 +92,13 @@ const CreateWrap = styled.div`
     }
   }
 `;
-
+​
 /* 모바일 버전 */
 const MobileCreateCards = styled.ul``;
 const MobileCardsUL = styled.ul``;
 const MobileCreateDesc = styled.div``;
 const MobileBar = styled.div``;
-
+​
 const MobileCreateWrap = styled.div`
 display: ${(props) => (props.isVisible ? 'none' : 'block')};
 width: 100%; height: auto;
@@ -197,11 +175,11 @@ position: relative;
     }
   }
 `;
-
-
+​
+​
 /* styled component end */
 gsap.registerPlugin(ScrollTrigger);
-
+​
 function Create() {
   const [windowInnerWidth, setWindowInnerWidth] = useState(window.innerWidth);
   const getWindowWidth = () => {
@@ -212,8 +190,8 @@ function Create() {
   const targetDesc02 = useRef(null);
   const targetDesc03 = useRef(null);
   /* gsap start */
-
-
+​
+​
     useEffect(()=>{
       const handleResize = () => {
         setWindowInnerWidth(getWindowWidth());
@@ -224,8 +202,8 @@ function Create() {
         });
         initScrollTrigger();
       };
-
-
+​
+​
       const initScrollTrigger=()=>{
         if(isVisible){      
             const tl = gsap.timeline({
@@ -290,12 +268,12 @@ function Create() {
                 targetDesc03.current.classList.add('active');
               }
             },">2")
-
+​
             ;}
-
+​
         else if(!isVisible){
             const tl2 = gsap.timeline();
-
+​
             tl2.to(`${MobileCardsUL}>li:nth-of-type(3)`,{
             rotate : 5,
             ease : "power2.inOut",
@@ -316,8 +294,8 @@ function Create() {
         ScrollTrigger.getAll().forEach((instance) => instance.kill());
       };
     },[isVisible]);
-
-
+​
+​
   /* html start */
   return (
     <>
@@ -378,10 +356,10 @@ function Create() {
           </Link>
         </li>
       </MobileCreateCards>
-
+​
     </MobileCreateWrap>
   </>
   )
 }
-
+​
 export default Create

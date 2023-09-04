@@ -116,8 +116,6 @@ const CircleDot = styled.div`
 
   transition: 1s;
 
-  //동적 할당 속성
-  /* display: ${props => `${props.deg === props.calcDeg ? 'block' : 'none'}`}; */
   transform: translateY(-50%) rotate(${props => `${-props.calcDeg}deg`});
   
   opacity: ${props => {
@@ -165,7 +163,6 @@ export default class SectionPlay extends Component {
     super(props);
     this.state = {
       deg: 0, // 현재 부모 rotate deg
-      step: 0, //중앙으로부터 멀어진 양 max 2
       itemList:[[1, 'Tank; 0-24'], [2, '조씨고아 복수의 씨앗'], [3, 'X의 비극'], [4, '이 불안한 집'], [5, '스고파라갈']], //임시로 map 돌리기 위한~ item 번호들
       text: [
         {
@@ -225,7 +222,6 @@ export default class SectionPlay extends Component {
       ],
       isActiveUp: false,
       isActiveDown: false,
-      isDesktop: true,
       isMobile: false,
     }
   }
@@ -263,12 +259,8 @@ export default class SectionPlay extends Component {
   checkResize = () => {
     if (window.innerWidth <= 375) {
       this.setState({isMobile: true});
-      console.log('is Mobile status');
-      console.log('window.innerWidth: ' + window.innerWidth);
     } else {
       this.setState({isMobile: false});
-      console.log('is Desktop status');
-      console.log('window.innerWidth: ' + window.innerWidth);
     }
   }
   
@@ -278,7 +270,7 @@ export default class SectionPlay extends Component {
       <>
         <Wrapper isMobile={this.props.isMobile}>
           <WrapImg>
-            <img src={`images/play/play${this.state.backView}.svg`} alt="" />
+            <img src={`${process.env.PUBLIC_URL}/images/play/play${this.state.backView}.svg`} alt="" />
             <WrapText style={{fontSize: this.state.isMobile ? 'var(--small)' : '32px'}}>
               <span style={{fontSize: this.state.isMobile ? '11px' : 'inherit'}}>{this.state.text[this.state.backView - 1].text1}</span><br/>
               <span style={{fontSize: this.state.isMobile ? 'var(--h6)' : '64px'}}>{this.state.text[this.state.backView - 1].text2}</span><br/>
@@ -289,7 +281,7 @@ export default class SectionPlay extends Component {
             </WrapText>
           </WrapImg>
           <WrapImg className={`${this.state.isActiveUp === true ? 'activeUp' : this.state.isActiveDown === true ? 'activeDown' : ""}`} >
-            <img src={`images/play/play${this.state.frontView}.svg`} alt="" />
+            <img src={`${process.env.PUBLIC_URL}/images/play/play${this.state.frontView}.svg`} alt="" />
             <WrapText style={{fontSize: this.state.isMobile ? 'var(--small)' : '32px'}}>
               <span style={{fontSize: this.state.isMobile ? '11px' : 'inherit'}}>{this.state.text[this.state.frontView - 1].text1}</span><br/>
               <span style={{fontSize: this.state.isMobile ? 'var(--h6)' : '64px'}}>{this.state.text[this.state.frontView - 1].text2}</span><br/>
@@ -306,9 +298,6 @@ export default class SectionPlay extends Component {
                 const calcDeg = (itemCalc) * 30;
                 return(
                   <>
-                    {/* <div className={`${this.state.deg === calcDeg ? 'active' : ''}`} data-deg={calcDeg} data-order={item[0]} style={{opacity: !this.state.isMobile ? this.state.deg !== calcDeg ? `${1 / ((Math.abs(this.state.deg - calcDeg) / 30) + 1)}` : '1' : '1', fontSize: this.state.deg !== calcDeg ? '1.5rem' : '1.7rem'}} onClick={this.throttledEffected}>
-                      {this.state.isMobile ? (<div></div>) : item[1]}
-                    </div> */}
                     <CircleDot data-deg={calcDeg} onClick={this.throttledEffected} data-order={item[0]} deg={this.state.deg} calcDeg={calcDeg} isMobile={this.props.isMobile}>
                       {this.state.isMobile ? (<div></div>) : item[1]}
                     </CircleDot>

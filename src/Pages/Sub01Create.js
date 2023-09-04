@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 /* 
+  원들 포지션 재정립
 
-3. 반응형 구조를 안바꾸고 하는 방법 생각해보기
-1255 반응형일때 모바일버전으로 변함
 */
 
 const LeftCBox = styled.div``;
@@ -19,8 +18,40 @@ const RightCBox = styled.div`
 `;
 
 const ArrowImg = `${process.env.PUBLIC_URL}/images/create/arrow.png`;
+const ArrowImgMb = `${process.env.PUBLIC_URL}/images/create/arrowmob.svg`;
 const MbUl = styled.ul`
   display:${(props) => (props.isVisible ? "none" : "block")};
+  height: auto;
+  width: 90%;
+  margin: auto;
+  position: relative;
+  &>li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 5rem 0;
+    &>p{
+      font-size: 32px;
+      font-weight: bold;
+    }
+    &>img{
+      width: clamp(375px,59.36vw,420px);
+      height: 505px;
+      object-fit: contain;
+      @media screen and (max-width: 577px){
+        width: clamp(280px,55.48vw,320px);
+    }
+    }
+    &>div{
+      text-align: center;
+      font-size: 22px;
+      &>p{
+        margin-bottom: 20px;
+      }
+    }
+  }
 `;
 const ArrowSpan = styled.span`
   display: inline-block;
@@ -28,6 +59,13 @@ const ArrowSpan = styled.span`
   width: 32px;
   height: 18px;
   background-size: cover;
+  @media screen and (max-width: 577px){
+    background: url(${ArrowImgMb})no-repeat center center;
+    width: 50px;
+    height: 18px;
+    background-size: contain;
+    transform: translateX(-10px);
+  }
 `;
 const PoaText = styled.div`
   color:white;
@@ -37,6 +75,34 @@ const PoaText = styled.div`
     margin-bottom: 15px;
     @media screen and (max-width: 1427px) and (min-width: 1255px) {
       font-size: 28px;
+    }
+    @media screen and (max-width: 577px) and (min-width:475px){
+      font-size: 24px;
+    }
+    @media screen and (max-width: 474px){
+      font-size: 20px;
+    }
+  }
+  &>p{
+    @media screen and (max-width: 577px) and (min-width:475px){
+      font-size: 18px;
+    }
+    @media screen and (max-width: 474px){
+      font-size: 15px;
+    }
+  }
+  &>.mobP01{
+    @media screen and (max-width: 577px) and (min-width:475px){
+      width: 40%;
+    }
+    @media screen and (max-width: 474px){
+      width: 60%;
+    }
+  }
+  &>.mobP02{
+    @media screen and (max-width: 474px){
+      width: 40%;
+      transform: translateX(60px);
     }
   }
 `;
@@ -50,12 +116,35 @@ const CreateAbout = styled.div`
     padding-bottom: 0.55em;
     border-bottom: 1px solid #000000;
     margin-bottom: 0.9em;
+    @media screen and (max-width: 1255px) and (min-width:578px){
+      font-size: 64px;
+      margin-bottom: 0.4em;
+    }
+    @media screen and (max-width: 577px) and (min-width:475px){
+      font-size: 54px;
+      margin-bottom: 0.4em;
+  }
+  @media screen and (max-width: 474px){
+    font-size: 45px;
+    margin-bottom: 0.4em;
+    margin-left: 20px;
+  }
   }
 `;
 const Sub01Wrap = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
+  @media screen and (max-width: 1255px) and (min-width:578px){
+    width: 90%;
+    margin: auto;
+    height: 680px;
+  }
+  @media screen and (max-width: 577px){
+    width: 90%;
+    margin: auto;
+    height: 680px;
+  }
 `;
 
 const Sub01Section = styled.div`
@@ -65,6 +154,7 @@ const Sub01Section = styled.div`
     display: flex;
     flex-direction: column;
     gap: 100px;
+
     &>.TextTopBox{
       &>h2{
          font-size: 32px;
@@ -74,6 +164,12 @@ const Sub01Section = styled.div`
         }
         @media screen and (max-width: 1427px) and (min-width: 1255px) {
           font-size: 26px;
+        }
+        @media screen and (max-width: 1255px) and (min-width:475px) {
+          font-size: 24px;
+        }
+        @media screen and (max-width: 474px){
+          font-size: 20px;
         }
         &>strong{
 
@@ -89,6 +185,28 @@ const Sub01Section = styled.div`
       @media screen and (max-width: 1427px) and (min-width: 1255px) {
         max-width: 480px;
       }
+      @media screen and (max-width: 1255px) and (min-width:578px){
+        width: 480px;
+        position: absolute;
+        right: 45%;
+        top: 20%;
+        transform: translateX(45%);
+      }
+      @media screen and (max-width: 577px) and (min-width:475px){
+        width: 400px;
+        position: absolute;
+        right: 45%;
+        top: 20%;
+        transform: translateX(45%);
+      }
+      @media screen and (max-width: 474px){
+        width: 270.24px;
+        position: absolute;
+        right: 45%;
+        top: 20%;
+        transform: translateX(45%);
+      }
+      /* 578px이후 크기 더 줄여야함 */
       &>.CircleWrap{
         position: relative;
         background: #fff;
@@ -106,11 +224,28 @@ const Sub01Section = styled.div`
           position: relative;
           @media screen and (max-width: 1728px) and (min-width: 1427px) {
             width: 355px; height: 355px;
-            font-size: 18px;
+
           }
           @media screen and (max-width: 1427px) and (min-width: 1255px) {
               width: 300px; height: 300px;
-              font-size: 16px;
+
+          }
+          @media screen and (max-width: 1255px) and (min-width:578px){
+              width: 300px; height: 300px;
+
+          }
+          @media screen and (max-width: 577px) and (min-width:475px){
+            width: 250px; height: 250px;
+          }
+          @media screen and (max-width: 474px){
+            width: 180px; height: 180px;
+        }
+        }
+        &>.LeftCir{
+          &>${PoaText}{
+            @media screen and (max-width: 474px){
+              transform: translateX(-10px);
+            }
           }
         }
         &>.RightCir{
@@ -134,7 +269,8 @@ const Sub01Section = styled.div`
           &>${PoaText}{
             filter: invert(1);
             &>h3{text-align:center;}
-            &>p{text-align:center;}
+            &>p{text-align:center; }
+
           }
         }
       }
@@ -148,6 +284,13 @@ const Sub01Section = styled.div`
         }
         @media screen and (max-width: 1427px) and (min-width: 1255px) {
           gap: 40px;
+        }
+        @media screen and (max-width: 1255px) and (min-width:578px){
+          gap: 40px;
+        }
+        @media screen and (max-width: 577px){
+          flex-direction: column;
+          gap: 90px;
         }
         &>a{
           display: flex;
@@ -165,6 +308,13 @@ const Sub01Section = styled.div`
           font-size: 18px;
           gap: 10px;
         }
+        @media screen and (max-width: 1255px)and (min-width:578px){
+          font-size: 18px;
+          gap: 10px;
+        }
+        @media screen and (max-width: 577px){
+          justify-content: space-between;
+        }
           &>p{
             width: 180px;
             @media screen and (max-width: 1728px) and (min-width: 1427px){
@@ -172,6 +322,13 @@ const Sub01Section = styled.div`
             }
             @media screen and (max-width: 1427px) and (min-width: 1255px) {
               width: 140px;
+            }
+            @media screen and (max-width: 1255px) and (min-width:475px){
+              width: 160px;
+            }
+            @media screen and (max-width: 474px){
+              width: 140px;
+              font-size: 18px;
             }
           }
         }
@@ -190,6 +347,9 @@ const Sub01Section = styled.div`
     @media screen and (max-width: 1427px) and (min-width: 1255px) {
       max-width: 400px;
     }
+    @media screen and (max-width: 1255px) and (min-width:578px){
+      max-width: 400px;
+    }
     &>.ChangeTit{
       position: relative;
       overflow: hidden;
@@ -202,6 +362,12 @@ const Sub01Section = styled.div`
         }
         @media screen and (max-width: 1427px) and (min-width: 1255px) {
           font-size: 28px;
+        }
+        @media screen and (max-width: 1255px) and (min-width:578px) {
+          font-size: 28px;
+        }
+        @media screen and (max-width: 577px){
+
         }
       }
       &>p.active{
@@ -239,6 +405,12 @@ const Sub01Section = styled.div`
         }
         @media screen and (max-width: 1427px) and (min-width: 1255px) {
           width: 400px; height: 520px;
+        }
+        @media screen and (max-width: 1255px) and (min-width:578px){
+          width: 400px; height: 520px;
+        }
+        @media screen and (max-width: 577px){
+
         }
       &>img{
         position: absolute;
@@ -280,6 +452,12 @@ const Sub01Section = styled.div`
           }
           @media screen and (max-width: 1427px) and (min-width: 1255px) {
             font-size: 22px;
+          }
+          @media screen and (max-width: 1255px) and (min-width:578px){
+            font-size: 22px;
+          }
+          @media screen and (max-width: 577px){
+
           }
         }
         &>div.active{
@@ -390,10 +568,10 @@ function Sub01Create() {
       
           gsap.fromTo('.MiddleCir',{
             opacity: 0,
-            yPercent: 0,
+            yPercent: -40,
           },{
             opacity: 1,
-            yPercent: -40,
+            yPercent: 0,
             duration: .8,
             scrollTrigger: {
               trigger: '.CircleBotBox', 
@@ -480,12 +658,7 @@ function Sub01Create() {
           },{
             opacity: 1,
             xPercent: 0,
-            duration: .8,
-            scrollTrigger: {
-              trigger: '.CircleBotBox', 
-              start: "top-=100% top",
-              toggleActions: "play pause none none" 
-          }});
+            duration: .8,});
       
           gsap.fromTo('.LeftCir',{
             opacity: 0,
@@ -493,12 +666,7 @@ function Sub01Create() {
           },{
             opacity: 1,
             xPercent: 0,
-            duration: .8,
-            scrollTrigger: {
-              trigger: '.CircleBotBox', 
-              start: "top-=100% top",
-              toggleActions: "play pause none none" 
-          }});
+            duration: .8,});
       
           gsap.fromTo('.MiddleCir',{
             opacity: 0,
@@ -506,12 +674,7 @@ function Sub01Create() {
           },{
             opacity: 1,
             yPercent: -40,
-            duration: .8,
-            scrollTrigger: {
-              trigger: '.CircleBotBox', 
-              start: "top-=100% top",
-              toggleActions: "play pause none none" 
-          }});   
+            duration: .8,});   
       }
     }
     initScrollTrigger();
@@ -523,6 +686,7 @@ function Sub01Create() {
       ScrollTrigger.getAll().forEach((instance) => instance.kill());
     };
   },[isVisible]);
+  
   /////정현 추가 : header 스크롤 이벤트를 위한 컴포넌트 높이측정
   const sub01WrapRef = useRef(null); // Sub01Wrap 요소에 대한 참조
   ////// Sub01Wrap의 offsetTop 값을 계산하는 함수
@@ -570,14 +734,14 @@ function Sub01Create() {
                     <div className="LeftCir Bbx">
                       <PoaText>
                         <h3>작가</h3>
-                        <p>동시대적 질문 탐구</p>
+                        <p className="mobP01">동시대적 질문 탐구</p>
                       </PoaText>
                     </div>
 
                     <div className="RightCir Bbx">
                       <PoaText>
                         <h3>희곡</h3>
-                        <p>교감과 연대</p>
+                        <p className="mobP02">교감과 연대</p>
                       </PoaText>
                     </div>
 
@@ -639,8 +803,10 @@ function Sub01Create() {
               </RightCBox>
 
             </Sub01Section>
-            {/* 모바일 버전일때 영역 제대로 잘 나오도록  수정 */}
-            <MbUl isVisible={isVisible}>
+          </Sub01Wrap>
+
+          {/* 모바일 버전일때 영역 제대로 잘 나오도록  수정 */}
+          <MbUl isVisible={isVisible}>
               <li>
                 <p>01_창작공감, 작가</p>
                 <img className="mobAuthor" src={`${process.env.PUBLIC_URL}/images/create/작가.png`}/>
@@ -668,9 +834,7 @@ function Sub01Create() {
                   <p>#우수희곡 발굴</p>
                 </div>
               </li>
-            </MbUl>
-
-          </Sub01Wrap>
+          </MbUl>
         </div>
 
       </CreateAbout>
