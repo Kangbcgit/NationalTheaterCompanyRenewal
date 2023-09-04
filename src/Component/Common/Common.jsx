@@ -59,6 +59,12 @@ export const GlobalStyle = createGlobalStyle`
   font-weight: normal;
   font-style: normal;
 }
+* {
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+}
 html,
 body,
 h1,

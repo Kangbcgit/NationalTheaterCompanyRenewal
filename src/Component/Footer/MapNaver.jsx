@@ -1,6 +1,6 @@
 import { debounce } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
+// import { Map } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 
 const sizes = {
@@ -53,19 +53,34 @@ function MapNaver(props) {
       const location = new naver.maps.LatLng(props.mapList[1], props.mapList[2]);
       const mapOptions = {
         center: location,
-        zoom: 30,
+        zoom: 17,
         zoomControl: true,
         zoomControlOptions: {
           position: naver.maps.Position.TOP_RIGHT,
         },
       };
       const map = new naver.maps.Map(mapElement.current, mapOptions);
-      new naver.maps.Marker({
+      const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(props.mapList[1], props.mapList[2]),
         map: map,
       });
-      
-      console.log('comp init');
+      const contentString = `<a href="#none" style="padding: 5px;">${props.mapList[0]}</a>`;
+      const infowindow = new window.naver.maps.InfoWindow({
+        content: contentString,
+        disableAnchor: true,
+      });
+
+      // 마우스 이벤트 처리
+      window.naver.maps.Event.addListener(marker, 'mouseover', () => {
+        infowindow.open(map, marker);
+      });
+      window.naver.maps.Event.addListener(marker, 'click', () => {
+        window.location.href = "#none";
+      });
+
+      window.naver.maps.Event.addListener(marker, 'mouseout', () => {
+        infowindow.close();
+      });
     };
     const debounceInitMap = debounce(initMap, 2000);
 
@@ -79,12 +94,6 @@ function MapNaver(props) {
     <WrapTop>
       <h4><img src={`${process.env.PUBLIC_URL}/images/footer/theatreIcon.svg`}></img>{props.mapList[0]}</h4>
       <FrameMap ref={mapElement}></FrameMap>
-      {/* <Map 
-        center={{ lat: 33.5563, lng: 126.79581 }}   // 지도의 중심 좌표
-        style={{ width: '100%', height: '100%' }} // 지도 크기
-        level={3}                                   // 지도 확대 레벨
-      >
-      </Map>; */}
     </WrapTop>
   )
 }

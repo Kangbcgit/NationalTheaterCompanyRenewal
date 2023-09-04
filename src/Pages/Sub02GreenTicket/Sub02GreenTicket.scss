@@ -1,0 +1,699 @@
+@import "../../Component/Scss/mixin";
+
+@include mobile {
+  //전체 감싸는 div
+  .Sub02GreenTicket {
+    width: 100%;
+    margin-top: 150px;
+    .innerGreenTicket {
+      width: 93.7%;
+      height: 100%;
+      margin: auto;
+      position: relative;
+      .GreenTicket {
+        margin-bottom: 50px;
+        //헤딩 텍스트
+        .wrapTextGreenTicket {
+          .wrapTextGreenTicketTitle {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid #000;
+            & h1 {
+              font-size: clamp(2.25rem, 3.33vw, 4rem);
+              font-weight: 900;
+              margin-right: 1rem;
+            }
+          }
+          .wrapTextGreenTicketInfo {
+            padding: 0.5rem;
+            color: var(--black2);
+            h4 {
+              font-size: clamp(1rem, 1.67vw, 2rem);
+              font-weight: 700;
+              margin-bottom: 0.5rem;
+            }
+            p {
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            }
+          }
+        }
+        //01. 그 이하 부분
+        .titleGreenTicket {
+          width: 100%;
+          height: 200px;
+          position: relative; //안쪽 텍스트 배치 위함
+          p:nth-of-type(1) {
+            font-size: clamp(6.25rem, 13.02vw, 15.63rem);
+            font-weight: 900;
+            color: rgba($color: #000000, $alpha: 0.1);
+            position: absolute;
+            left: 5%;
+            bottom: 10%;
+          }
+          h3 {
+            font-size: clamp(1rem, 1.88vw, 2.25rem);
+            font-weight: 900;
+            position: absolute;
+            left: 5%;
+            bottom: 8%;
+          }
+          p:nth-of-type(2) {
+            font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            font-weight: 700;
+            color: #6892ff;
+            position: absolute;
+            left: 5%;
+            bottom: 0;
+          }
+        }
+        .detailGreenTicket {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto;
+          justify-content: space-around;
+          padding: 2rem;
+          //예매버튼과 리스트
+          .goReserve {
+            grid-row: 2;
+            margin-left: 1rem;
+            .goReserveBtn {
+              width: clamp(275px, 20%, 330px);
+              border-bottom: 1px solid #000;
+              margin-bottom: 0.5rem;
+              a {
+                display: flex;
+                padding: 0.2rem;
+                h6 {
+                  font-size: clamp(1rem, 1.25vw, 1.5rem);
+                  font-weight: 700;
+                  margin-right: 8rem;
+                  transition: 0.3s;
+                }
+              }
+            }
+            p {
+              font-size: clamp(0.75rem, 0.83vw, 1rem);
+              font-weight: 700;
+              margin-bottom: 1.5rem;
+            }
+            ul {
+              list-style-position: outside;
+            }
+            li {
+              list-style: square;
+              padding-left: -5px;
+              font-size: clamp(0.75rem, 0.83vw, 1rem);
+              line-height: 25px;
+            }
+          }
+          //그 옆 정보
+          .infoTicket {
+            grid-row: 1;
+            margin: auto;
+            margin-bottom: 5rem;
+            border: 1px solid #000;
+            width: clamp(285px, 50%, 50%); //최소280px
+            height: 190px;
+            position: relative;
+            ul {
+              width: 80%;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+            li {
+              list-style: square;
+              align-items: center;
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+              font-weight: 700;
+              line-height: 40px;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              width: 28px;
+              height: 23px;
+              border: 1px solid #000;
+              right: -5%;
+              top: -8%;
+            }
+          }
+        }
+      }
+    }
+    .Nanum {
+      .innerNanum {
+        width: 93.7%;
+        height: 100%;
+        margin: auto;
+        position: relative;
+      }
+      .blackBg {
+        width: 100%;
+        height: 475px;
+        background-color: #333;
+        color: #fff;
+        .wrapTextNanum {
+          width: 100%;
+          height: 765px;
+          position: relative; //안쪽 텍스트 배치 위함
+          p:nth-of-type(1) {
+            font-size: clamp(6.25rem, 13.02vw, 15.63rem);
+            font-weight: 900;
+            color: rgba($color: #fff, $alpha: 0.1);
+            position: absolute;
+            left: 5%;
+            top: 12%;
+          }
+          h3 {
+            font-size: clamp(1rem, 1.88vw, 2.25rem);
+            font-weight: 900;
+            position: absolute;
+            left: 6%;
+            top: 26%;
+          }
+          p:nth-of-type(2) {
+            font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            font-weight: 700;
+            color: #52e0ff;
+            position: absolute;
+            left: 6%;
+            top: 30%;
+          }
+          .goApply {
+            p {
+              color: #ffffff;
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+              font-weight: 500;
+              position: absolute;
+              left: 6%;
+              top: 38%;
+              margin-bottom: 1rem;
+            }
+            .goApplyBtn {
+              display: block;
+              width: fit-content;
+              position: absolute;
+              left: 6%;
+              top: 48%;
+              a {
+                width: clamp(275px, 25%, 430px);
+                display: flex;
+                padding: 0.2rem;
+                color: #fff;
+                border-bottom: 1px solid #fff;
+                margin-bottom: 1.5rem;
+                h6 {
+                  font-size: clamp(0.88rem, 1.25vw, 1.5rem);
+                  font-weight: 700;
+                  margin-right: 4rem;
+                  transition: 0.3s;
+                }
+                img {
+                  filter: invert(100%);
+                }
+              }
+            }
+          }
+        }
+      }
+      .nanumNotice {
+        list-style-position: outside;
+        padding: 4rem 4rem;
+        li {
+          list-style-type: square;
+          padding-left: -5px;
+          font-size: clamp(0.75rem, 1.25vw, 1.5rem);
+          line-height: 30px;
+        }
+      }
+    }
+  }
+}
+
+@include tablet {
+  //전체 감싸는 div
+  .Sub02GreenTicket {
+    width: 100%;
+    margin-top: 150px;
+    .innerGreenTicket {
+      width: 93.7%;
+      height: 100%;
+      margin: auto;
+      position: relative;
+      .GreenTicket {
+        margin-bottom: 50px;
+        //헤딩 텍스트
+        .wrapTextGreenTicket {
+          .wrapTextGreenTicketTitle {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid #000;
+            & h1 {
+              font-size: clamp(2.25rem, 3.33vw, 4rem);
+              font-weight: 900;
+              margin-right: 1rem;
+            }
+          }
+          .wrapTextGreenTicketInfo {
+            padding: 0.5rem;
+            color: var(--black2);
+            h4 {
+              font-size: clamp(1rem, 1.67vw, 2rem);
+              font-weight: 700;
+              margin-bottom: 0.5rem;
+            }
+            p {
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            }
+          }
+        }
+        //01. 그 이하 부분
+        .titleGreenTicket {
+          width: 100%;
+          height: 200px;
+          position: relative; //안쪽 텍스트 배치 위함
+          p:nth-of-type(1) {
+            font-size: clamp(6.25rem, 13.02vw, 15.63rem);
+            font-weight: 900;
+            color: rgba($color: #000000, $alpha: 0.1);
+            position: absolute;
+            left: 5%;
+            bottom: 10%;
+          }
+          h3 {
+            font-size: clamp(1rem, 1.88vw, 2.25rem);
+            font-weight: 900;
+            position: absolute;
+            left: 5%;
+            bottom: 8%;
+          }
+          p:nth-of-type(2) {
+            font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            font-weight: 700;
+            color: #6892ff;
+            position: absolute;
+            left: 5%;
+            bottom: 0;
+          }
+        }
+        .detailGreenTicket {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto;
+          justify-content: space-around;
+          padding: 2rem;
+          //예매버튼과 리스트
+          .goReserve {
+            grid-row: 2;
+            margin-left: 3rem;
+            .goReserveBtn {
+              width: clamp(275px, 20%, 330px);
+              border-bottom: 1px solid #000;
+              margin-bottom: 0.5rem;
+              a {
+                display: flex;
+                padding: 0.2rem;
+                h6 {
+                  font-size: clamp(1rem, 1.25vw, 1.5rem);
+                  font-weight: 700;
+                  margin-right: 8rem;
+                  transition: 0.3s;
+                }
+              }
+            }
+            p {
+              font-size: clamp(0.75rem, 0.83vw, 1rem);
+              font-weight: 700;
+              margin-bottom: 1.5rem;
+            }
+            ul {
+              list-style-position: outside;
+            }
+            li {
+              list-style: square;
+              padding-left: -5px;
+              font-size: clamp(0.88rem, 0.83vw, 1rem);
+              line-height: 25px;
+            }
+          }
+          //그 옆 정보
+          .infoTicket {
+            grid-row: 1;
+            margin: auto;
+            margin-bottom: 5rem;
+            border: 1px solid #000;
+            width: clamp(285px, 50%, 50%); //최소280px
+            height: 190px;
+            position: relative;
+            ul {
+              width: 80%;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+            li {
+              list-style: square;
+              align-items: center;
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+              font-weight: 700;
+              line-height: 40px;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              width: clamp(28px, 30%, 50px);
+              height: 40px;
+              border: 1px solid #000;
+              right: -6%;
+              top: -10%;
+            }
+          }
+        }
+      }
+    }
+    .Nanum {
+      .innerNanum {
+        width: 93.7%;
+        height: 100%;
+        margin: auto;
+        position: relative;
+      }
+      .blackBg {
+        width: 100%;
+        height: 475px;
+        background-color: #333;
+        color: #fff;
+        .wrapTextNanum {
+          width: 100%;
+          height: 765px;
+          position: relative; //안쪽 텍스트 배치 위함
+          p:nth-of-type(1) {
+            font-size: clamp(6.25rem, 13.02vw, 15.63rem);
+            font-weight: 900;
+            color: rgba($color: #fff, $alpha: 0.1);
+            position: absolute;
+            left: 5%;
+            top: 12%;
+          }
+          h3 {
+            font-size: clamp(1rem, 1.88vw, 2.25rem);
+            font-weight: 900;
+            position: absolute;
+            left: 6%;
+            top: 30%;
+          }
+          p:nth-of-type(2) {
+            font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            font-weight: 700;
+            color: #52e0ff;
+            position: absolute;
+            left: 6%;
+            top: 35%;
+          }
+          .goApply {
+            p {
+              color: #fff;
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+              font-weight: 500;
+              position: absolute;
+              left: 6%;
+              top: 42%;
+            }
+            .goApplyBtn {
+              display: block;
+              width: fit-content;
+              position: absolute;
+              left: 6%;
+              top: 48%;
+              a {
+                width: clamp(275px, 25%, 430px);
+                display: flex;
+                padding: 0.2rem;
+                color: #fff;
+                border-bottom: 1px solid #fff;
+                margin-bottom: 1.5rem;
+                h6 {
+                  font-size: clamp(1rem, 1.25vw, 1.5rem);
+                  font-weight: 700;
+                  margin-right: 4rem;
+                  transition: 0.3s;
+                }
+                img {
+                  filter: invert(100%);
+                }
+              }
+            }
+          }
+        }
+      }
+      .nanumNotice {
+        list-style-position: outside;
+        padding: 4rem 4rem;
+        li {
+          list-style-type: square;
+          padding-left: -5px;
+          font-size: clamp(0.88rem, 1.25vw, 1.5rem);
+          line-height: 30px;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  //전체 감싸는 div
+  .Sub02GreenTicket {
+    width: 100%;
+    margin-top: 200px;
+    .innerGreenTicket {
+      width: 93.7%;
+      height: 100%;
+      margin: auto;
+      position: relative;
+      .GreenTicket {
+        margin-bottom: 210px;
+        //헤딩 텍스트
+        .wrapTextGreenTicket {
+          .wrapTextGreenTicketTitle {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid #000;
+            & h1 {
+              font-size: clamp(2.25rem, 3.33vw, 4rem);
+              font-weight: 900;
+              margin-right: 1rem;
+            }
+          }
+          .wrapTextGreenTicketInfo {
+            padding: 0.5rem;
+            color: var(--black2);
+            h4 {
+              font-size: clamp(1rem, 1.67vw, 2rem);
+              font-weight: 700;
+              margin-bottom: 0.5rem;
+            }
+            p {
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            }
+          }
+        }
+        //01. 그 이하 부분
+        .titleGreenTicket {
+          width: 100%;
+          height: 325px;
+          position: relative; //안쪽 텍스트 배치 위함
+          p:nth-of-type(1) {
+            font-size: clamp(6.25rem, 13.02vw, 15.63rem);
+            font-weight: 900;
+            color: rgba($color: #000000, $alpha: 0.1);
+            position: absolute;
+            right: 5%;
+            bottom: 0%;
+          }
+          h3 {
+            font-size: clamp(1rem, 1.88vw, 2.25rem);
+            font-weight: 900;
+            position: absolute;
+            right: 15%;
+            bottom: 15%;
+          }
+          p:nth-of-type(2) {
+            font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            font-weight: 700;
+            color: #6892ff;
+            position: absolute;
+            right: 15%;
+            bottom: 5%;
+          }
+        }
+        .detailGreenTicket {
+          display: flex;
+          justify-content: space-around;
+          padding: 2rem;
+          //예매버튼과 리스트
+          .goReserve {
+            margin-left: 4rem;
+            .goReserveBtn {
+              width: 330px;
+              border-bottom: 1px solid #000;
+              margin-bottom: 0.5rem;
+              a {
+                display: flex;
+                padding: 0.2rem;
+                h6 {
+                  font-size: clamp(1rem, 1.25vw, 1.5rem);
+                  font-weight: 700;
+                  margin-right: 7rem;
+                  transition: 0.3s;
+                }
+              }
+              a:hover h6 {
+                margin-right: 9rem;
+              }
+            }
+            p {
+              font-size: clamp(0.75rem, 0.83vw, 1rem);
+              font-weight: 700;
+              margin-bottom: 1.5rem;
+            }
+            ul {
+              list-style-position: outside;
+            }
+            li {
+              list-style: square;
+              padding-left: -5px;
+              font-size: clamp(0.75rem, 0.83vw, 1rem);
+              line-height: 25px;
+            }
+          }
+          //그 옆 정보
+          .infoTicket {
+            margin: auto;
+            border: 1px solid #000;
+            width: 28%; //504px
+            height: 190px;
+            position: relative;
+            ul {
+              width: 80%;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+            li {
+              list-style: square;
+              align-items: center;
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+              font-weight: 700;
+              line-height: 40px;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              width: 50px;
+              height: 40px;
+              border: 1px solid #000;
+              right: -6%;
+              top: -10%;
+            }
+          }
+        }
+      }
+    }
+    .Nanum {
+      .innerNanum {
+        width: 93.7%;
+        height: 100%;
+        margin: auto;
+        position: relative;
+      }
+      .blackBg {
+        width: 100%;
+        height: 765px;
+        background-color: #333;
+        color: #fff;
+        .wrapTextNanum {
+          width: 100%;
+          height: 765px;
+          position: relative; //안쪽 텍스트 배치 위함
+          p:nth-of-type(1) {
+            font-size: clamp(6.25rem, 13.02vw, 15.63rem);
+            font-weight: 900;
+            color: rgba($color: #fff, $alpha: 0.1);
+            position: absolute;
+            left: 5%;
+            top: 30%;
+          }
+          h3 {
+            font-size: clamp(1rem, 1.88vw, 2.25rem);
+            font-weight: 900;
+            position: absolute;
+            left: 6%;
+            top: 65%;
+          }
+          p:nth-of-type(2) {
+            font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+            font-weight: 700;
+            color: #52e0ff;
+            position: absolute;
+            left: 6%;
+            top: 72%;
+          }
+          .goApply {
+            p {
+              color: #fff;
+              font-size: clamp(0.75rem, 1.04vw, 1.25rem);
+              font-weight: 500;
+              position: absolute;
+              left: 6%;
+              top: 80%;
+            }
+            .goApplyBtn {
+              display: flex;
+              width: fit-content;
+              position: absolute;
+              left: 6%;
+              top: 87%;
+              a {
+                width: 430px;
+                display: flex;
+                padding: 0.2rem;
+                color: #fff;
+                border-bottom: 1px solid #fff;
+                margin-right: 5rem;
+                h6 {
+                  font-size: clamp(1rem, 1.25vw, 1.5rem);
+                  font-weight: 700;
+                  margin-right: 7rem;
+                  transition: 0.3s;
+                }
+                img {
+                  filter: invert(100%);
+                }
+              }
+              a:hover h6 {
+                margin-right: 8rem;
+              }
+            }
+          }
+        }
+      }
+      .nanumNotice {
+        list-style-position: outside;
+        padding: 4rem 6rem;
+        li {
+          list-style-type: square;
+          padding-left: -5px;
+          font-size: clamp(0.75rem, 1.25vw, 1.5rem);
+          line-height: 45px;
+        }
+      }
+    }
+  }
+}

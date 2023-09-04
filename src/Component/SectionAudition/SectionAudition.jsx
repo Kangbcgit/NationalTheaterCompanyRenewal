@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 import AuditionItem from './AuditionItem';
+import { useLocation } from 'react-router-dom';
 
 const sizes = {
   mobile: 375,
@@ -195,8 +196,10 @@ const SectionAudition = props => {
     transform: 0,
     calcWidth: 0,
   })
+  const currentPath = useLocation().pathname;
   const wrapper = useRef(null);
   const items = useRef(null);
+  const dot = useRef(null);
   let startTransform = 0;
   let startX = useRef(0);
 
@@ -218,7 +221,6 @@ const SectionAudition = props => {
     } else {
       const wrapperElement = wrapper.current;
       const RectTop = wrapperElement.getBoundingClientRect().top;
-      console.log('width' + props.currentWindowWidth)
       if (RectTop > 0) {
         setState(prevState => ({...prevState, transform: 0}));
         return;
@@ -229,17 +231,12 @@ const SectionAudition = props => {
       setState(prevState => ({...prevState, wrapperTop: RectTop}));
       let calc = RectTop / (wrapperElement.clientHeight - window.innerHeight);
       setState(prevState => ({...prevState, transform: state.calcWidth * calc || 0}));
-      console.log('is Mobile: ' + props.isMobile);
     }
   };
   const setFirstTouchLocation = e => {
     if (!props.isMobile) return;
-    console.log('startX: ' + startX.current);
-    console.log('state.transform: ' + state.transform);
     startTransform = state.transform;
-    console.log('startTransform : ' + startTransform);
     startX.current = e.touches[0].pageX - state.transform;
-    console.log('e.touches[0].pageX: ' + e.touches[0].pageX);
   }
   const setMoveTouchLocation = e => {
     if (!props.isMobile) return;
@@ -258,11 +255,10 @@ const SectionAudition = props => {
       let dataMinus = data - (data / 2);
       newArr.push([(data * index) - dataMinus, (data * (index + 1) - dataMinus)]);
       setState(prevState => ({...prevState, MobileItemsCenterAlignmentData: newArr}));
-      console.log(state.MobileItemsCenterAlignmentData);
-      console.log(items.current.scrollWidth);
     })
   }
   const setCurrentActivePageNationDot = (index = 0) => {
+    console.log('점값: ' , (-items.current.scrollWidth / 5 * index) - (3.75 * index));
     setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index) - (3.75 * index)}));
     setState(prevState => ({...prevState, currentActivePageNationDot: (index) + 1}));
   }
@@ -271,42 +267,60 @@ const SectionAudition = props => {
   }
   const mobileItemsCenterAlignment = () => {
     state.MobileItemsCenterAlignmentData.forEach((item, index) => {
+      const length = -items.current.scrollWidth;
       if (-state.transform >= item[0] && state.transform <= item[1]) {
-        if (index === 0) {
-          setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index)}));
-          setCurrentActivePageNationDot(index);
-          console.log('첫번째임')
-          return;
-        }
-        setState(prevState => ({...prevState, transform: (-items.current.scrollWidth / 5 * index) - (3.75 * index)}));
-        setCurrentActivePageNationDot(index);
+        console.log('값: ' , (length / 5 * index) - (3.75 * index));
+        setState(prevState => ({...prevState, transform: (length / 5 * index) - (3.75 * index)}));
       }
     })
     // state.MobileItemsCenterAlignmentData
   }
+  const mobileItemsDotMove = () => {
+    state.MobileItemsCenterAlignmentData.forEach((item, index) => {
+      if (-state.transform >= item[0] && state.transform <= item[1]) {
+        setCurrentActivePageNationDot(index);
+      }
+    })
+  }
+
+  const setCalcWidth = () => {
+    setState(prevState => ({...prevState, calcWidth: (items.current.clientWidth - wrapper.current.clientWidth)}));
+  }
 
   //translateX 이벤트 + 최초 size측정 + resize 이벤트 할당
   useEffect(() => {
-    setState(prevState => ({...prevState, calcWidth: (items.current.clientWidth - wrapper.current.clientWidth)}));
+    setCalcWidth();
     setCurrentActivePageNationDot();
     mountItemsSet();
-  },[props.currentWindowWidth]);
+    window.addEventListener('resize', setCalcWidth);
+    return () => {
+      window.removeEventListener('resize', setCalcWidth);
+    }
+  },[]);
   useEffect(() => {
     window.addEventListener('scroll', desktopTranslateXEvent);
     return () => {
       window.removeEventListener('scroll', desktopTranslateXEvent);
     }
-  },[props.isMobile,props.currentWindowWidth]);
+  },[props.isMobile,state.calcWidth]);
   useEffect(() => {
-    items.current.addEventListener('touchstart', setFirstTouchLocation);
-    items.current.addEventListener('touchmove', setMoveTouchLocation);
-    items.current.addEventListener('touchend', mobileItemsCenterAlignment);
+    let Items = items.current;
+    Items.addEventListener('touchstart', setFirstTouchLocation);
+    Items.addEventListener('touchmove', setMoveTouchLocation);
+    Items.addEventListener('touchend', mobileItemsCenterAlignment);
     return () => {
-      items.current.removeEventListener('touchstart', setFirstTouchLocation);
-      items.current.removeEventListener('touchmove', setMoveTouchLocation);
-      items.current.removeEventListener('touchend', mobileItemsCenterAlignment);
+      Items.removeEventListener('touchstart', setFirstTouchLocation);
+      Items.removeEventListener('touchmove', setMoveTouchLocation);
+      Items.removeEventListener('touchend', mobileItemsCenterAlignment);
     }
   },[setMoveTouchLocation, startX.current, state.transform, props.currentWindowWidth]);
+  useEffect(() => {
+    let dotTarget = dot.current;
+    dotTarget.addEventListener('touchend', mobileItemsDotMove);
+    return () => {
+      dotTarget.removeEventListener('touchend', mobileItemsDotMove);
+    }
+  }, [])
   useEffect(() => {
     firstRenderingDataSet();
   },[])
@@ -327,7 +341,7 @@ const SectionAudition = props => {
               return (<AuditionItem order={`0${index + 1}`} item={item} year={state.year}/>)
             })}
           </Items>
-          <PageNation>
+          <PageNation ref={dot}>
           {props.isMobile ? state.MobileItemsCenterAlignmentData.map((item, index) => {
             return (<div className={`pageNationDot ${state.currentActivePageNationDot - 1 === index ? 'activeDot' : ''}`} onClick={() => {clickPageNationDot(index)}}></div>)
           }) : null}

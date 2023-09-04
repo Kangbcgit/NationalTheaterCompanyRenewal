@@ -20,7 +20,7 @@ const WrapItem = styled.div`
     background: #D9D9D9;
     padding: 12px 24px;
 
-    width:294px;
+    /* width:294px; */
     height: 408px;
   }
 `;

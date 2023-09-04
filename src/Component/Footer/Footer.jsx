@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { styled } from 'styled-components'
 import MapNaver from './MapNaver';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 const sizes = {
   mobile: 375,
@@ -169,28 +171,51 @@ const Links = styled.div`
   }
 `;
 const Box = styled.div`
-&>select {
-  width:243px;
-  height: 51px;
-  background: var(--primary);
-  border: none;
-  color: var(--white);
+  position: relative;
+  &>.boxTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  font-size: vaR(--title);
-  text-align: center;
-  &>option {
-    background: var(--white);
-    color: var(--primary);
+    width: 243px;
     height: 51px;
+    padding: 0 20px;
+
+    background: var(--primary);
+    color: var(--white);
+
+    cursor: pointer;
   }
-}
-@media ${media.mobile} {
-  overflow: hidden;
-  &>select {
-    font-size: var(--title);
-    margin: 39px 0;
+  &>ul {
+    position: absolute;
+    bottom: calc(100% + 1px);
+
+    width: 243px;
+    height: calc(51px * 5);
+    overflow: auto;
+
+    background: var(--white);
+
+    max-height: 0;
+    transition: .3s;
+    &.on {
+      max-height: calc(51px * 5);
+    }
+    &>li {
+      height: 51px;
+      &>a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: var(--black2);
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
-}
 `;
 
 export default class Footer extends Component {
@@ -205,6 +230,9 @@ export default class Footer extends Component {
   }
   goTop = () => {
     window.scrollTo({top: 0, behavior: 'smooth'})
+  }
+  BoxOn = e => {
+    e.currentTarget.nextSibling.classList.toggle('on');
   }
   render() {
     return (
@@ -264,11 +292,22 @@ export default class Footer extends Component {
             <Link to={'#none'}>사이트맵</Link>
           </Links>
           <Box>
-            <select name="" id="" placeholder='여기저기고르세요'>
-              <option value="">관련기관 바로가기</option>
-              <option value="">저기</option>
-              <option value="">아무데나</option>
-            </select>
+            <div className='boxTitle' onClick={this.BoxOn}>관련기관 바로가기 <FontAwesomeIcon icon={faCaretDown}  /></div>
+            <ul>
+              <li><Link to={'#none'}>국립극장</Link></li>
+              <li><Link to={'#none'}>국립발레단</Link></li>
+              <li><Link to={'#none'}>국립오페라단</Link></li>
+              <li><Link to={'#none'}>국림정동극단</Link></li>
+              <li><Link to={'#none'}>국립합창단</Link></li>
+              <li><Link to={'#none'}>국립현대무용단</Link></li>
+              <li><Link to={'#none'}>문화체육관광부</Link></li>
+              <li><Link to={'#none'}>서울문화재단</Link></li>
+              <li><Link to={'#none'}>서울연극센터</Link></li>
+              <li><Link to={'#none'}>서울예술단</Link></li>
+              <li><Link to={'#none'}>예술의전당</Link></li>
+              <li><Link to={'#none'}>한국공연예술센터</Link></li>
+              <li><Link to={'#none'}>한국문화예술위원회</Link></li>
+            </ul>
           </Box>
         </FooterLink>
       </FrameFooter>

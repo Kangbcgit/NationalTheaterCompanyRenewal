@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import { throttle } from 'lodash'
 const sizes = {
   mobile: 375,
+  tablet: 785,
 }
 const media = {
   mobile: `(max-width: ${sizes.mobile}px)`,
+  tablet: `(max-width: ${sizes.tablet}px)`
 }
 const Wrapper = styled.div`
   position: relative;
@@ -78,6 +80,9 @@ const Parent = styled.div`
     right: 0;
     top: 100%;
     transform: translate(50%, -50%) rotate(${props => `${+props.deg + 45}deg`});
+  }
+  @media ${media.tablet} {
+    
   }
 `;
 const Circle = styled.div`
