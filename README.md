@@ -3,7 +3,7 @@
 # 국립극단 site renewal team project - 🐱고양이 해적단🏴‍☠️
 
 ## 구성원 : 이고운(조장) 김정현 강병찬
-![image](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/93186451/9df76cc5-c4fc-49e3-92c3-8df4ce1e06db)
+![전체샷 1](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/d94d45bf-5991-450f-bcac-5e841c6169ae)
 
 ## 제작 기간: 30일 (2023.08.01 ~ 2023.08.31)
 
