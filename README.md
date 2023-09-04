@@ -43,10 +43,52 @@
   |섹션0 : 로딩 페이지|
   |:---|
   |![로딩](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/2da66164-7f1a-4d1a-b146-35f7235d66ce)|
-  |Swiper 플러그인을 활용하여 랭킹 리스트를 슬라이드로 제작하였습니다. Up/Down 화살표 버튼 클릭 혹은 리스트 영역에서 마우스 드래그 시 슬라이드가 움직이며, 클릭한 리스트의 데이터를 가져와 왼쪽 영역에 표출될 수 있도록 구현하였습니다.|
+  |웹페이지를 더 독특하게 만들고 시각적으로 흥미로운 요소넣기위해, 기존에 없었던 로딩페이지를 제작했습니다. Svg에 gsap를 적용하여 ​웹 페이지의 부드러운 애니메이션 효과를 적용햇습니다 |
 
 <br>
 
+  |섹션1 : 헤더 및 캐치프라이즈|
+  |:---|
+  |![캐치프라이즈](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/1de3a640-ded8-4e6e-baec-cb6d557b4537)|
+  |![헤더 스크롤](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/7cdf37fd-d61b-4c28-8d91-d4f87a9d6130)|
+  |국립극단의 정체성을 담은 CatchPhrase와 Header입니다. Header는 각 섹션간의 높이를 계산하여 배경색이 투명일지 흰색일지, y축 위로 올라갈지 결정됩니다. 또한 어도비 프리미어 프로를 이용한 동영상을 CatchPhrase에 넣었습니다.|
+
+<br>
+
+  |섹션2 : 현재 상영작(play)|
+  |:---|
+  |![플레이 슬라이드](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/cce43ca1-87d1-4f42-a058-de16f1004101)|
+  |클립패스 효과및 수학적 연산을 활용하여 현재 공연 작품을 한눈에 확인 가능한 상영작 섹션입니다. 정사각형의 부모를 배치하고 그 안에 원을 배치하여 각 30도씩 틀어서 버튼이 돌도록 수학적 설계를 하였습니다.
+   또한 버튼을 누르면, 그 버튼의 각도를 계산하여 텍스트들 불러오고, 그 텍스트를 backview에 할당하여 앞에있는 이미지를 clip-path로 마치 책장을 넘기는 효과를 넣어줬습니다.|
+  
+<br>
+
+  |섹션3 : 오디션|
+  |:---|
+  |![오디션 슬라이드](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/ece332d8-855d-46af-ab8f-fb92e115e7e3)|
+  |가로 스크롤 효과로 현재 배우를 모집하고 있는 작품들을 체크할 수 있게 설계했습니다.|
+    
+<br>
+
+  |섹션4 : 창작공감(create)|
+  |:---|
+  |![크리에이트 슬라이드](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/5bed65b4-d11f-4a13-a8dd-e6d274a7d3b9)|
+  |Gsap를 활용한 국립극단이 운영하는 뜻깊은 사업 창작공감 섹션입니다. 창작공감 섹션에 도달하게되면 position:fixed가 되어 화면이 고정되고, gsap를 이용한 스크롤 애니메이션을 볼 수 있게 구현하였습니다. 또한 스타일드 컴포넌트를 이용하여 pc버전 및 모바일 버전을 props로 받아들여서 반응형으로 만들었습니다.|
+
+<br>
+
+  |섹션5 : 컨텐츠 보드(cttBoard)|
+  |:---|
+  |![image](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/42ee4d79-206e-45f8-b769-b34be7cdf7bf)|
+  |어지럽게 흩어져 있던 공지사항과 각종 게시물들을 한 번에 모아두는 섹션입니다. 서브페이지가 링크된 푸른티켓의 경우 아이콘의 색상을 달리하여 사용자의 클릭을 유도하였습니다.|
+  
+<br>
+
+  |섹션6 : 푸터|
+  |:---|
+  |![image](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/5f687c6b-4b4a-43e0-9412-17a20938457e)|
+  |Map Api를 활용하여 두 곳의 극장 위치를 동시에 확인 가능하게 구성하였습니다.|
+  
 
 ## 🚀 링크
 
