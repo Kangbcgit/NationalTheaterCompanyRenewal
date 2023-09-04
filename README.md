@@ -15,7 +15,7 @@
 + 개발 환경 : <img src="https://img.shields.io/badge/windows10-0078D6?style=flat-square&logo=windows10&logoColor=white"/>
 + 사용 프로그램 : <img src="https://img.shields.io/badge/Vs code-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white"/> <img src="https://img.shields.io/badge/Photoshop-31A8FF?style=flat-square&logo=adobephotoshop&logoColor=white"/> <img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/> <img src="https://img.shields.io/badge/Illustrator-FF9A00?style=flat-square&logo=adobeillustrator&logoColor=white"/> <img src="https://img.shields.io/badge/PremierePro-9999FF?style=flat-square&logo=adobepremierepro&logoColor=white"/> 및 클립스튜디오
 + 사용된 기술 :
-  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/> <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=sass&logoColor=white"/> <img src="https://img.shields.io/badge/StyledComponents-DB7093?style=flat-square&logo=styledcomponents&logoColor=white"/> <img src="https://img.shields.io/badge/Lodash-3492FF?style=flat-square&logo=lodash&logoColor=white"/> <img src="https://img.shields.io/badge/Gsap-88CE02?style=flat-square&logo=greensock&logoColor=white"/><img src="https://img.shields.io/badge/Naver API-03C75A?style=flat-square&logo=naver&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white"/> <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=sass&logoColor=white"/> <img src="https://img.shields.io/badge/StyledComponents-DB7093?style=flat-square&logo=styledcomponents&logoColor=white"/> <img src="https://img.shields.io/badge/Lodash-3492FF?style=flat-square&logo=lodash&logoColor=white"/> <img src="https://img.shields.io/badge/Gsap-88CE02?style=flat-square&logo=greensock&logoColor=white"/> <img src="https://img.shields.io/badge/Naver API-03C75A?style=flat-square&logo=naver&logoColor=white"/>
 
 ## 🛠️ 주요 기능
 1. Scrollytelling
@@ -24,7 +24,7 @@
    
 2. lodash 라이브러리를 이용한 디바운싱 및 쓰로틀링 작업
 
-    모듈화, 성능 및 기타 기능을 제공하는 자바스크립트 유틸리티 라이브러리 입니다. 불필요한 렌더링을 막기 위해 lodash 라이브러리에 존재하는 _.throttle. 와 _.debounce를 사용 하였습니다. 특히 할당량에 제한이 있는 외부 api(kakao map)를 사용했기 때문에, 과도한 서버 요청을 막을 수 있도록 필수적으로 사용하였습니다.
+    모듈화, 성능 및 기타 기능을 제공하는 자바스크립트 유틸리티 라이브러리 입니다. 불필요한 렌더링을 막기 위해 lodash 라이브러리에 존재하는 _.throttle. 와 _.debounce를 사용 하였습니다. 특히 할당량에 제한이 있는 외부 api(naver map)를 사용했기 때문에, 과도한 서버 요청을 막을 수 있도록 필수적으로 사용하였습니다.
    
 3. Sass(Scss)
 
@@ -37,6 +37,8 @@
 5. Gsap (The GreenSock Animation Platform)
 
     프론트엔드 개발자와 디자이너들이 쉽게 사용할 수 있는 타임라인 기반의 애니메이션 자바스크립트 라이브러리입니다. CSS와 자바스크립트만으로도 동적인 화면을 만들 수 있지만, GSAP은 세밀한 움직임과 동작의 연속성을 훨씬 간편하게 설정할 수 있습니다. GSAP는 제이쿼리보다 20배 이상 퍼포먼스가 좋고 사용법도 간단합니다. 또한 스크롤링 기반 애니메이션이나 요소들이 하나씩 연달아 움직이는 모든 세세한 동작들을 속도, 가속, 감속, 움직이는 경로까지 설정할 수 있기 때문에 GSAP은 많은 프론트엔드 개발자들에게 각광받는 라이브러리라고 할 수 있습니다.
+
+## 🚀 페이지 구성
 
 ## 🚀 링크
 
