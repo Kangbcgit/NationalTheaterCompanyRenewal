@@ -271,6 +271,7 @@ const SectionAudition = props => {
       if (-state.transform >= item[0] && state.transform <= item[1]) {
         console.log('값: ' , (length / 5 * index) - (3.75 * index));
         setState(prevState => ({...prevState, transform: (length / 5 * index) - (3.75 * index)}));
+        setCurrentActivePageNationDot(index);
       }
     })
     // state.MobileItemsCenterAlignmentData

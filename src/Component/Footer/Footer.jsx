@@ -185,6 +185,9 @@ const Box = styled.div`
     color: var(--white);
 
     cursor: pointer;
+    @media ${media.mobile} {
+      margin: 20px auto;
+    }
   }
   &>ul {
     position: absolute;

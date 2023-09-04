@@ -38,7 +38,7 @@ function MapNaver(props) {
   useEffect(() => {
     const loadNaverMap = () => {
       const script = document.createElement('script');
-      script.src = 'https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wwkp87l93f&submodules=geocoder';
+      script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.REACT_APP_API_KEY}&submodules=geocoder`;
       script.async = true;
       document.head.appendChild(script);
       script.onload = initMap;
