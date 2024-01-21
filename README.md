@@ -1,4 +1,4 @@
-![image](https://github.com/Kangbcgit/NationalTheaterCompanyRenewal/assets/85141928/6d9f2a8d-b993-446f-978e-d41f6e66ac0d)![header](https://capsule-render.vercel.app/api?type=waving&color=0:665dff,100:5ee4ff&height=300&section=header&text=고양이%20해적단&fontSize=90&fontColor=ffffff)
+![header](https://capsule-render.vercel.app/api?type=waving&color=0:665dff,100:5ee4ff&height=300&section=header&text=고양이%20해적단&fontSize=90&fontColor=ffffff)
 
 # 국립극단 site renewal team project - 🐱고양이 해적단🏴‍☠️
 
